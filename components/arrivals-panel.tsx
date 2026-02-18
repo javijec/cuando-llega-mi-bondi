@@ -23,12 +23,10 @@ export function ArrivalsPanel({
   interseccionNombre,
   onVerRecorrido,
 }: ArrivalsPanelProps) {
-  const {
-    data,
-    isLoading,
-    isFetching,
-    error,
-  } = useArribos(parada.Identificador, codigoLinea);
+  const { data, isLoading, isFetching, error } = useArribos(
+    parada.Identificador,
+    codigoLinea,
+  );
 
   const refreshArribos = useRefreshArribos();
 
@@ -43,7 +41,7 @@ export function ArrivalsPanel({
       descripcionParada: parada.Descripcion,
       calle: calleNombre,
       interseccion: interseccionNombre,
-    }
+    },
   );
 
   const arribos = data?.arribos || [];
@@ -115,9 +113,7 @@ export function ArrivalsPanel({
         {/* Parada info */}
         <div className="px-2 mb-4 flex items-start gap-2">
           <MapPin className="w-3.5 h-3.5 text-muted-foreground mt-0.5 shrink-0" />
-          <p className="text-muted-foreground text-xs">
-            {parada.Descripcion}
-          </p>
+          <p className="text-muted-foreground text-xs">{parada.Descripcion}</p>
         </div>
 
         {/* Arrivals list */}

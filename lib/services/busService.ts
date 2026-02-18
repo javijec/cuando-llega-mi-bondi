@@ -1,19 +1,19 @@
 // lib/services/busService.ts
-import type { 
-  LineasResponse, 
-  CallesResponse, 
+import type {
+  LineasResponse,
+  CallesResponse,
   InterseccionesResponse,
   ParadasResponse,
   ArribosResponse,
   RecorridoResponse,
   APIResponse,
-} from '@/lib/types/bus';
+} from "@/lib/types/bus";
 
 /**
  * 🔥 Cliente HTTP optimizado con enfoque híbrido:
  * - GET para datos estáticos (aprovecha Vercel CDN)
  * - POST para datos dinámicos (arribos en tiempo real)
- * 
+ *
  * ⚠️ IMPORTANTE: Este archivo NO usa 'use cache'
  * El cache se maneja en la API Route, no aquí, porque este código
  * puede ser importado desde Client Components.
@@ -25,11 +25,11 @@ import type {
  */
 async function fetchStatic<T>(
   action: string,
-  params?: Record<string, string | number>
+  params?: Record<string, string | number>,
 ): Promise<T> {
   // Construir query string
   const searchParams = new URLSearchParams();
-  
+
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
       searchParams.append(key, value.toString());
@@ -37,19 +37,23 @@ async function fetchStatic<T>(
   }
 
   const queryString = searchParams.toString();
-  const url = `/api/bus/${action}${queryString ? `?${queryString}` : ''}`;
-  
+  const url = `/api/bus/${action}${queryString ? `?${queryString}` : ""}`;
+
   console.log(`📡 [GET] ${url}`);
 
   const response = await fetch(url, {
-    method: 'GET',
+    method: "GET",
     // El navegador cachea automáticamente GET
     // TanStack Query añadirá su propia capa de cache
   });
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-    throw new Error(errorData.error || `Error ${response.status}: ${response.statusText}`);
+    const errorData = await response
+      .json()
+      .catch(() => ({ error: "Unknown error" }));
+    throw new Error(
+      errorData.error || `Error ${response.status}: ${response.statusText}`,
+    );
   }
 
   const data: APIResponse<T> = await response.json();
@@ -62,23 +66,27 @@ async function fetchStatic<T>(
  */
 async function fetchDynamic<T>(
   action: string,
-  params: Record<string, string | number>
+  params: Record<string, string | number>,
 ): Promise<T> {
   const url = `/api/bus/${action}`;
-  
+
   console.log(`📡 [POST] ${url}`, params);
 
   const response = await fetch(url, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ params }),
   });
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-    throw new Error(errorData.error || `Error ${response.status}: ${response.statusText}`);
+    const errorData = await response
+      .json()
+      .catch(() => ({ error: "Unknown error" }));
+    throw new Error(
+      errorData.error || `Error ${response.status}: ${response.statusText}`,
+    );
   }
 
   const data: APIResponse<T> = await response.json();
@@ -94,7 +102,7 @@ export const busService = {
    * Endpoint: GET /api/bus/lineas
    */
   async fetchLines(): Promise<LineasResponse> {
-    return fetchStatic<LineasResponse>('lineas');
+    return fetchStatic<LineasResponse>("lineas");
   },
 
   /**
@@ -103,7 +111,7 @@ export const busService = {
    * Endpoint: GET /api/bus/calles?codLinea=XXX
    */
   async fetchStreets(codigoLinea: string): Promise<CallesResponse> {
-    return fetchStatic<CallesResponse>('calles', {
+    return fetchStatic<CallesResponse>("calles", {
       codLinea: codigoLinea,
     });
   },
@@ -115,9 +123,9 @@ export const busService = {
    */
   async fetchIntersections(
     codigoLinea: string,
-    codigoCalle: string
+    codigoCalle: string,
   ): Promise<InterseccionesResponse> {
-    return fetchStatic<InterseccionesResponse>('intersecciones', {
+    return fetchStatic<InterseccionesResponse>("intersecciones", {
       codLinea: codigoLinea,
       codCalle: codigoCalle,
     });
@@ -131,9 +139,9 @@ export const busService = {
   async fetchStops(
     codigoLinea: string,
     codigoCalle: string,
-    codigoInterseccion: string
+    codigoInterseccion: string,
   ): Promise<ParadasResponse> {
-    return fetchStatic<ParadasResponse>('paradas', {
+    return fetchStatic<ParadasResponse>("paradas", {
       codLinea: codigoLinea,
       codCalle: codigoCalle,
       codInterseccion: codigoInterseccion,
@@ -147,9 +155,9 @@ export const busService = {
    */
   async fetchArrivals(
     identificadorParada: string,
-    codigoLineaParada: string
+    codigoLineaParada: string,
   ): Promise<ArribosResponse> {
-    return fetchDynamic<ArribosResponse>('arribos', {
+    return fetchDynamic<ArribosResponse>("arribos", {
       identificadorParada,
       codigoLineaParada,
     });
@@ -162,9 +170,9 @@ export const busService = {
    */
   async fetchRecorrido(
     codigoLinea: string,
-    isSublinea: number = 0
+    isSublinea: number = 0,
   ): Promise<RecorridoResponse> {
-    return fetchStatic<RecorridoResponse>('recorrido', {
+    return fetchStatic<RecorridoResponse>("recorrido", {
       codLinea: codigoLinea,
       isSublinea,
     });

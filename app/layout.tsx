@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { QueryProvider } from "@/lib/providers/QueryProvider";
@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   title: "MiBondi - Colectivos en Tiempo Real",
   description:
     "Consulta en tiempo real los arribos de colectivos en Mar del Plata. Busca tu linea, parada y guarda tus favoritos.",
-    icons: {
-      icon: "/icon.svg",
-      apple: "/apple-icon.png",
-    },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
@@ -32,9 +32,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.variable}>
       <body className="font-sans antialiased min-h-screen">
-        <QueryProvider>
-          {children}
-        </QueryProvider>
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

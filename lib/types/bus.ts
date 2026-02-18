@@ -52,7 +52,9 @@ export interface Interseccion {
 /**
  * Respuesta del endpoint RecuperarInterseccionPorLineaYCalle
  */
-export interface InterseccionesResponse extends APIBaseResponse<Interseccion[]> {
+export interface InterseccionesResponse extends APIBaseResponse<
+  Interseccion[]
+> {
   intersecciones?: Interseccion[];
   calles?: Interseccion[]; // A veces la API devuelve "calles" en lugar de "intersecciones"
 }
@@ -150,13 +152,13 @@ export interface Favorito {
 
 // === TIPOS DE REQUEST/RESPONSE ===
 
-export type AccionAPI = 
-  | 'RecuperarLineaPorCuandoLlega'
-  | 'RecuperarCallesPrincipalPorLinea'
-  | 'RecuperarInterseccionPorLineaYCalle'
-  | 'RecuperarParadasConBanderaPorLineaCalleEInterseccion'
-  | 'RecuperarProximosArribosW'
-  | 'RecuperarRecorridoParaMapaAbrevYAmpliPorEntidadYLinea';
+export type AccionAPI =
+  | "RecuperarLineaPorCuandoLlega"
+  | "RecuperarCallesPrincipalPorLinea"
+  | "RecuperarInterseccionPorLineaYCalle"
+  | "RecuperarParadasConBanderaPorLineaCalleEInterseccion"
+  | "RecuperarProximosArribosW"
+  | "RecuperarRecorridoParaMapaAbrevYAmpliPorEntidadYLinea";
 
 export interface APIRequest {
   accion: AccionAPI;

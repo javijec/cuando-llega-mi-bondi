@@ -1,9 +1,9 @@
 // lib/providers/QueryProvider.tsx
-'use client';
+"use client";
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useState } from 'react';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useState } from "react";
 
 /**
  * Provider de TanStack Query para toda la aplicación
@@ -29,7 +29,7 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
             retry: 0, // No reintentar mutaciones
           },
         },
-      })
+      }),
   );
 
   return (
@@ -39,8 +39,8 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
         DevTools de React Query - solo en desarrollo
         Permite visualizar el estado de todas las queries en tiempo real
       */}
-      {process.env.NODE_ENV === 'development' && (
-        <ReactQueryDevtools 
+      {process.env.NODE_ENV === "development" && (
+        <ReactQueryDevtools
           initialIsOpen={false}
           position="bottom"
           buttonPosition="bottom-right"

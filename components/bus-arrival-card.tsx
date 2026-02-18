@@ -12,7 +12,10 @@ function parseArribo(arriboStr: string): { value: string; unit: string } {
   // Handle formats like "5 min. aprox.", "68 min. aprox.", "Sin información", etc.
   const match = arriboStr.match(/(\d+)\s*(min|seg)/i);
   if (match) {
-    return { value: match[1], unit: match[2].toLowerCase() === "min" ? "min" : "seg" };
+    return {
+      value: match[1],
+      unit: match[2].toLowerCase() === "min" ? "min" : "seg",
+    };
   }
   return { value: arriboStr, unit: "" };
 }
@@ -50,7 +53,9 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
         <p className="text-muted-foreground text-[10px] font-medium italic">
           GPS: {gpsTime}
           {arribo.DesvioHorario && arribo.DesvioHorario !== "00:00" && (
-            <span className="ml-1.5 text-destructive">({arribo.DesvioHorario})</span>
+            <span className="ml-1.5 text-destructive">
+              ({arribo.DesvioHorario})
+            </span>
           )}
         </p>
       </div>
@@ -66,7 +71,9 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
             </span>
           </>
         ) : (
-          <span className="text-sm font-bold text-muted-foreground">{parsed.value}</span>
+          <span className="text-sm font-bold text-muted-foreground">
+            {parsed.value}
+          </span>
         )}
       </div>
     </div>

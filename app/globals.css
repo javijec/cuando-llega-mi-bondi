@@ -77,7 +77,6 @@
   --ring: hsl(48 96% 53%);
 }
 
-
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -162,7 +161,8 @@
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
   }
   50% {
@@ -173,10 +173,10 @@
 /* 2. MEJORAS AL SHEET CONTAINER */
 .react-modal-sheet-container {
   /* Sombra más dramática para profundidad */
-  box-shadow: 
+  box-shadow:
     0 -4px 20px rgba(0, 0, 0, 0.15),
     0 -1px 3px rgba(0, 0, 0, 0.1);
-  
+
   /* Transición suave de transform */
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -185,14 +185,14 @@
 .sheet-header-custom {
   /* Borde inferior sutil */
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  
+
   /* Gradiente sutil de fondo */
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 1),
     rgba(255, 255, 255, 0.95)
   );
-  
+
   /* Sticky header opcional */
   position: sticky;
   top: 0;
@@ -203,29 +203,25 @@
 /* Dark mode */
 .dark .sheet-header-custom {
   border-bottom-color: rgba(255, 255, 255, 0.1);
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, 0.95)
-  );
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.95));
 }
 
 /* 4. BOTÓN DE CIERRE MEJORADO */
 .sheet-close-button {
   position: relative;
   transition: all 0.2s ease;
-  
+
   /* Efecto hover */
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
     transform: scale(1.05);
   }
-  
+
   /* Efecto active */
   &:active {
     transform: scale(0.95);
   }
-  
+
   /* Focus visible para accesibilidad */
   &:focus-visible {
     outline: 2px solid var(--primary);
@@ -244,7 +240,7 @@
   border-radius: 999px;
   background-color: rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
-  
+
   /* Efecto hover cuando el sheet está siendo arrastrado */
   &.dragging {
     width: 64px;
@@ -260,21 +256,21 @@
 .sheet-content-custom {
   /* Scroll suave */
   scroll-behavior: smooth;
-  
+
   /* Scrollbar personalizado (webkit browsers) */
   &::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   &::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
   }
-  
+
   &::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
   }
@@ -284,7 +280,7 @@
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
   }
-  
+
   &::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
   }
@@ -293,13 +289,15 @@
 /* 7. BACKDROP MEJORADO */
 .react-modal-sheet-backdrop {
   /* Transición suave */
-  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+  transition:
+    backdrop-filter 0.3s ease,
+    background-color 0.3s ease;
 }
 
 /* 8. HINT VISUAL (Desliza para ver más) */
 .scroll-hint {
   animation: slideUpFade 0.5s ease-out;
-  
+
   /* Se oculta cuando se hace scroll */
   &.hidden {
     opacity: 0;
@@ -312,10 +310,10 @@
 .consult-button {
   position: relative;
   overflow: hidden;
-  
+
   /* Efecto ripple/wave al hacer click */
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -324,14 +322,16 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
     transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    transition:
+      width 0.6s,
+      height 0.6s;
   }
-  
+
   &:active::after {
     width: 300px;
     height: 300px;
   }
-  
+
   /* Glow effect cuando está enabled */
   &:not(:disabled):hover {
     animation: pulseGlow 2s infinite;
@@ -357,7 +357,7 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -374,7 +374,7 @@
   .sheet-header-custom {
     padding: 12px 16px;
   }
-  
+
   .consult-button {
     font-size: 0.875rem;
     padding: 16px;
@@ -441,4 +441,17 @@
     rgba(255, 255, 255, 0.06) 100%
   );
   background-size: 200% 100%;
+}
+
+/* 18. MAP SHEET - Allow map interaction behind sheet */
+.react-modal-sheet-wrapper {
+  pointer-events: none;
+}
+
+.react-modal-sheet-container {
+  pointer-events: auto;
+}
+
+.react-modal-sheet-backdrop {
+  pointer-events: none;
 }

@@ -9,7 +9,7 @@ interface NavbarProps {
 
 export function Navbar({ activeTab, onTabChange }: NavbarProps) {
   return (
-    <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
+    <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border will-change-transform">
       <div className="max-w-md mx-auto px-4 py-3">
         {/* Logo */}
         <div className="text-center mb-3">
@@ -19,16 +19,16 @@ export function Navbar({ activeTab, onTabChange }: NavbarProps) {
           <div className="h-1 w-12 bg-primary mx-auto mt-1 rounded-full" />
         </div>
 
-        {/* Tabs */}
+        {/* Tabs - Optimizado para GPU */}
         <div className="flex gap-1 bg-secondary rounded-2xl p-1">
           <button
             type="button"
             onClick={() => onTabChange("consultar")}
             className={cn(
-              "flex-1 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300",
+              "flex-1 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-transform duration-300 ease-out will-change-transform",
               activeTab === "consultar"
-                ? "bg-primary text-primary-foreground shadow-lg"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-primary text-primary-foreground shadow-lg transform scale-[1.02]"
+                : "text-muted-foreground hover:text-foreground hover:scale-[1.01]",
             )}
           >
             Consultar
@@ -37,10 +37,10 @@ export function Navbar({ activeTab, onTabChange }: NavbarProps) {
             type="button"
             onClick={() => onTabChange("favoritos")}
             className={cn(
-              "flex-1 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300",
+              "flex-1 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-transform duration-300 ease-out will-change-transform",
               activeTab === "favoritos"
-                ? "bg-primary text-primary-foreground shadow-lg"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-primary text-primary-foreground shadow-lg transform scale-[1.02]"
+                : "text-muted-foreground hover:text-foreground hover:scale-[1.01]",
             )}
           >
             Favoritos

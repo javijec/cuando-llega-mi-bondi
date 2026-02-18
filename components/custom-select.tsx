@@ -40,7 +40,9 @@ export function CustomSelect({
           className="custom-select w-full bg-secondary text-foreground p-4 pr-10 rounded-2xl border border-border focus:border-primary outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <option value="">
-            {isLoading ? "Cargando..." : placeholder || `Seleccionar ${label.toLowerCase()}`}
+            {isLoading
+              ? "Cargando..."
+              : placeholder || `Seleccionar ${label.toLowerCase()}`}
           </option>
           {options.map((opt, index) => (
             <option key={opt.value + index} value={opt.value}>
