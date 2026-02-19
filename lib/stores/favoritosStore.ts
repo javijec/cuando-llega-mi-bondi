@@ -1,12 +1,11 @@
 // lib/stores/favoritosStore.ts
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import type { Favorito } from "@/lib/types/bus";
 
 interface FavoritosState {
   favoritos: Favorito[];
 
-  // Acciones
   agregarFavorito: (favorito: Omit<Favorito, "id" | "fechaAgregado">) => void;
   eliminarFavorito: (id: string) => void;
   toggleFavorito: (
@@ -25,37 +24,35 @@ interface FavoritosState {
 }
 
 /**
- * ✅ Storage wrapper con try-catch para manejar errores de localStorage
+ * ✅ Safe storage for SSR/SSG compatibility
  *
- * localStorage puede fallar en:
- * - Modo incógnito/privado (Safari, Firefox)
- * - Cuota excedida (storage lleno)
- * - localStorage deshabilitado por el usuario
- * - Cookies de terceros bloqueadas
- * - Server-side rendering (SSR/SSG)
+ * Returns a dummy storage on server-side, real localStorage on client.
+ * This prevents "localStorage is not defined" errors during build.
  */
-const createSafeStorage = () => {
+const createSafeStorage = (): Storage => {
   if (typeof window === "undefined") {
     return {
       getItem: () => null,
       setItem: () => {},
       removeItem: () => {},
+      clear: () => {},
+      key: () => null,
+      length: 0,
     };
   }
 
   return {
     getItem: (name: string) => {
       try {
-        const value = localStorage.getItem(name);
-        return value ? JSON.parse(value) : null;
+        return localStorage.getItem(name);
       } catch (error) {
         console.warn(`[Storage] Error reading ${name}:`, error);
         return null;
       }
     },
-    setItem: (name: string, value: unknown) => {
+    setItem: (name: string, value: string) => {
       try {
-        localStorage.setItem(name, JSON.stringify(value));
+        localStorage.setItem(name, value);
       } catch (error) {
         console.warn(`[Storage] Error writing ${name}:`, error);
       }
@@ -67,6 +64,27 @@ const createSafeStorage = () => {
         console.warn(`[Storage] Error removing ${name}:`, error);
       }
     },
+    clear: () => {
+      try {
+        localStorage.clear();
+      } catch (error) {
+        console.warn("[Storage] Error clearing:", error);
+      }
+    },
+    key: (index: number) => {
+      try {
+        return localStorage.key(index);
+      } catch {
+        return null;
+      }
+    },
+    get length() {
+      try {
+        return localStorage.length;
+      } catch {
+        return 0;
+      }
+    },
   };
 };
 
@@ -75,35 +93,12 @@ const createSafeStorage = () => {
  *
  * Este store maneja el estado LOCAL de favoritos (no viene del servidor)
  * Se persiste en localStorage automáticamente con versionado y migración
- *
- * ✅ PERFECTO para este caso porque:
- * - Son datos locales (no necesitan cache de servidor)
- * - Operaciones síncronas (no hay fetching)
- * - Persistencia simple con localStorage
- * - Versionado para evolución del schema
  */
 export const useFavoritosStore = create<FavoritosState>()(
   persist(
     (set, get) => ({
       favoritos: [],
 
-      /**
-       * ⭐ Agregar una parada a favoritos
-       *
-       * @param data - Datos del favorito (sin id ni fechaAgregado)
-       * @returns void
-       *
-       * @example
-       * agregarFavorito({
-       *   codigoLinea: '501',
-       *   identificadorParada: '12345',
-       *   nombreLinea: 'Línea 501',
-       *   bandera: 'A',
-       *   descripcionParada: 'Av. Constitución y San Juan',
-       *   calle: 'Av. Constitución',
-       *   interseccion: 'San Juan'
-       * });
-       */
       agregarFavorito: (data) => {
         const id = crypto.randomUUID();
         const fechaAgregado = new Date().toISOString();
@@ -118,37 +113,20 @@ export const useFavoritosStore = create<FavoritosState>()(
           favoritos: [...state.favoritos, nuevoFavorito],
         }));
 
-        console.log("⭐ Favorito agregado:", nuevoFavorito);
+        if (process.env.NODE_ENV === "development") {
+          console.log("⭐ Favorito agregado:", nuevoFavorito);
+        }
       },
 
-      /**
-       * 🗑️ Eliminar un favorito por ID
-       *
-       * @param id - ID único del favorito
-       */
       eliminarFavorito: (id) => {
         set((state) => ({
           favoritos: state.favoritos.filter((f) => f.id !== id),
         }));
-        console.log("🗑️ Favorito eliminado:", id);
+        if (process.env.NODE_ENV === "development") {
+          console.log("🗑️ Favorito eliminado:", id);
+        }
       },
 
-      /**
-       * ⭐🗑️ Toggle favorito (agregar si no existe, eliminar si existe)
-       *
-       * Este método es útil para botones de favorito que actúan como switch
-       *
-       * @param favorito - Datos del favorito
-       * @returns ID del favorito agregado, o null si se eliminó
-       *
-       * @example
-       * const resultado = toggleFavorito({ ... });
-       * if (resultado) {
-       *   toast.success('Agregado a favoritos');
-       * } else {
-       *   toast.info('Eliminado de favoritos');
-       * }
-       */
       toggleFavorito: (favorito) => {
         const {
           esFavorito,
@@ -158,7 +136,6 @@ export const useFavoritosStore = create<FavoritosState>()(
         } = get();
 
         if (esFavorito(favorito.identificadorParada, favorito.codigoLinea)) {
-          // Ya existe, eliminar
           const existente = obtenerFavorito(
             favorito.identificadorParada,
             favorito.codigoLinea,
@@ -168,21 +145,12 @@ export const useFavoritosStore = create<FavoritosState>()(
           }
           return null;
         } else {
-          // No existe, agregar
           agregarFavorito(favorito);
-          // Retornar el ID del último favorito agregado (el que acabamos de agregar)
           const { favoritos } = get();
           return favoritos[favoritos.length - 1]?.id || null;
         }
       },
 
-      /**
-       * 🕐 Actualizar último acceso de un favorito
-       *
-       * Útil para ordenar por "recientes" o mostrar cuál fue el último consultado
-       *
-       * @param id - ID del favorito
-       */
       actualizarUltimoAcceso: (id) => {
         set((state) => ({
           favoritos: state.favoritos.map((f) =>
@@ -191,13 +159,6 @@ export const useFavoritosStore = create<FavoritosState>()(
         }));
       },
 
-      /**
-       * ❓ Verificar si una parada está en favoritos
-       *
-       * @param identificadorParada - ID de la parada
-       * @param codigoLinea - Código de la línea
-       * @returns true si está en favoritos
-       */
       esFavorito: (identificadorParada, codigoLinea) => {
         const { favoritos } = get();
         return favoritos.some(
@@ -207,13 +168,6 @@ export const useFavoritosStore = create<FavoritosState>()(
         );
       },
 
-      /**
-       * 🔍 Obtener un favorito específico
-       *
-       * @param identificadorParada - ID de la parada
-       * @param codigoLinea - Código de la línea
-       * @returns Favorito si existe, undefined si no
-       */
       obtenerFavorito: (identificadorParada, codigoLinea) => {
         const { favoritos } = get();
         return favoritos.find(
@@ -223,24 +177,11 @@ export const useFavoritosStore = create<FavoritosState>()(
         );
       },
 
-      /**
-       * 📋 Obtener favoritos ordenados
-       *
-       * ✅ FIX: Usa .toSorted() en lugar de .sort() para inmutabilidad
-       *
-       * @param orden - Tipo de ordenamiento
-       * @returns Array de favoritos ordenados
-       *
-       * @example
-       * const recientes = obtenerFavoritosOrdenados('recientes');
-       * const alfabetico = obtenerFavoritosOrdenados('alfabetico');
-       */
       obtenerFavoritosOrdenados: (orden = "recientes") => {
         const { favoritos } = get();
 
         switch (orden) {
           case "recientes":
-            // ✅ .toSorted() crea nueva array sin mutar el original
             return favoritos.toSorted((a, b) => {
               const dateA = a.ultimoAcceso || a.fechaAgregado;
               const dateB = b.ultimoAcceso || b.fechaAgregado;
@@ -248,7 +189,6 @@ export const useFavoritosStore = create<FavoritosState>()(
             });
 
           case "antiguos":
-            // ✅ .toSorted() crea nueva array sin mutar el original
             return favoritos.toSorted((a, b) => {
               return (
                 new Date(a.fechaAgregado).getTime() -
@@ -257,7 +197,6 @@ export const useFavoritosStore = create<FavoritosState>()(
             });
 
           case "alfabetico":
-            // ✅ .toSorted() crea nueva array sin mutar el original
             return favoritos.toSorted((a, b) => {
               return a.nombreLinea.localeCompare(b.nombreLinea);
             });
@@ -267,69 +206,37 @@ export const useFavoritosStore = create<FavoritosState>()(
         }
       },
 
-      /**
-       * 🗑️ Limpiar todos los favoritos
-       *
-       * Muestra confirmación antes de eliminar
-       */
       limpiarTodo: () => {
         if (confirm("¿Estás seguro de eliminar todos los favoritos?")) {
           set({ favoritos: [] });
-          console.log("🗑️ Todos los favoritos eliminados");
+          if (process.env.NODE_ENV === "development") {
+            console.log("🗑️ Todos los favoritos eliminados");
+          }
         }
       },
     }),
     {
       name: "colectivos-favoritos",
-      version: 2, // ← Incrementado a v2 para activar migración
+      version: 2,
+      storage: createJSONStorage(() => createSafeStorage()),
 
-      /**
-       * ✅ FIX: Función de migración para evolución del schema
-       *
-       * Maneja la transición entre versiones si hay cambios en el tipo Favorito
-       *
-       * Ejemplo real:
-       * - v1: no tenía el campo 'ultimoAcceso' (opcional)
-       * - v2: esquema actual con todos los campos
-       *
-       * @param persistedState - Estado guardado en localStorage
-       * @param version - Versión del estado guardado
-       * @returns Estado migrado a la versión actual
-       */
       migrate: (persistedState: unknown, version: number) => {
-        // Si el estado viene de v1, migrarlo a v2
         if (version === 1) {
           const stateV1 = persistedState as { favoritos: Favorito[] };
 
-          console.log("[Storage] Migrando favoritos de v1 → v2");
+          if (process.env.NODE_ENV === "development") {
+            console.log("[Storage] Migrando favoritos de v1 → v2");
+          }
 
-          // En este caso no hay cambios de schema, pero el patrón está listo
-          // para cuando agregues campos nuevos en el futuro
           return {
             favoritos: stateV1.favoritos.map((fav) => ({
               ...fav,
-              // Ejemplo: si agregamos un campo nuevo en v2
-              // nuevoCapo: fav.nuevoCampo ?? 'default',
             })),
           } as FavoritosState;
         }
 
-        // Si hay otras versiones futuras, agregar casos aquí
-        // if (version === 2) { ... }
-
-        // Si no hay migración necesaria, retornar tal cual
         return persistedState as FavoritosState;
       },
-
-      /**
-       * ✅ FIX: Storage wrapper seguro con try-catch
-       *
-       * Previene crashes en:
-       * - Modo incógnito/privado
-       * - Cuota de storage excedida
-       * - localStorage deshabilitado
-       */
-      storage: createSafeStorage(),
     },
   ),
 );
