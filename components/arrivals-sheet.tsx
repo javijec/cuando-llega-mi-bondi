@@ -41,17 +41,10 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
 
   const { parada, linea, calle, interseccion } = info;
 
-  const tweenConfig = useMemo(
-    () => ({
+  const tweenConfig = {
       ease: [0.32, 0.72, 0, 1] as const,
-      duration:
-        typeof window !== "undefined" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? 0
-          : 0.5,
-    }),
-    [],
-  );
+      duration: 0
+    }
 
   const {
     data: arribosData,
