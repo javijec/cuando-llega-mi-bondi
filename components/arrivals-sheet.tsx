@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback, useMemo } from "react";
+import { useRef, useCallback } from "react";
 import { Sheet, SheetRef } from "react-modal-sheet";
 import { FocusScope } from "react-aria";
 import { useTransform } from "motion/react";
@@ -42,9 +42,9 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
   const { parada, linea, calle, interseccion } = info;
 
   const tweenConfig = {
-      ease: [0.32, 0.72, 0, 1] as const,
-      duration: 0
-    }
+    ease: [0.32, 0.72, 0, 1] as const,
+    duration: 0,
+  };
 
   const {
     data: arribosData,
