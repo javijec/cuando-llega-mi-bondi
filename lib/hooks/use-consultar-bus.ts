@@ -50,7 +50,7 @@ export function useConsultarBus() {
       () =>
         (callesQuery.data?.calles || []).map((c) => ({
           value: c.Codigo,
-          label: c.Descripcion,
+          label: c.Descripcion.replace(" - MAR DEL PLATA", ""),
         })),
       [callesQuery.data],
     ),
@@ -59,13 +59,13 @@ export function useConsultarBus() {
         interseccionesQuery.data?.intersecciones ||
         interseccionesQuery.data?.calles ||
         [];
-      return items.map((i) => ({ value: i.Codigo, label: i.Descripcion }));
+      return items.map((i) => ({ value: i.Codigo, label: i.Descripcion.replace(" - MAR DEL PLATA", "") }));
     }, [interseccionesQuery.data]),
     paradas: useMemo(
       () =>
         (paradasQuery.data?.paradas || []).map((p) => ({
           value: p.Codigo,
-          label: `${p.Descripcion} (${p.AbreviaturaBandera})`,
+          label: p.AbreviaturaBandera,
         })),
       [paradasQuery.data],
     ),
