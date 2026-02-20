@@ -38,7 +38,7 @@ export function FavoritosView({
   const [orden, setOrden] = useState<"recientes" | "antiguos" | "alfabetico">(
     "recientes",
   );
-  const { eliminarFavorito } = useFavoritosStore();
+  const eliminarFavorito = useFavoritosStore((state) => state.eliminarFavorito);
 
   // 🚀 Solo obtiene la lista de favoritos (sin arribos)
   const { favoritos, isEmpty } = useFavoritosList(orden);

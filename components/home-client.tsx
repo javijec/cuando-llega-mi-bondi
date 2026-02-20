@@ -11,7 +11,7 @@ export function HomeClient() {
   const [activeTab, setActiveTab] = useState<"consultar" | "favoritos">(
     "consultar",
   );
-  const { setLinea } = useBusStore();
+  const setLinea = useBusStore((state) => state.setLinea);
 
   const handleConsultarFromFavorito = useCallback(
     (favorito: Favorito) => {
