@@ -1,5 +1,3 @@
-"use client";
-
 import { Suspense } from "react";
 import { ConsultarView } from "./consultar-view";
 import { CustomSelectSkeleton } from "./custom-select-skeleton";

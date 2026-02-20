@@ -1,5 +1,3 @@
-"use client";
-
 import { Suspense } from "react";
 import { FavoritosView } from "./favoritos-view";
 import type { Favorito } from "@/lib/types/bus";
