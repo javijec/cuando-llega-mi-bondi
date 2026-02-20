@@ -68,8 +68,12 @@ export async function fetchMuniAPICached(
     formData.append(key, value);
   });
 
-  console.log(`🌐 [MUNI API CALL] ${accionAPI} - ${new Date().toISOString()}`);
-  console.log(`📊 Params:`, params);
+  if (process.env.NODE_ENV === "development") {
+    console.log(
+      `🌐 [MUNI API CALL] ${accionAPI} - ${new Date().toISOString()}`,
+    );
+    console.log(`📊 Params:`, params);
+  }
 
   // 🚀 Fetch a la API de la muni
   const response = await fetch(API_URL, {
@@ -97,7 +101,9 @@ export async function fetchMuniAPICached(
     cleanJson = rawText;
   }
 
-  console.log(`✅ [MUNI SUCCESS] ${accionAPI}`);
+  if (process.env.NODE_ENV === "development") {
+    console.log(`✅ [MUNI SUCCESS] ${accionAPI}`);
+  }
 
   return cleanJson;
 }

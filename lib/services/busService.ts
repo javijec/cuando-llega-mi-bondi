@@ -39,7 +39,9 @@ async function fetchStatic<T>(
   const queryString = searchParams.toString();
   const url = `/api/bus/${action}${queryString ? `?${queryString}` : ""}`;
 
-  console.log(`📡 [GET] ${url}`);
+  if (process.env.NODE_ENV === "development") {
+    console.log(`📡 [GET] ${url}`);
+  }
 
   const response = await fetch(url, {
     method: "GET",
@@ -70,7 +72,9 @@ async function fetchDynamic<T>(
 ): Promise<T> {
   const url = `/api/bus/${action}`;
 
-  console.log(`📡 [POST] ${url}`, params);
+  if (process.env.NODE_ENV === "development") {
+    console.log(`📡 [POST] ${url}`, params);
+  }
 
   const response = await fetch(url, {
     method: "POST",
