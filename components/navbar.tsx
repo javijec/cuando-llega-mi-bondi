@@ -9,44 +9,53 @@ interface NavbarProps {
 
 export function Navbar({ activeTab, onTabChange }: NavbarProps) {
   return (
-    <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border will-change-transform">
-      <div className="max-w-md mx-auto px-4 py-3">
-        {/* Logo */}
-        <div className="text-center mb-3">
+    <header className="sticky top-0 z-50 bg-background border-b border-border">
+      <div className="max-w-md mx-auto">
+        <div className="text-center py-3 border-b border-border/50">
           <h1 className="text-2xl font-black uppercase tracking-tighter italic text-foreground">
             Mi<span className="text-mdp-amarillo font-light">Bondi</span>
           </h1>
-          <div className="h-1 w-12 bg-mdp-amarillo mx-auto mt-1 rounded-full" />
+          <div
+            className="h-1 w-10 bg-mdp-amarillo mx-auto mt-1 rounded-full"
+            aria-hidden="true"
+          />
         </div>
 
-        {/* Tabs */}
-        <div className="flex gap-1 bg-mdp-bg-secundario rounded-2xl p-1">
-          <button
-            type="button"
-            onClick={() => onTabChange("consultar")}
-            className={cn(
-              "flex-1 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300",
-              activeTab === "consultar"
-                ? "btn-mdp-amarillo shadow-lg"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            Consultar
-          </button>
-          <button
-            type="button"
-            onClick={() => onTabChange("favoritos")}
-            className={cn(
-              "flex-1 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300",
-              activeTab === "favoritos"
-                ? "btn-mdp-amarillo shadow-lg"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            Favoritos
-          </button>
-        </div>
+        <nav aria-label="Navegación principal">
+          <div className="flex bg-muted/30 p-1 m-2 rounded-2xl" role="tablist">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "consultar"}
+              aria-controls="panel-consultar"
+              onClick={() => onTabChange("consultar")}
+              className={cn(
+                "flex-1 py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all cursor-pointer",
+                activeTab === "consultar"
+                  ? "btn-mdp-amarillo shadow-md"
+                  : "text-muted-foreground",
+              )}
+            >
+              Consultar
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "favoritos"}
+              aria-controls="panel-favoritos"
+              onClick={() => onTabChange("favoritos")}
+              className={cn(
+                "flex-1 py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all cursor-pointer",
+                activeTab === "favoritos"
+                  ? "btn-mdp-amarillo shadow-md"
+                  : "text-muted-foreground",
+              )}
+            >
+              Favoritos
+            </button>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }

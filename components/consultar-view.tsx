@@ -127,79 +127,114 @@ export function ConsultarView() {
   };
 
   return (
-    <div className="px-4 py-5 max-w-md mx-auto">
-      <div className="space-y-2">
-        <CustomSelect
-          label={STEPS[0].label}
-          options={options.lineas}
-          value={state.lineaSeleccionada || ""}
-          onChange={(v) => handleSelection(actions.setLinea, v)}
-          isLoading={isLoading.lineas}
-          stepNumber={1}
-          isComplete={getStepStatus(0).isComplete}
-          isActive={getStepStatus(0).isActive}
-        />
+    <section
+      id="panel-consultar"
+      role="tabpanel"
+      aria-labelledby="tab-consultar"
+      className="px-4 py-6 max-w-md mx-auto"
+    >
+      <header className="text-center mb-6">
+        <h2 className="text-2xl font-black text-foreground uppercase tracking-tight mb-1">
+          Consultá tu bondi
+        </h2>
+        <p className="text-sm text-muted-foreground font-medium">
+          Completá los 4 pasos
+        </p>
+      </header>
 
-        {state.lineaSeleccionada && (
-          <CustomSelect
-            label={STEPS[1].label}
-            options={options.calles}
-            value={state.calleSeleccionada || ""}
-            onChange={(v) => handleSelection(actions.setCalle, v)}
-            isLoading={isLoading.calles}
-            stepNumber={2}
-            isComplete={getStepStatus(1).isComplete}
-            isActive={getStepStatus(1).isActive}
-          />
-        )}
-
-        {state.calleSeleccionada && (
-          <CustomSelect
-            label={STEPS[2].label}
-            options={options.intersecciones}
-            value={state.interseccionSeleccionada || ""}
-            onChange={(v) => handleSelection(actions.setInterseccion, v)}
-            isLoading={isLoading.intersecciones}
-            stepNumber={3}
-            isComplete={getStepStatus(2).isComplete}
-            isActive={getStepStatus(2).isActive}
-          />
-        )}
-
-        {state.interseccionSeleccionada && (
-          <CustomSelect
-            label={STEPS[3].label}
-            options={options.paradas}
-            value={state.paradaSeleccionada || ""}
-            onChange={(v) => handleSelection(actions.setParada, v)}
-            isLoading={isLoading.paradas}
-            stepNumber={4}
-            isComplete={getStepStatus(3).isComplete}
-            isActive={getStepStatus(3).isActive}
-          />
-        )}
-      </div>
-
-      <button
-        onClick={handleOpenSheet}
-        disabled={!state.paradaSeleccionada}
-        className={`w-full mt-5 py-4 rounded-xl font-bold text-sm shadow-lg transition-all flex items-center justify-center gap-2 ${
-          isComplete
-            ? "btn-mdp-turquesa"
-            : "btn-mdp-amarillo opacity-40 cursor-not-allowed"
-        }`}
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        aria-label="Formulario de consulta de bondi"
       >
-        <MapPin className="w-5 h-5" />
-        {isComplete
-          ? "Ver cuándo llega"
-          : `${completedSteps}/${STEPS.length} completado`}
-      </button>
+        <div
+          className="space-y-3"
+          role="list"
+          aria-label="Pasos para consultar"
+        >
+          <div role="listitem">
+            <CustomSelect
+              label={STEPS[0].label}
+              options={options.lineas}
+              value={state.lineaSeleccionada || ""}
+              onChange={(v) => handleSelection(actions.setLinea, v)}
+              isLoading={isLoading.lineas}
+              stepNumber={1}
+              isComplete={getStepStatus(0).isComplete}
+              isActive={getStepStatus(0).isActive}
+            />
+          </div>
+
+          {state.lineaSeleccionada && (
+            <div role="listitem">
+              <CustomSelect
+                label={STEPS[1].label}
+                options={options.calles}
+                value={state.calleSeleccionada || ""}
+                onChange={(v) => handleSelection(actions.setCalle, v)}
+                isLoading={isLoading.calles}
+                stepNumber={2}
+                isComplete={getStepStatus(1).isComplete}
+                isActive={getStepStatus(1).isActive}
+              />
+            </div>
+          )}
+
+          {state.calleSeleccionada && (
+            <div role="listitem">
+              <CustomSelect
+                label={STEPS[2].label}
+                options={options.intersecciones}
+                value={state.interseccionSeleccionada || ""}
+                onChange={(v) => handleSelection(actions.setInterseccion, v)}
+                isLoading={isLoading.intersecciones}
+                stepNumber={3}
+                isComplete={getStepStatus(2).isComplete}
+                isActive={getStepStatus(2).isActive}
+              />
+            </div>
+          )}
+
+          {state.interseccionSeleccionada && (
+            <div role="listitem">
+              <CustomSelect
+                label={STEPS[3].label}
+                options={options.paradas}
+                value={state.paradaSeleccionada || ""}
+                onChange={(v) => handleSelection(actions.setParada, v)}
+                isLoading={isLoading.paradas}
+                stepNumber={4}
+                isComplete={getStepStatus(3).isComplete}
+                isActive={getStepStatus(3).isActive}
+              />
+            </div>
+          )}
+        </div>
+
+        <button
+          type="button"
+          onClick={handleOpenSheet}
+          disabled={!state.paradaSeleccionada}
+          aria-disabled={!state.paradaSeleccionada}
+          className={`w-full mt-6 py-4 rounded-2xl font-black text-base uppercase tracking-wide shadow-lg transition-all flex items-center justify-center gap-3 cursor-pointer ${
+            isComplete
+              ? "btn-mdp-turquesa"
+              : "btn-mdp-amarillo opacity-50 cursor-not-allowed"
+          }`}
+        >
+          <MapPin className="w-5 h-5" aria-hidden="true" />
+          <span>
+            {isComplete
+              ? "Ver cuándo llega"
+              : `${completedSteps} de ${STEPS.length} pasos completados`}
+          </span>
+        </button>
+      </form>
 
       <ArrivalsSheet
         isOpen={isOpen}
         onClose={handleCloseSheet}
         info={selectedInfo}
       />
-    </div>
+    </section>
   );
 }

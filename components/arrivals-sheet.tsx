@@ -3,25 +3,13 @@
 import { useRef, useCallback } from "react";
 import { Sheet, SheetRef } from "react-modal-sheet";
 import { FocusScope } from "react-aria";
-import { useTransform } from "motion/react";
 import { useArribos, useRefreshArribos } from "@/lib/hooks/useBusQuery";
 import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
 import { BusArrivalCard } from "./bus-arrival-card";
-import { X, ChevronUp, MapPin, RefreshCw, Loader2, Star } from "lucide-react";
+import { X, RefreshCw, Loader2, Star, MapPin } from "lucide-react";
 import type { Linea, Calle, Interseccion, Parada } from "@/lib/types/bus";
 
-/**
- * Snap points configuration:
- * - [0] = closed (sheet hidden)
- * - [0.5] = half height (arrivals visible)
- * - [1] = fully expanded
- */
 const SNAP_POINTS = [0, 0.5, 1];
-
-/**
- * Sheet ARIA label for accessibility
- */
-const SHEET_ARIA_LABEL = "Próximos arribos";
 
 interface ArrivalsInfo {
   linea?: Linea;
@@ -38,19 +26,13 @@ interface ArrivalsSheetProps {
 
 export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
   const sheetRef = useRef<SheetRef>(null);
-
   const { parada, linea, calle, interseccion } = info;
-
-  const tweenConfig = {
-    ease: [0.32, 0.72, 0, 1] as const,
-    duration: 0,
-  };
 
   const {
     data: arribosData,
-    isLoading: isLoadingArribos,
-    isFetching: isFetchingArribos,
-    error: errorArribos,
+    isLoading,
+    isFetching,
+    error,
   } = useArribos(parada?.Identificador || "", linea?.CodigoLineaParada || "", {
     enabled: isOpen && !!parada && !!linea,
   });
@@ -73,11 +55,6 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
 
   const arribos = arribosData?.arribos || [];
 
-  const paddingBottom = useTransform(() => {
-    const y = sheetRef.current?.y.get() ?? 0;
-    return Math.max(0, y);
-  });
-
   const handleRefresh = useCallback(() => {
     if (parada && linea) {
       refreshArribos.mutate({
@@ -93,169 +70,174 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
       isOpen={isOpen}
       onClose={onClose}
       snapPoints={SNAP_POINTS}
-      initialSnap={1}
-      tweenConfig={tweenConfig}
+      initialSnap={2}
+      tweenConfig={{ ease: [0.32, 0.72, 0, 1] as const, duration: 0 }}
       dragVelocityThreshold={1500}
       dragCloseThreshold={0.8}
-      disableDismiss={true}
       avoidKeyboard={true}
     >
       <Sheet.Container
         role="dialog"
         aria-modal="true"
-        aria-label={SHEET_ARIA_LABEL}
+        aria-labelledby="sheet-title"
+        aria-describedby="sheet-description"
         className="rounded-t-3xl! bg-background! border-t! border-border! shadow-2xl!"
       >
         <FocusScope contain restoreFocus>
           <Sheet.Header>
-            <div className="px-4 pt-3 pb-2">
+            <div className="px-5 pt-4 pb-3">
               <div className="flex justify-center mb-3">
-                <Sheet.DragIndicator />
+                <Sheet.DragIndicator
+                  aria-hidden="true"
+                />
               </div>
 
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-black text-foreground uppercase truncate">
-                    {linea?.Descripcion || "Información"}
-                  </h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="px-2 py-0.5 bg-mdp-amarillo text-[#22436f] text-[10px] font-black rounded-full uppercase">
+                  <h2
+                    id="sheet-title"
+                    className="text-2xl font-black text-foreground uppercase tracking-tight truncate"
+                  >
+                    {linea?.Descripcion}
+                  </h2>
+                  <p id="sheet-description" className="sr-only">
+                    Información de arribos para la parada {calle?.Descripcion} e{" "}
+                    {interseccion?.Descripcion}
+                  </p>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="px-3 py-1 bg-mdp-amarillo text-foreground text-xs font-black rounded-full uppercase tracking-wide">
                       {parada?.AbreviaturaBandera}
                     </span>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-sm font-bold text-muted-foreground">
                       {arribos.length}{" "}
                       {arribos.length === 1 ? "unidad" : "unidades"}
                     </span>
                   </div>
+                  <address className="flex items-center gap-2 mt-3 text-sm text-muted-foreground font-medium not-italic">
+                    <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
+                    <div className="flex flex-col ">
+                      <span className="text-[1rem] truncate">
+                        {calle?.Descripcion}
+                      </span>
+                      <span className="text-[.8rem] opacity-50">e/ {interseccion?.Descripcion}</span>
+                    </div>
+                  </address>
                 </div>
                 <button
                   onClick={onClose}
-                  aria-label="Cerrar"
-                  className="ml-2 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors shrink-0 focus:outline-none focus:ring-2 focus:ring-primary"
+                  aria-label="Cerrar panel de arribos"
+                  className="p-2 rounded-full bg-muted hover:bg-muted/80 active:scale-90 transition-all shrink-0 cursor-pointer"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-5 h-5" aria-hidden="true" />
                 </button>
-              </div>
-
-              <div className="mt-2 space-y-0.5">
-                <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
-                  <p className="text-sm text-muted-foreground truncate">
-                    {calle?.Descripcion}
-                  </p>
-                </div>
-                <p className="text-[10px] text-muted-foreground/70 uppercase tracking-wide ml-5">
-                  e {interseccion?.Descripcion}
-                </p>
               </div>
             </div>
           </Sheet.Header>
 
           <Sheet.Content
             disableDrag={(state) => state.scrollPosition !== "top"}
-            scrollStyle={{ paddingBottom }}
-            className="px-4 pb-safe"
+            className="px-5 pb-safe"
           >
             <div className="pb-24">
-              <div className="flex items-center justify-between mb-4 pt-2">
-                <h4 className="text-sm font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-                  <ChevronUp className="w-4 h-4" />
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                   Próximos arribos
-                </h4>
+                </h3>
                 <button
                   onClick={handleRefresh}
-                  disabled={refreshArribos.isPending || isFetchingArribos}
-                  aria-label="Actualizar arribos"
-                  className="btn-mdp-turquesa flex items-center gap-2 px-3 py-2 rounded-xl text-xs uppercase"
+                  disabled={refreshArribos.isPending || isFetching}
+                  aria-label="Actualizar lista de arribos"
+                  aria-busy={refreshArribos.isPending || isFetching}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-muted text-sm font-bold transition-all active:scale-95 cursor-pointer disabled:opacity-50"
                 >
                   <RefreshCw
-                    className={`w-3.5 h-3.5 ${
-                      refreshArribos.isPending || isFetchingArribos
+                    className={`w-4 h-4 ${
+                      refreshArribos.isPending || isFetching
                         ? "animate-spin"
                         : ""
                     }`}
+                    aria-hidden="true"
                   />
                   Actualizar
                 </button>
               </div>
 
-              {isLoadingArribos && (
-                <div className="flex flex-col items-center justify-center py-8">
-                  <Loader2 className="w-8 h-8 text-mdp-amarillo animate-spin" />
-                  <p className="text-muted-foreground text-sm mt-3 font-bold uppercase tracking-widest">
-                    Cargando arribos...
-                  </p>
-                </div>
-              )}
-
-              {errorArribos && (
-                <div className="text-center py-8">
-                  <p className="text-destructive text-sm font-bold">
-                    Error al cargar arribos
-                  </p>
-                  <button
-                    onClick={handleRefresh}
-                    className="btn-mdp-amarillo mt-4 px-4 py-2 rounded-lg text-sm font-bold"
+              <div aria-live="polite" aria-atomic="true">
+                {isLoading && (
+                  <div
+                    className="flex flex-col items-center justify-center py-12"
+                    role="status"
                   >
-                    Reintentar
-                  </button>
-                </div>
-              )}
-
-              {!isLoadingArribos && !errorArribos && arribos.length === 0 && (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
-                    <MapPin className="w-8 h-8 text-muted-foreground" />
+                    <Loader2
+                      className="w-10 h-10 text-mdp-amarillo animate-spin"
+                      aria-hidden="true"
+                    />
+                    <p className="text-muted-foreground text-base font-bold mt-4">
+                      Cargando arribos...
+                    </p>
                   </div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    No hay unidades en camino
-                  </p>
-                  <p className="text-muted-foreground/60 text-xs mt-2">
-                    Intenta nuevamente en unos minutos
-                  </p>
-                </div>
-              )}
+                )}
 
-              {!isLoadingArribos && !errorArribos && arribos.length > 0 && (
-                <>
-                  <div className="space-y-3">
+                {error && (
+                  <div className="text-center py-10" role="alert">
+                    <p className="text-mdp-rosa text-lg font-black mb-3">
+                      Error al cargar
+                    </p>
+                    <button
+                      onClick={handleRefresh}
+                      className="btn-mdp-amarillo px-5 py-2.5 rounded-xl text-sm font-bold cursor-pointer"
+                    >
+                      Reintentar
+                    </button>
+                  </div>
+                )}
+
+                {!isLoading && !error && arribos.length === 0 && (
+                  <div className="text-center py-10" role="status">
+                    <MapPin
+                      className="w-14 h-14 mx-auto text-muted-foreground/40 mb-4"
+                      aria-hidden="true"
+                    />
+                    <p className="text-muted-foreground text-base font-bold">
+                      No hay unidades en camino
+                    </p>
+                  </div>
+                )}
+
+                {!isLoading && !error && arribos.length > 0 && (
+                  <ul
+                    className="space-y-3"
+                    role="list"
+                    aria-label="Lista de próximos arribos"
+                  >
                     {arribos.map((arribo, index) => (
-                      <BusArrivalCard
-                        key={`${arribo.IdentificadorCoche}-${index}`}
-                        arribo={arribo}
-                        index={index}
-                      />
+                      <li key={`${arribo.IdentificadorCoche}-${index}`}>
+                        <BusArrivalCard arribo={arribo} index={index} />
+                      </li>
                     ))}
-                  </div>
-
-                  <p className="text-xs text-center text-muted-foreground mt-6">
-                    Actualizado: {new Date().toLocaleTimeString()}
-                    {isFetchingArribos && (
-                      <span className="ml-2 inline-flex items-center gap-1">
-                        <RefreshCw className="w-3 h-3 animate-spin" />
-                        Actualizando...
-                      </span>
-                    )}
-                  </p>
-                </>
-              )}
+                  </ul>
+                )}
+              </div>
             </div>
           </Sheet.Content>
 
           {parada && linea && (
-            <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-background via-background to-transparent pt-6 pb-6 px-4 border-t border-border">
+            <div className="absolute bottom-0 left-0 right-0 bg-background border-t border-border px-5 py-4">
               <button
                 onClick={toggle}
                 aria-label={
-                  isFavorito ? "Quitar de favoritos" : "Guardar en favoritos"
+                  isFavorito
+                    ? `Quitar ${linea?.Descripcion} de favoritos`
+                    : `Guardar ${linea?.Descripcion} en favoritos`
                 }
                 aria-pressed={isFavorito}
-                className={`w-full py-4 rounded-2xl font-black uppercase text-sm flex items-center justify-center gap-2 transition-all shadow-lg ${
+                className={`w-full py-4 rounded-2xl font-black text-base flex items-center justify-center gap-3 transition-all active:scale-[0.98] cursor-pointer ${
                   isFavorito ? "btn-mdp-amarillo" : "btn-mdp-turquesa"
                 }`}
               >
                 <Star
                   className={`w-5 h-5 ${isFavorito ? "fill-current" : ""}`}
+                  aria-hidden="true"
                 />
                 {label}
               </button>
@@ -268,6 +250,7 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
         onTap={onClose}
         className="backdrop-blur-sm"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+        aria-hidden="true"
       />
     </Sheet>
   );
