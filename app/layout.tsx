@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import React from "react";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
@@ -33,6 +34,7 @@ export default function RootLayout({
     <html lang="es" className={inter.variable}>
       <body className="font-sans antialiased min-h-screen">
         <QueryProvider>{children}</QueryProvider>
+        <Analytics />
       </body>
     </html>
   );
