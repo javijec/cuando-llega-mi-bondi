@@ -15,7 +15,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
   return (
     <div className="min-h-[400px] flex flex-col items-center justify-center p-6 text-center">
       <div className="mb-6">
-        <div className="h-16 w-16 rounded-full bg-destructive/10 flex items-center justify-center mx-auto mb-4">
+        <div className="h-16 w-16 rounded-full bg-mdp-rosa/10 flex items-center justify-center mx-auto mb-4">
           <span className="text-3xl">⚠️</span>
         </div>
         <h2 className="text-2xl font-bold text-foreground mb-2">
@@ -28,15 +28,12 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
       </div>
 
       <div className="flex gap-4">
-        <button
-          onClick={reset}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-        >
+        <button onClick={reset} className="btn-mdp-rosa px-4 py-2 rounded-md">
           Intentar de nuevo
         </button>
         <button
           onClick={() => window.location.reload()}
-          className="px-4 py-2 border border-input bg-background rounded-md hover:bg-accent transition-colors"
+          className="btn-mdp-turquesa px-4 py-2 rounded-md"
         >
           Recargar página
         </button>

@@ -119,7 +119,7 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                     {linea?.Descripcion || "Información"}
                   </h3>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-black rounded-full uppercase">
+                    <span className="px-2 py-0.5 bg-mdp-amarillo text-[#22436f] text-[10px] font-black rounded-full uppercase">
                       {parada?.AbreviaturaBandera}
                     </span>
                     <span className="text-xs text-muted-foreground">
@@ -166,7 +166,7 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                   onClick={handleRefresh}
                   disabled={refreshArribos.isPending || isFetchingArribos}
                   aria-label="Actualizar arribos"
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-secondary hover:bg-secondary/80 transition-colors disabled:opacity-50 text-xs font-bold uppercase focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="btn-mdp-turquesa flex items-center gap-2 px-3 py-2 rounded-xl text-xs uppercase"
                 >
                   <RefreshCw
                     className={`w-3.5 h-3.5 ${
@@ -181,7 +181,7 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
 
               {isLoadingArribos && (
                 <div className="flex flex-col items-center justify-center py-8">
-                  <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                  <Loader2 className="w-8 h-8 text-mdp-amarillo animate-spin" />
                   <p className="text-muted-foreground text-sm mt-3 font-bold uppercase tracking-widest">
                     Cargando arribos...
                   </p>
@@ -195,7 +195,7 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                   </p>
                   <button
                     onClick={handleRefresh}
-                    className="mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-bold focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="btn-mdp-amarillo mt-4 px-4 py-2 rounded-lg text-sm font-bold"
                   >
                     Reintentar
                   </button>
@@ -250,10 +250,8 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                   isFavorito ? "Quitar de favoritos" : "Guardar en favoritos"
                 }
                 aria-pressed={isFavorito}
-                className={`w-full py-4 rounded-2xl font-black uppercase text-sm flex items-center justify-center gap-2 transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background ${
-                  isFavorito
-                    ? "bg-yellow-500 text-yellow-950 shadow-yellow-500/25"
-                    : "bg-card text-foreground border border-border hover:bg-accent"
+                className={`w-full py-4 rounded-2xl font-black uppercase text-sm flex items-center justify-center gap-2 transition-all shadow-lg ${
+                  isFavorito ? "btn-mdp-amarillo" : "btn-mdp-turquesa"
                 }`}
               >
                 <Star

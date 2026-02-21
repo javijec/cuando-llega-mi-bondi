@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useFavoritosList } from "@/lib/hooks/useFavoritos";
 import { useFavoritosStore } from "@/lib/stores/favoritosStore";
 import { FavoritoCard } from "./favorito-card";
+import { CustomSelect } from "./custom-select";
 import { Star, Search } from "lucide-react";
 import type { Favorito } from "@/lib/types/bus";
 
@@ -12,53 +13,39 @@ interface FavoritosViewProps {
   onGoToConsultar: () => void;
 }
 
-/**
- * 📋 Vista de favoritos OPTIMIZADA con staged activation
- *
- * Características:
- * - ✅ Lazy loading con IntersectionObserver
- * - ✅ Debouncing de visibilidad (evita ráfagas)
- * - ✅ Staged activation (activación progresiva)
- * - ✅ Conditional polling (solo cards visibles)
- *
- * Performance antes:
- * - 20 favoritos → 20 requests simultáneas
- * - Scroll rápido → 8-10 requests en ráfaga
- * - 20 intervalos activos siempre
- *
- * Performance ahora:
- * - 20 favoritos → 1 request inicial (metadata)
- * - Scroll rápido → debounce + staged (max 3-5 simultáneas)
- * - 3-5 intervalos activos (solo visibles)
- */
 export function FavoritosView({
   onConsultar,
   onGoToConsultar,
 }: FavoritosViewProps) {
   const [orden, setOrden] = useState<"recientes" | "antiguos" | "alfabetico">(
-    "recientes",
+    "recientes"
   );
-  const eliminarFavorito = useFavoritosStore((state) => state.eliminarFavorito);
 
-  // 🚀 Solo obtiene la lista de favoritos (sin arribos)
+  const eliminarFavorito = useFavoritosStore((state) => state.eliminarFavorito);
   const { favoritos, isEmpty } = useFavoritosList(orden);
+
+  const opcionesOrden = [
+    { value: "recientes", label: "Recientes" },
+    { value: "alfabetico", label: "A - Z" },
+    { value: "antiguos", label: "Más antiguos" },
+  ];
 
   if (isEmpty) {
     return (
       <div className="px-4 py-16 max-w-md mx-auto text-center">
         <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
-          <Star className="w-8 h-8 text-primary" />
+          <Star className="w-8 h-8 text-mdp-amarillo" aria-hidden="true" />
         </div>
         <h3 className="text-xl font-black text-foreground uppercase mb-2">
           Sin Favoritos
         </h3>
         <p className="text-muted-foreground text-sm mb-6">
-          Guarda tus paradas para acceso rapido
+          Guarda tus paradas para acceso rápido
         </p>
         <button
           type="button"
           onClick={onGoToConsultar}
-          className="px-6 py-3 bg-primary text-primary-foreground rounded-2xl font-black uppercase text-sm active:scale-95 transition-transform flex items-center gap-2 mx-auto"
+          className="btn-mdp-amarillo px-6 py-3 rounded-2xl uppercase text-sm active:scale-95 transition-transform flex items-center gap-2 mx-auto"
         >
           <Search className="w-4 h-4" />
           Buscar Colectivos
@@ -69,26 +56,26 @@ export function FavoritosView({
 
   return (
     <div className="px-4 py-6 max-w-md mx-auto">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      {/* HEADER */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
         <h2 className="text-2xl font-black text-foreground uppercase text-balance">
-          Mis <span className="text-primary">Favoritos</span>
+          Mis <span className="text-mdp-amarillo">Favoritos</span>
         </h2>
 
-        <select
-          value={orden}
-          onChange={(e) => setOrden(e.target.value as typeof orden)}
-          className="custom-select bg-secondary text-foreground text-xs px-3 py-2 rounded-xl border border-border outline-none focus:border-primary"
-        >
-          <option value="recientes">Recientes</option>
-          <option value="alfabetico">A - Z</option>
-          <option value="antiguos">Mas antiguos</option>
-        </select>
+        <div className="w-full sm:w-auto">
+          <CustomSelect
+            label="Ordenar por"
+            options={opcionesOrden}
+            value={orden}
+            onChange={(val) => setOrden(val as typeof orden)}
+            placeholder="Seleccionar orden"
+          />
+        </div>
       </div>
 
       {/* Performance info (solo en dev) */}
       {process.env.NODE_ENV === "development" && (
-        <div className="mb-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+        <div className="mb-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl text-left">
           <p className="text-xs text-blue-600 dark:text-blue-400 mb-2">
             🚀 <strong>Optimizaciones activas:</strong>
           </p>
@@ -105,7 +92,7 @@ export function FavoritosView({
         </div>
       )}
 
-      {/* Favorites list con staged activation */}
+      {/* FAVORITOS LIST */}
       <div className="space-y-4">
         {favoritos.map((fav, index) => (
           <FavoritoCard
@@ -114,20 +101,18 @@ export function FavoritosView({
             onEliminar={eliminarFavorito}
             onConsultar={onConsultar}
             autoRefresh={true}
-            index={index} // 🎯 Índice para staged activation
-            // Opcional: override del delay
-            // activationDelay={index < 3 ? 0 : index * 100} // Primeras 3 sin delay
+            index={index}
           />
         ))}
       </div>
 
-      {/* Footer info */}
-      <div className="mt-8 text-center space-y-2">
-        <p className="text-xs text-muted-foreground">
+      {/* FOOTER INFO */}
+      <div className="mt-8 text-center space-y-2 text-sm text-muted-foreground">
+        <p>
           {favoritos.length} {favoritos.length === 1 ? "favorito" : "favoritos"}
         </p>
         {favoritos.length > 10 && (
-          <p className="text-[10px] text-muted-foreground/60">
+          <p className="text-xs text-muted-foreground/60">
             💡 Scroll para cargar más arribos progresivamente
           </p>
         )}

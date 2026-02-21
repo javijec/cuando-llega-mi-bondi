@@ -50,7 +50,7 @@ export function ArrivalsPanel({
     return (
       <div className="w-full max-w-md mx-auto mt-6 p-8 bg-card rounded-[2.5rem] border border-border shadow-2xl animate-in fade-in duration-500">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-8 h-8 text-primary animate-spin" />
+          <Loader2 className="w-8 h-8 text-mdp-amarillo animate-spin" />
           <p className="text-muted-foreground text-sm font-bold uppercase tracking-widest">
             Buscando unidades...
           </p>
@@ -78,7 +78,7 @@ export function ArrivalsPanel({
       <div className="p-6 bg-card rounded-[2.5rem] border border-border shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between px-2 mb-4">
-          <h3 className="text-primary text-[10px] font-black uppercase tracking-widest">
+          <h3 className="text-mdp-turquesa text-[10px] font-black uppercase tracking-widest">
             Unidades en camino
           </h3>
           <div className="flex items-center gap-3">
@@ -92,7 +92,7 @@ export function ArrivalsPanel({
                 })
               }
               disabled={refreshArribos.isPending || isFetching}
-              className="text-muted-foreground hover:text-primary transition-colors disabled:opacity-50"
+              className="text-muted-foreground hover:text-mdp-turquesa transition-colors disabled:opacity-50"
               aria-label="Actualizar arribos"
             >
               <RefreshCw
@@ -143,7 +143,7 @@ export function ArrivalsPanel({
           <button
             type="button"
             onClick={onVerRecorrido}
-            className="text-[10px] text-primary uppercase font-bold hover:text-primary/80 transition-colors flex items-center gap-1"
+            className="text-[10px] text-mdp-turquesa uppercase font-bold hover:text-mdp-turquesa/80 transition-colors flex items-center gap-1"
           >
             Ver Recorrido
             <svg
@@ -169,15 +169,15 @@ export function ArrivalsPanel({
             <Star
               className={`w-4 h-4 transition-all ${
                 isFavorito
-                  ? "fill-primary text-primary"
-                  : "text-muted-foreground group-hover:text-primary"
+                  ? "fill-mdp-amarillo text-mdp-amarillo"
+                  : "text-muted-foreground group-hover:text-mdp-amarillo"
               }`}
             />
             <span
               className={
                 isFavorito
-                  ? "text-primary"
-                  : "text-muted-foreground group-hover:text-primary"
+                  ? "text-mdp-amarillo"
+                  : "text-muted-foreground group-hover:text-mdp-amarillo"
               }
             >
               {isFavorito ? "Guardado" : "Guardar"}

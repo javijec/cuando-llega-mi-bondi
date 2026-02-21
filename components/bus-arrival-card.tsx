@@ -33,16 +33,16 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
 
   return (
     <div
-      className="bg-secondary/50 border border-border p-5 rounded-3xl flex justify-between items-center group transition-colors hover:border-primary/30"
+      className="tarjeta-mdp p-5 rounded-3xl flex justify-between items-center group transition-colors hover:border-mdp-turquesa/30"
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <div className="space-y-1.5">
         <div className="flex items-center gap-2">
-          <span className="bg-primary text-primary-foreground text-[9px] font-black px-2 py-0.5 rounded-full uppercase">
+          <span className="bg-mdp-amarillo text-[#22436f] text-[9px] font-black px-2 py-0.5 rounded-full uppercase">
             Coche {arribo.IdentificadorCoche || "---"}
           </span>
           {isAdaptado && (
-            <span className="text-primary" title="Unidad adaptada">
+            <span className="text-mdp-turquesa" title="Unidad adaptada">
               <Accessibility className="w-3.5 h-3.5" />
             </span>
           )}
@@ -53,7 +53,7 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
         <p className="text-muted-foreground text-[10px] font-medium italic">
           GPS: {gpsTime}
           {arribo.DesvioHorario && arribo.DesvioHorario !== "00:00" && (
-            <span className="ml-1.5 text-destructive">
+            <span className="ml-1.5 text-mdp-rosa">
               ({arribo.DesvioHorario})
             </span>
           )}
@@ -63,7 +63,7 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
       <div className="text-right">
         {parsed.unit ? (
           <>
-            <span className="block text-2xl font-black text-primary leading-none">
+            <span className="block text-2xl font-black text-mdp-amarillo leading-none">
               {parsed.value}
             </span>
             <span className="text-[9px] text-muted-foreground font-bold uppercase">
