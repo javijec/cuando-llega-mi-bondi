@@ -117,9 +117,9 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                     <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <div className="flex flex-col ">
                       <span className="text-[1rem] truncate">
-                        {calle?.Descripcion}
+                        {calle?.Descripcion.replace("- MAR DEL PLATA", "")}
                       </span>
-                      <span className="text-[.8rem] opacity-50">e/ {interseccion?.Descripcion}</span>
+                      <span className="text-[.8rem] opacity-50">e/ {interseccion?.Descripcion.replace("- MAR DEL PLATA", "")}</span>
                     </div>
                   </address>
                 </div>
