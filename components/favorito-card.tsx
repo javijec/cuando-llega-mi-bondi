@@ -102,9 +102,12 @@ export const FavoritoCard = memo(function FavoritoCard({
 
       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 font-medium">
         <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
-        <span className="truncate">
-          {favorito.calle} e {favorito.interseccion}
-        </span>
+        <div className="flex flex-col ">
+          <span className="text-[1rem] truncate">{favorito.calle}</span>
+          <span className="text-[.8rem] opacity-50">
+            e/ {favorito.interseccion}
+          </span>
+        </div>
       </div>
 
       <div id={arriboId} aria-live="polite" aria-atomic="true">
