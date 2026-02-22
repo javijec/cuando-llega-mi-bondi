@@ -102,8 +102,8 @@ export const FavoritoCard = memo(function FavoritoCard({
 
       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 font-medium">
         <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
-        <div className="flex flex-col ">
-          <span className="text-[1rem] truncate">{favorito.calle.replace("- MAR DEL PLATA", "")}</span>
+        <div className="flex flex-col truncate">
+          <span className="text-[1rem]">{favorito.calle.replace("- MAR DEL PLATA", "")}</span>
           <span className="text-[.8rem] opacity-50">
             e/ {favorito.interseccion.replace("- MAR DEL PLATA", "")}
           </span>
