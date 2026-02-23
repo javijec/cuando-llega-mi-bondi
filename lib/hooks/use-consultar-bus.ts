@@ -40,37 +40,71 @@ export function useConsultarBus() {
   const options = {
     lineas: useMemo(
       () =>
-        (lineasQuery.data?.lineas || []).map((l) => ({
-          value: l.CodigoLineaParada,
-          label: l.Descripcion,
-        })),
+        (lineasQuery.data?.lineas || [])
+          .slice()
+          .sort((a, b) =>
+            a.Descripcion.localeCompare(b.Descripcion, "es", {
+              sensitivity: "base",
+            }),
+          )
+          .map((l) => ({
+            value: l.CodigoLineaParada,
+            label: l.Descripcion,
+          })),
       [lineasQuery.data],
     ),
+
     calles: useMemo(
       () =>
-        (callesQuery.data?.calles || []).map((c) => ({
-          value: c.Codigo,
-          label: c.Descripcion.replace(" - MAR DEL PLATA", ""),
-        })),
+        (callesQuery.data?.calles || [])
+          .slice()
+          .sort((a, b) =>
+            a.Descripcion.localeCompare(b.Descripcion, "es", {
+              sensitivity: "base",
+            }),
+          )
+          .map((c) => ({
+            value: c.Codigo,
+            label: c.Descripcion.replace(" - MAR DEL PLATA", ""),
+          })),
       [callesQuery.data],
     ),
+
     intersecciones: useMemo(() => {
       const items =
         interseccionesQuery.data?.intersecciones ||
         interseccionesQuery.data?.calles ||
         [];
-      return items.map((i) => ({ value: i.Codigo, label: i.Descripcion.replace(" - MAR DEL PLATA", "") }));
+
+      return items
+        .slice()
+        .sort((a, b) =>
+          a.Descripcion.localeCompare(b.Descripcion, "es", {
+            sensitivity: "base",
+          }),
+        )
+        .map((i) => ({
+          value: i.Codigo,
+          label: i.Descripcion.replace(" - MAR DEL PLATA", ""),
+        }));
     }, [interseccionesQuery.data]),
+
     paradas: useMemo(
       () =>
-        (paradasQuery.data?.paradas || []).map((p) => ({
-          value: p.Codigo,
-          label: p.AbreviaturaBandera,
-        })),
+        (paradasQuery.data?.paradas || [])
+          .slice()
+          .sort((a, b) =>
+            a.AbreviaturaBandera.localeCompare(b.AbreviaturaBandera, "es", {
+              sensitivity: "base",
+            }),
+          )
+          .map((p) => ({
+            value: p.Codigo,
+            label: p.AbreviaturaBandera,
+          })),
       [paradasQuery.data],
     ),
   };
-
   const selectedInfo = useMemo(() => {
     return {
       linea: lineasQuery.data?.lineas?.find(
