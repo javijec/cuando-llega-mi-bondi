@@ -13,7 +13,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <div className="min-h-[400px] flex flex-col items-center justify-center p-6 text-center">
+    <div className="min-h-100 flex flex-col items-center justify-center p-6 text-center">
       <div className="mb-6">
         <div className="h-16 w-16 rounded-full bg-mdp-rosa/10 flex items-center justify-center mx-auto mb-4">
           <span className="text-3xl">⚠️</span>

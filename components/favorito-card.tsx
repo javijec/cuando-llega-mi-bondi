@@ -1,6 +1,7 @@
 "use client";
 
 import { memo } from "react";
+import Link from "next/link";
 import type { Favorito } from "@/lib/types/bus";
 import { Trash2, MapPin, Loader2, ChevronRight } from "lucide-react";
 import { useVisibleArribos } from "@/lib/hooks/useFavoritos";
@@ -9,7 +10,6 @@ import { cn } from "@/lib/utils";
 interface FavoritoCardProps {
   favorito: Favorito;
   onEliminar: (id: string) => void;
-  onConsultar: (favorito: Favorito) => void;
   autoRefresh?: boolean;
   index?: number;
   activationDelay?: number;
@@ -46,7 +46,6 @@ function getUrgencyLabel(minutes: number | null): string {
 export const FavoritoCard = memo(function FavoritoCard({
   favorito,
   onEliminar,
-  onConsultar,
   autoRefresh = true,
   index = 0,
   activationDelay,
@@ -103,7 +102,9 @@ export const FavoritoCard = memo(function FavoritoCard({
       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 font-medium">
         <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
         <div className="flex flex-col truncate">
-          <span className="text-[1rem]">{favorito.calle.replace("- MAR DEL PLATA", "")}</span>
+          <span className="text-[1rem]">
+            {favorito.calle.replace("- MAR DEL PLATA", "")}
+          </span>
           <span className="text-[.8rem] opacity-50">
             e/ {favorito.interseccion.replace("- MAR DEL PLATA", "")}
           </span>
@@ -193,14 +194,14 @@ export const FavoritoCard = memo(function FavoritoCard({
         )}
       </div>
 
-      <button
-        onClick={() => onConsultar(favorito)}
+      <Link
+        href="/consultar"
         className="w-full mt-4 py-3 rounded-xl bg-muted/50 text-foreground text-sm font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer"
         aria-label={`Ver todos los arribos de ${favorito.nombreLinea}`}
       >
         Ver todos los arribos
         <ChevronRight className="w-4 h-4" aria-hidden="true" />
-      </button>
+      </Link>
     </article>
   );
 });

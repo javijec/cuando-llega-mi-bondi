@@ -8,7 +8,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "MiBondi - Colectivos en Tiempo Real",
+  title: "Mi Bondi",
   description:
     "Consulta en tiempo real los arribos de colectivos en Mar del Plata. Busca tu linea, parada y guarda tus favoritos.",
   icons: {
