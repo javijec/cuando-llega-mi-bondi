@@ -1,3 +1,4 @@
+import { Header } from "@/components/header";
 import { Navbar } from "@/components/navbar";
 import type { Metadata } from "next";
 
@@ -14,10 +15,11 @@ export default function ConsultarLayout({
 }>) {
   return (
     <>
-      <Navbar />
-      <main id="main-content" className="min-h-screen bg-background pb-8">
+      <Header />
+      <main id="main-content" className="min-h-screen bg-background pb-20">
         {children}
       </main>
+      <Navbar />
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Search, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -11,47 +12,39 @@ export function Navbar() {
   const isFavoritos = pathname === "/favoritos";
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <div className="max-w-md mx-auto">
-        <div className="text-center py-3 border-b border-border/50">
-          <h1 className="text-2xl font-black uppercase tracking-tighter italic text-foreground">
-            Mi<span className="text-mdp-amarillo font-light">Bondi</span>
-          </h1>
-          <div
-            className="h-1 w-10 bg-mdp-amarillo mx-auto mt-1 rounded-full"
-            aria-hidden="true"
-          />
-        </div>
+    <nav
+      aria-label="Navegación principal"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border"
+    >
+      <div className="max-w-md mx-auto flex items-center justify-around py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+        <Link
+          href="/consultar"
+          className={cn(
+            "flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all cursor-pointer",
+            isConsultar
+              ? "text-mdp-amarillo"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+          aria-current={isConsultar ? "page" : undefined}
+        >
+          <Search className={cn("h-6 w-6", isConsultar && "fill-current")} />
+          <span className="text-xs font-medium">Consultar</span>
+        </Link>
 
-        <nav aria-label="Navegación principal">
-          <div className="flex bg-muted/30 p-1 m-2 rounded-2xl">
-            <Link
-              href="/consultar"
-              className={cn(
-                "flex-1 py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all text-center cursor-pointer",
-                isConsultar
-                  ? "btn-mdp-amarillo shadow-md"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-              aria-current={isConsultar ? "page" : undefined}
-            >
-              Consultar
-            </Link>
-            <Link
-              href="/favoritos"
-              className={cn(
-                "flex-1 py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all text-center cursor-pointer",
-                isFavoritos
-                  ? "btn-mdp-amarillo shadow-md"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-              aria-current={isFavoritos ? "page" : undefined}
-            >
-              Favoritos
-            </Link>
-          </div>
-        </nav>
+        <Link
+          href="/favoritos"
+          className={cn(
+            "flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all cursor-pointer",
+            isFavoritos
+              ? "text-mdp-amarillo"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+          aria-current={isFavoritos ? "page" : undefined}
+        >
+          <Star className={cn("h-6 w-6", isFavoritos && "fill-current")} />
+          <span className="text-xs font-medium">Favoritos</span>
+        </Link>
       </div>
-    </header>
+    </nav>
   );
 }
