@@ -1,17 +1,5 @@
-import { HomeClient } from "@/components/home-client";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <>
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-mdp-amarillo focus:text-foreground focus:rounded-xl focus:font-bold focus:shadow-lg"
-      >
-        Saltar al contenido principal
-      </a>
-      <main id="main-content" className="min-h-screen bg-background pb-8">
-        <HomeClient />
-      </main>
-    </>
-  );
+  redirect("/consultar");
 }
