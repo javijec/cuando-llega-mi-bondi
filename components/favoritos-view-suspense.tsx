@@ -1,11 +1,5 @@
 import { Suspense } from "react";
 import { FavoritosView } from "./favoritos-view";
-import type { Favorito } from "@/lib/types/bus";
-
-interface FavoritosViewWithSuspenseProps {
-  onConsultar: (favorito: Favorito) => void;
-  onGoToConsultar: () => void;
-}
 
 function FavoritosSkeleton() {
   return (
@@ -47,16 +41,10 @@ function FavoritosSkeleton() {
   );
 }
 
-export function FavoritosViewWithSuspense({
-  onConsultar,
-  onGoToConsultar,
-}: FavoritosViewWithSuspenseProps) {
+export function FavoritosViewWithSuspense() {
   return (
     <Suspense fallback={<FavoritosSkeleton />}>
-      <FavoritosView
-        onConsultar={onConsultar}
-        onGoToConsultar={onGoToConsultar}
-      />
+      <FavoritosView />
     </Suspense>
   );
 }
