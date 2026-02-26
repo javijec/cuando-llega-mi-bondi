@@ -47,11 +47,12 @@ export function useIntersectionObserver({
   });
 
   const onChangeRef = useRef(onChange);
-  const frozenRef = useRef(false);
-
   useEffect(() => {
     onChangeRef.current = onChange;
   });
+
+  // Pre-congelar si ya arranca visible con freezeOnceVisible
+  const frozenRef = useRef(initialIsIntersecting && freezeOnceVisible);
 
   const setRef = useCallback((node?: Element | null) => {
     setElement(node ?? null);
@@ -60,10 +61,14 @@ export function useIntersectionObserver({
   useEffect(() => {
     if (!element) return;
     if (!("IntersectionObserver" in window)) return;
+
+    // Reset al cambiar el elemento observado
+    frozenRef.current = false;
+
     if (frozenRef.current) return;
 
     const observer = new IntersectionObserver(
-      (entries: IntersectionObserverEntry[]) => {
+      (entries) => {
         const thresholds = Array.isArray(observer.thresholds)
           ? observer.thresholds
           : [observer.thresholds];
@@ -78,27 +83,17 @@ export function useIntersectionObserver({
           }
 
           setState({ isIntersecting, entry });
-
-          if (onChangeRef.current) {
-            onChangeRef.current(isIntersecting, entry);
-          }
+          onChangeRef.current?.(isIntersecting, entry);
         });
       },
       { threshold, root, rootMargin },
     );
 
     observer.observe(element);
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, [element, threshold, root, rootMargin, freezeOnceVisible]);
 
-  const result = [
-    setRef,
-    state.isIntersecting,
-    state.entry,
-  ] as IntersectionReturn;
+  const result = [setRef, state.isIntersecting, state.entry] as IntersectionReturn;
   result.ref = setRef;
   result.isIntersecting = state.isIntersecting;
   result.entry = state.entry;
