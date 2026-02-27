@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Star } from "lucide-react";
+import { Search, Star, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -10,6 +10,7 @@ export function Navbar() {
 
   const isConsultar = pathname === "/consultar";
   const isFavoritos = pathname === "/favoritos";
+  const isAcerca = pathname === "/acerca";
 
   return (
     <nav
@@ -20,7 +21,7 @@ export function Navbar() {
         <Link
           href="/consultar"
           className={cn(
-            "flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all cursor-pointer",
+            "flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all cursor-pointer",
             isConsultar
               ? "text-mdp-amarillo"
               : "text-muted-foreground hover:text-foreground",
@@ -34,7 +35,7 @@ export function Navbar() {
         <Link
           href="/favoritos"
           className={cn(
-            "flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all cursor-pointer",
+            "flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all cursor-pointer",
             isFavoritos
               ? "text-mdp-amarillo"
               : "text-muted-foreground hover:text-foreground",
@@ -43,6 +44,20 @@ export function Navbar() {
         >
           <Star className={cn("h-6 w-6", isFavoritos && "fill-current")} />
           <span className="text-xs font-medium">Favoritos</span>
+        </Link>
+
+        <Link
+          href="/acerca"
+          className={cn(
+            "flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all cursor-pointer",
+            isAcerca
+              ? "text-mdp-amarillo"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+          aria-current={isAcerca ? "page" : undefined}
+        >
+          <Info className={cn("h-6 w-6", isAcerca && "fill-current")} />
+          <span className="text-xs font-medium">Acerca de</span>
         </Link>
       </div>
     </nav>
