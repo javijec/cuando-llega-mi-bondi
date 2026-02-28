@@ -77,8 +77,16 @@ export default function AcercaPage() {
           {/* Header */}
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-1">
-              <h3 className="text-base font-semibold">Nicolás Jiménez</h3>
+              <div className="flex justify-between">
 
+              <h3 className="text-base font-semibold">Nicolás Jiménez</h3>
+            {/* Badge más neutro */}
+            <span className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-medium">
+              {" "}
+              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />{" "}
+              Conectemos{" "}
+            </span>
+              </div>
               {/* Rol principal */}
               <p className="text-sm text-muted-foreground">
                 Frontend Developer · Multimedia Designer
@@ -94,8 +102,7 @@ export default function AcercaPage() {
                   className="hover:underline"
                 >
                   Tecnicatura Universitaria en Programación
-                </a>{" "}
-                el la{" "}
+                </a> {' '}
                 <a
                   href="https://mdp.utn.edu.ar/"
                   target="_blank"
@@ -103,17 +110,12 @@ export default function AcercaPage() {
                   className="hover:underline"
                 
                 >
-                  UTN - FRMDP
+                   UTN - FRMDP
                 </a>
               </p>
             </div>
 
-            {/* Badge más neutro */}
-            <span className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-medium">
-              {" "}
-              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />{" "}
-              Conectemos{" "}
-            </span>
+
           </div>
 
           {/* Descripción */}
