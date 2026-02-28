@@ -3,6 +3,9 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ─────────────────────────────────────────────
+   THEME TOKENS
+───────────────────────────────────────────── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -51,168 +54,208 @@
   --color-mdp-success: var(--mdp-success);
 }
 
+/* ─────────────────────────────────────────────
+   PALETA MDP — REVISADA PARA ACCESIBILIDAD
+   Cambios clave:
+   - Turquesa oscurecido: #289b95 → #1d7570 (ratio blanco 4.85:1 ✓ AA)
+   - Amarillo SOLO como acento visual, nunca fondo de texto pequeño
+   - Rosa: #e54f90 → #c93679 para mejor contraste en light (4.6:1 ✓)
+   - Foreground más oscuro: #22436f → #0f2d4a (mayor contraste sobre bg)
+───────────────────────────────────────────── */
 :root {
   --radius: 1rem;
 
-  /* Paleta MDP */
-  --mdp-rosa: #e54f90;
-  --mdp-amarillo: #f9cd4a;
-  --mdp-turquesa: #289b95;
-  --mdp-error: #d64545;
-  --mdp-success: #2e9b6f;
+  /* Brand tokens */
+  --mdp-rosa:     #c93679;   /* WCAG AA sobre blanco: ~5.0:1 */
+  --mdp-amarillo: #f9cd4a;   /* usar solo en iconos con texto oscuro */
+  --mdp-turquesa: #1d7570;   /* WCAG AA sobre blanco: ~4.85:1 */
+  --mdp-turquesa-light: #289b95; /* para fondos claros decorativos */
+  --mdp-error:    #b83030;   /* WCAG AA: ~5.4:1 */
+  --mdp-success:  #1e7a52;   /* WCAG AA: ~5.1:1 */
+
+  /* Touch target mínimo accesible */
+  --touch-min: 44px;
 }
 
+/* ─── LIGHT MODE ─── */
 @media (prefers-color-scheme: light) {
   :root {
-    --mdp-bg-principal: #fbfbf8;
-    --mdp-texto-principal: #22436f;
-    --mdp-bg-secundario: #f0f0f0;
-    --mdp-borde: #e0e0e0;
+    --mdp-bg-principal:   #f7f7f4;
+    --mdp-texto-principal: #0f2d4a;   /* oscurecido para contraste máximo */
+    --mdp-bg-secundario:  #ededea;
+    --mdp-borde:          #d4d4d0;
+    --mdp-borde-sutil:    #e8e8e4;
 
-    --background: var(--mdp-bg-principal);
-    --foreground: var(--mdp-texto-principal);
+    --background:         var(--mdp-bg-principal);
+    --foreground:         var(--mdp-texto-principal);
 
-    --card: var(--mdp-bg-secundario);
-    --card-foreground: var(--mdp-texto-principal);
+    --card:               #ffffff;
+    --card-foreground:    var(--mdp-texto-principal);
 
-    --popover: #ffffff;
+    --popover:            #ffffff;
     --popover-foreground: var(--mdp-texto-principal);
 
-    --primary: var(--mdp-amarillo);
-    --primary-foreground: #22436f;
+    --primary:            var(--mdp-amarillo);
+    --primary-foreground: #0f2d4a;    /* texto oscuro sobre amarillo ✓ */
 
-    --secondary: var(--mdp-turquesa);
+    --secondary:          var(--mdp-turquesa);
     --secondary-foreground: #ffffff;
 
-    --muted: var(--mdp-bg-secundario);
-    --muted-foreground: #5a6a7a;
+    --muted:              var(--mdp-bg-secundario);
+    --muted-foreground:   #4a6070;    /* 5.2:1 sobre bg ✓ */
 
-    --accent: var(--mdp-turquesa);
-    --accent-foreground: #ffffff;
+    --accent:             var(--mdp-turquesa);
+    --accent-foreground:  #ffffff;
 
-    --destructive: var(--mdp-rosa);
+    --destructive:        var(--mdp-rosa);
     --destructive-foreground: #ffffff;
 
-    --border: var(--mdp-borde);
-    --input: var(--mdp-bg-secundario);
-    --ring: var(--mdp-rosa);
+    --border:             var(--mdp-borde);
+    --input:              var(--mdp-bg-secundario);
+    --ring:               var(--mdp-turquesa);   /* focus ring turquesa */
 
     --chart-1: var(--mdp-amarillo);
     --chart-2: var(--mdp-turquesa);
     --chart-3: var(--mdp-rosa);
     --chart-4: var(--mdp-texto-principal);
-    --chart-5: #5a6a7a;
+    --chart-5: #4a6070;
 
-    --sidebar: var(--mdp-bg-secundario);
-    --sidebar-foreground: var(--mdp-texto-principal);
-    --sidebar-primary: var(--mdp-amarillo);
-    --sidebar-primary-foreground: #22436f;
-    --sidebar-accent: var(--mdp-turquesa);
+    --sidebar:                   var(--mdp-bg-secundario);
+    --sidebar-foreground:        var(--mdp-texto-principal);
+    --sidebar-primary:           var(--mdp-amarillo);
+    --sidebar-primary-foreground: #0f2d4a;
+    --sidebar-accent:            var(--mdp-turquesa);
     --sidebar-accent-foreground: #ffffff;
-    --sidebar-border: var(--mdp-borde);
-    --sidebar-ring: var(--mdp-amarillo);
+    --sidebar-border:            var(--mdp-borde);
+    --sidebar-ring:              var(--mdp-turquesa);
   }
 }
 
+/* ─── DARK MODE ─── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --mdp-bg-principal: #22436f;
-    --mdp-texto-principal: #fbfbf8;
-    --mdp-bg-secundario: #1a3558;
-    --mdp-borde: #34567a;
+    --mdp-bg-principal:   #0f2d4a;
+    --mdp-texto-principal: #f0f4f8;   /* casi blanco, suavizado */
+    --mdp-bg-secundario:  #0a2038;
+    --mdp-borde:          #1e3f5c;
+    --mdp-borde-sutil:    #183352;
 
-    --background: var(--mdp-bg-principal);
-    --foreground: var(--mdp-texto-principal);
+    --background:         var(--mdp-bg-principal);
+    --foreground:         var(--mdp-texto-principal);
 
-    --card: var(--mdp-bg-secundario);
-    --card-foreground: var(--mdp-texto-principal);
+    --card:               #122843;
+    --card-foreground:    var(--mdp-texto-principal);
 
-    --popover: var(--mdp-bg-secundario);
+    --popover:            #122843;
     --popover-foreground: var(--mdp-texto-principal);
 
-    --primary: var(--mdp-amarillo);
-    --primary-foreground: #22436f;
+    --primary:            var(--mdp-amarillo);
+    --primary-foreground: #0f2d4a;
 
-    --secondary: var(--mdp-turquesa);
+    --secondary:          #24908a;   /* turquesa ligeramente más claro en dark */
     --secondary-foreground: #ffffff;
 
-    --muted: var(--mdp-bg-secundario);
-    --muted-foreground: #8fa4b8;
+    --muted:              var(--mdp-bg-secundario);
+    --muted-foreground:   #8ba4bb;   /* 4.6:1 sobre bg dark ✓ */
 
-    --accent: var(--mdp-turquesa);
-    --accent-foreground: #ffffff;
+    --accent:             #24908a;
+    --accent-foreground:  #ffffff;
 
-    --destructive: var(--mdp-rosa);
+    --destructive:        #e05588;   /* rosa más brillante para dark */
     --destructive-foreground: #ffffff;
 
-    --border: var(--mdp-borde);
-    --input: var(--mdp-bg-secundario);
-    --ring: var(--mdp-amarillo);
+    --border:             var(--mdp-borde);
+    --input:              var(--mdp-bg-secundario);
+    --ring:               var(--mdp-amarillo);
 
     --chart-1: var(--mdp-amarillo);
-    --chart-2: var(--mdp-turquesa);
-    --chart-3: var(--mdp-rosa);
+    --chart-2: #24908a;
+    --chart-3: #e05588;
     --chart-4: var(--mdp-texto-principal);
-    --chart-5: #8fa4b8;
+    --chart-5: #8ba4bb;
 
-    --sidebar: var(--mdp-bg-secundario);
-    --sidebar-foreground: var(--mdp-texto-principal);
-    --sidebar-primary: var(--mdp-amarillo);
-    --sidebar-primary-foreground: #22436f;
-    --sidebar-accent: var(--mdp-turquesa);
+    --sidebar:                   var(--mdp-bg-secundario);
+    --sidebar-foreground:        var(--mdp-texto-principal);
+    --sidebar-primary:           var(--mdp-amarillo);
+    --sidebar-primary-foreground: #0f2d4a;
+    --sidebar-accent:            #24908a;
     --sidebar-accent-foreground: #ffffff;
-    --sidebar-border: var(--mdp-borde);
-    --sidebar-ring: var(--mdp-amarillo);
+    --sidebar-border:            var(--mdp-borde);
+    --sidebar-ring:              var(--mdp-amarillo);
   }
 }
 
+/* ─────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    /* Suavizar touch en móvil */
+    -webkit-tap-highlight-color: transparent;
   }
+
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus visible global — accesibilidad de teclado */
+  *:focus-visible {
+    outline: 2.5px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 }
 
+/* ─────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────── */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .text-balance { text-wrap: balance; }
+
+  /* Touch target helper */
+  .touch-target {
+    min-height: var(--touch-min);
+    min-width: var(--touch-min);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
+/* ─────────────────────────────────────────────
+   COMPONENTS
+───────────────────────────────────────────── */
 @layer components {
+
+  /* ── Botones de marca ── */
   .btn-mdp-rosa {
     background-color: var(--mdp-rosa);
     color: #ffffff;
     border: none;
     font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.2s;
+    min-height: var(--touch-min);
+    transition: opacity 0.15s ease, transform 0.1s ease;
   }
-  .btn-mdp-rosa:hover {
-    opacity: 0.9;
-  }
-  .btn-mdp-rosa:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .btn-mdp-rosa:hover  { opacity: 0.88; }
+  .btn-mdp-rosa:active { transform: scale(0.98); }
+  .btn-mdp-rosa:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
   .btn-mdp-amarillo {
     background-color: var(--mdp-amarillo);
-    color: #22436f;
+    color: #0f2d4a;   /* texto oscuro — ratio 8.2:1 ✓ AAA */
     border: none;
     font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.2s;
+    min-height: var(--touch-min);
+    transition: opacity 0.15s ease, transform 0.1s ease;
   }
-  .btn-mdp-amarillo:hover {
-    opacity: 0.9;
-  }
-  .btn-mdp-amarillo:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .btn-mdp-amarillo:hover  { opacity: 0.88; }
+  .btn-mdp-amarillo:active { transform: scale(0.98); }
+  .btn-mdp-amarillo:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
   .btn-mdp-turquesa {
     background-color: var(--mdp-turquesa);
@@ -220,412 +263,383 @@
     border: none;
     font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.2s;
+    min-height: var(--touch-min);
+    transition: opacity 0.15s ease, transform 0.1s ease;
   }
-  .btn-mdp-turquesa:hover {
-    opacity: 0.9;
-  }
-  .btn-mdp-turquesa:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .btn-mdp-turquesa:hover  { opacity: 0.88; }
+  .btn-mdp-turquesa:active { transform: scale(0.98); }
+  .btn-mdp-turquesa:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
+  /* ── Tarjeta ── */
   .tarjeta-mdp {
-    background-color: var(--mdp-bg-secundario);
+    background-color: var(--card);
     border: 1px solid var(--mdp-borde);
+    border-radius: var(--radius-lg);
   }
 
+  /* ── Inputs ── */
   .input-mdp {
     width: 100%;
     padding: 0.75rem 0.875rem;
-    border-radius: 0.375rem;
-    border: 1px solid var(--mdp-borde);
+    min-height: var(--touch-min);
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--mdp-borde);
     background: var(--mdp-bg-secundario);
     color: var(--mdp-texto-principal);
     font-size: 0.875rem;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-
-  .input-mdp:hover {
-    border-color: var(--mdp-turquesa);
-  }
-
-  .input-mdp:focus {
+  .input-mdp:hover  { border-color: var(--mdp-turquesa); }
+  .input-mdp:focus  {
     outline: none;
-    border-color: var(--mdp-rosa);
-    box-shadow: 0 0 0 3px rgba(229, 79, 144, 0.2);
+    border-color: var(--mdp-turquesa);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mdp-turquesa) 25%, transparent);
   }
-
-  .input-mdp:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+  .input-mdp:disabled { opacity: 0.55; cursor: not-allowed; }
 
   .input-mdp-error {
-    border-color: var(--mdp-error);
+    border-color: var(--mdp-error) !important;
   }
-
   .input-mdp-error:focus {
-    box-shadow: 0 0 0 3px rgba(214, 69, 69, 0.25);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mdp-error) 20%, transparent) !important;
   }
-
   .input-mdp-success {
-    border-color: var(--mdp-success);
+    border-color: var(--mdp-success) !important;
   }
-
   .input-mdp-success:focus {
-    box-shadow: 0 0 0 3px rgba(46, 155, 111, 0.25);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mdp-success) 20%, transparent) !important;
   }
 
-  .helper-text {
-    font-size: 0.8125rem;
-    margin-top: 0.375rem;
-    opacity: 0.8;
+  .helper-text  { font-size: 0.8125rem; margin-top: 0.375rem; opacity: 0.85; }
+  .helper-error   { color: var(--mdp-error); }
+  .helper-success { color: var(--mdp-success); }
+
+  /* ═══════════════════════════════════════════
+     RECORRIDOS VIEW — componente de mapa
+  ═══════════════════════════════════════════ */
+
+  /* Tarjeta glassmorphism flotante */
+  .recorridos-card {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.12),
+      0 1px 4px rgba(0, 0, 0, 0.08);
+    animation: slideDown 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
-  .helper-error {
-    color: var(--mdp-error);
+  @media (prefers-color-scheme: dark) {
+    .recorridos-card {
+      background: rgba(10, 32, 56, 0.88);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
   }
 
-  .helper-success {
-    color: var(--mdp-success);
+  /* Botón selector (estado sin línea) */
+  .recorridos-btn-selector {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.18),
+      0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    min-height: var(--touch-min);
+  }
+  .recorridos-btn-selector:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.22),
+      0 3px 8px rgba(0, 0, 0, 0.12);
+  }
+  .recorridos-btn-selector:active {
+    transform: translateY(0) scale(0.99);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .recorridos-btn-selector {
+      background: rgba(10, 32, 56, 0.92);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  /* Botón "Cambiar línea" */
+  .recorridos-btn-cambiar {
+    background-color: var(--mdp-turquesa);
+    color: #ffffff;
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--mdp-turquesa) 50%, transparent);
+    transition: opacity 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+    min-height: var(--touch-min);
+    letter-spacing: 0.01em;
+  }
+  .recorridos-btn-cambiar:hover {
+    opacity: 0.92;
+    box-shadow: 0 6px 24px color-mix(in srgb, var(--mdp-turquesa) 60%, transparent);
+  }
+  .recorridos-btn-cambiar:active { transform: scale(0.98); }
+
+  /* Ícono circular */
+  .recorridos-icon-wrap {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--mdp-turquesa);
+    color: #ffffff;
+  }
+  .recorridos-icon-wrap--amarillo {
+    background-color: var(--mdp-amarillo);
+    color: #0f2d4a;   /* contraste 8.2:1 ✓ AAA */
+  }
+
+  /* Botón ícono (cerrar) */
+  .recorridos-icon-btn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    /* Área de toque expandida sin alterar layout */
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4a6070;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+  }
+  .recorridos-icon-btn:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+    color: #0f2d4a;
+  }
+  .recorridos-icon-btn:active {
+    background-color: rgba(0, 0, 0, 0.12);
+    transform: scale(0.94);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .recorridos-icon-btn {
+      color: #8ba4bb;
+    }
+    .recorridos-icon-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #f0f4f8;
+    }
+  }
+
+  /* Contenedor de controles superiores — animación de entrada */
+  .recorridos-top-controls {
+    animation: slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--muted);
-  border-radius: 9999px;
-}
-
-/* Disable select arrow in custom selects */
-.custom-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-/* ============================================
-   ESTILOS OPCIONALES PARA CONSULTAR VIEW SHEET
-   ============================================ */
-
-/* 1. ANIMACIONES SUAVES PERSONALIZADAS */
-@keyframes slideUpFade {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulseGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(var(--primary-rgb), 0);
-  }
-}
-
-/* 2. MEJORAS AL SHEET CONTAINER */
+/* ─────────────────────────────────────────────
+   SHEET (react-modal-sheet)
+───────────────────────────────────────────── */
 .react-modal-sheet-container {
-  /* Sombra más dramática para profundidad */
   box-shadow:
-    0 -4px 20px rgba(0, 0, 0, 0.15),
-    0 -1px 3px rgba(0, 0, 0, 0.1);
-
-  /* Transición suave de transform */
+    0 -8px 32px rgba(0, 0, 0, 0.16),
+    0 -1px 4px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 24px 24px 0 0 !important;
 }
 
-/* 3. MEJORAS AL HEADER */
+.react-modal-sheet-wrapper {
+  pointer-events: none;
+}
+.react-modal-sheet-container {
+  pointer-events: auto;
+}
+.react-modal-sheet-backdrop {
+  pointer-events: none;
+}
+
 .sheet-header-custom {
-  /* Borde inferior sutil */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-
-  /* Gradiente sutil de fondo */
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0.95)
-  );
-
-  /* Sticky header opcional */
+  border-bottom: 1px solid var(--mdp-borde-sutil, rgba(0,0,0,0.06));
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(8px);
 }
 
-/* Dark mode */
-.dark .sheet-header-custom {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.95));
-}
-
-/* 4. BOTÓN DE CIERRE MEJORADO */
-.sheet-close-button {
-  position: relative;
-  transition: all 0.2s ease;
-
-  /* Efecto hover */
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    transform: scale(1.05);
-  }
-
-  /* Efecto active */
-  &:active {
-    transform: scale(0.95);
-  }
-
-  /* Focus visible para accesibilidad */
-  &:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-  }
-}
-
-.dark .sheet-close-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* 5. INDICADOR DE ARRASTRE MEJORADO */
-.sheet-drag-indicator {
-  width: 48px;
-  height: 4px;
-  border-radius: 999px;
-  background-color: rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
-
-  /* Efecto hover cuando el sheet está siendo arrastrado */
-  &.dragging {
-    width: 64px;
-    background-color: var(--primary);
-  }
-}
-
-.dark .sheet-drag-indicator {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-/* 6. CONTENIDO DEL SHEET */
-.sheet-content-custom {
-  /* Scroll suave */
-  scroll-behavior: smooth;
-
-  /* Scrollbar personalizado (webkit browsers) */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3);
-  }
-}
-
-.dark .sheet-content-custom {
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-}
-
-/* 7. BACKDROP MEJORADO */
-.react-modal-sheet-backdrop {
-  /* Transición suave */
-  transition:
-    backdrop-filter 0.3s ease,
-    background-color 0.3s ease;
-}
-
-/* 8. HINT VISUAL (Desliza para ver más) */
-.scroll-hint {
-  animation: slideUpFade 0.5s ease-out;
-
-  /* Se oculta cuando se hace scroll */
-  &.hidden {
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-  }
-}
-
-/* 9. BOTÓN DE CONSULTA MEJORADO */
-.consult-button {
-  position: relative;
-  overflow: hidden;
-
-  /* Efecto ripple/wave al hacer click */
-  &::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    transform: translate(-50%, -50%);
-    transition:
-      width 0.6s,
-      height 0.6s;
-  }
-
-  &:active::after {
-    width: 300px;
-    height: 300px;
-  }
-
-  /* Glow effect cuando está enabled */
-  &:not(:disabled):hover {
-    animation: pulseGlow 2s infinite;
-  }
-}
-
-/* 10. ESTADOS DE LOADING */
-.loading-spinner {
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  border-left-color: var(--primary);
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* 11. CARD CONTAINER PARA ARRIVALS */
-.arrival-card {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-}
-
-.dark .arrival-card {
-  background: rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-/* 12. RESPONSIVE ADJUSTMENTS */
-@media (max-width: 640px) {
+@media (prefers-color-scheme: dark) {
   .sheet-header-custom {
-    padding: 12px 16px;
-  }
-
-  .consult-button {
-    font-size: 0.875rem;
-    padding: 16px;
+    background: rgba(10, 32, 56, 0.98);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
   }
 }
 
-/* 13. SAFE AREA PARA iOS */
+.sheet-drag-indicator {
+  width: 36px;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.18);
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+.sheet-drag-indicator.dragging {
+  width: 52px;
+  background-color: var(--mdp-turquesa);
+}
+@media (prefers-color-scheme: dark) {
+  .sheet-drag-indicator { background-color: rgba(255, 255, 255, 0.25); }
+}
+
+.sheet-close-button {
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+.sheet-close-button:hover  { background-color: rgba(0,0,0,0.06); }
+.sheet-close-button:active { transform: scale(0.93); }
+
+@media (prefers-color-scheme: dark) {
+  .sheet-close-button:hover { background-color: rgba(255,255,255,0.1); }
+}
+
+.sheet-content-custom {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+.sheet-content-custom::-webkit-scrollbar { width: 4px; }
+.sheet-content-custom::-webkit-scrollbar-track { background: transparent; }
+.sheet-content-custom::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.18);
+  border-radius: 9999px;
+}
+.sheet-content-custom::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.28);
+}
+@media (prefers-color-scheme: dark) {
+  .sheet-content-custom::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
+  .sheet-content-custom::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+}
+
+/* ─────────────────────────────────────────────
+   ARRIVAL CARD
+───────────────────────────────────────────── */
+.arrival-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.arrival-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+@media (prefers-color-scheme: dark) {
+  .arrival-card {
+    background: rgba(18, 40, 67, 0.7);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   SKELETON LOADING
+───────────────────────────────────────────── */
+.skeleton {
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.06) 0%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.06) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.4s ease-in-out infinite;
+}
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.05) 0%,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0.05) 100%
+    );
+    background-size: 200% 100%;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR GLOBAL
+───────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: var(--background); }
+::-webkit-scrollbar-thumb  {
+  background: color-mix(in srgb, var(--foreground) 20%, transparent);
+  border-radius: 9999px;
+}
+
+/* ─────────────────────────────────────────────
+   SAFE AREA — iOS
+───────────────────────────────────────────── */
 @supports (padding: max(0px)) {
   .sheet-content-safe {
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }
 
-/* 14. REDUCIR MOVIMIENTO PARA ACCESIBILIDAD */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* 15. FOCUS STYLES PARA ACCESIBILIDAD */
-*:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* 16. MEJORA DE CONTRASTE PARA DARK MODE */
-.dark {
-  /* Asegura contraste mínimo WCAG AAA */
-  --text-contrast-ratio: 7;
-}
-
-/* 17. SKELETON LOADING (opcional) */
-.skeleton {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.06) 0%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.06) 100%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
+/* ─────────────────────────────────────────────
+   ANIMACIONES
+───────────────────────────────────────────── */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0);     }
 }
 
 @keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-.dark .skeleton {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.06) 100%
-  );
-  background-size: 200% 100%;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-/* 18. MAP SHEET - Allow map interaction behind sheet */
-.react-modal-sheet-wrapper {
-  pointer-events: none;
-}
-
-.react-modal-sheet-container {
-  pointer-events: auto;
-}
-
-.react-modal-sheet-backdrop {
-  pointer-events: none;
-}
 @keyframes pulse-highlight {
-  0%, 100% { box-shadow: 0 0 0px rgba(52, 211, 153, 0.6); }
-  50% { box-shadow: 0 0 10px rgba(52, 211, 153, 0.8); }
+  0%, 100% { box-shadow: 0 0 0px rgba(29, 117, 112, 0); }
+  50%       { box-shadow: 0 0 12px rgba(29, 117, 112, 0.6); }
+}
+
+.loading-spinner {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--mdp-turquesa);
+  animation: spin 0.85s linear infinite;
 }
 
 .animate-pulse-highlight {
   animation: pulse-highlight 2.5s ease-in-out;
+}
+
+/* Select nativo sin flecha */
+.custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* ─────────────────────────────────────────────
+   ACCESIBILIDAD — prefers-reduced-motion
+───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
