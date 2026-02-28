@@ -50,7 +50,6 @@ export default function AcercaPage() {
 
   return (
     <div className="px-4 py-12 space-y-8">
-
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section className="text-center space-y-4">
         <div className="inline-flex items-center justify-center w-20 h-20 bg-mdp-amarillo/10 rounded-2xl">
@@ -68,7 +67,6 @@ export default function AcercaPage() {
           clara y sin vueltas.
         </p>
       </section>
-
       {/* ── HECHO POR ────────────────────────────────────────── */}
       <section className="space-y-4">
         <h2 className="font-bold text-xs uppercase tracking-widest text-muted-foreground">
@@ -76,26 +74,58 @@ export default function AcercaPage() {
         </h2>
 
         <div className="p-4 bg-muted/30 rounded-xl space-y-4">
+          {/* Header */}
           <div className="flex items-start justify-between gap-3">
-            <div className="space-y-0.5">
+            <div className="space-y-1">
               <h3 className="text-base font-semibold">Nicolás Jiménez</h3>
+
+              {/* Rol principal */}
               <p className="text-sm text-muted-foreground">
-                Frontend Developer & Multimedia Designer
+                Frontend Developer · Multimedia Designer
+              </p>
+
+              {/* Formación (mismo tono visual, sin competir) */}
+              <p className="text-xs text-muted-foreground">
+                Alumno de la{" "}
+                <a
+                  href="https://mdp.utn.edu.ar/tecnicatura/tecnico_universitario_en_programacion/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  Tecnicatura Universitaria en Programación
+                </a>{" "}
+                el la{" "}
+                <a
+                  href="https://mdp.utn.edu.ar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                
+                >
+                  UTN - FRMDP
+                </a>
               </p>
             </div>
+
+            {/* Badge más neutro */}
             <span className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-              Conectemos
+              {" "}
+              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />{" "}
+              Conectemos{" "}
             </span>
           </div>
 
+          {/* Descripción */}
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Diseño y desarrollo interfaces digitales que priorizan la claridad y
-            la experiencia del usuario.{" "}
+            Diseño y desarrollo interfaces claras, accesibles y centradas en la
+            experiencia del usuario.{" "}
             <span className="text-foreground font-medium">MiBondi</span> es un
-            ejemplo de cómo abordo los problemas
+            ejemplo de cómo transformo problemas cotidianos en productos
+            digitales útiles.
           </p>
 
+          {/* Links */}
           <div className="flex flex-wrap gap-2">
             <a
               href="https://github.com/dotfn"
@@ -106,6 +136,7 @@ export default function AcercaPage() {
               <Github className="h-4 w-4" />
               GitHub
             </a>
+
             <a
               href="https://linkedin.com/in/dotfn"
               target="_blank"
@@ -115,6 +146,7 @@ export default function AcercaPage() {
               <Linkedin className="h-4 w-4" />
               LinkedIn
             </a>
+
             <a
               href="https://dotfn.github.io/portafolio-live-cv/"
               target="_blank"
@@ -166,7 +198,9 @@ export default function AcercaPage() {
           <div className="flex items-start gap-3 p-4 bg-muted/30 rounded-xl">
             <Bus className="h-5 w-5 text-mdp-amarillo shrink-0 mt-0.5" />
             <div>
-              <p className="font-semibold text-sm">Información en tiempo real</p>
+              <p className="font-semibold text-sm">
+                Información en tiempo real
+              </p>
               <p className="text-muted-foreground text-sm mt-1">
                 Consultá líneas, paradas y próximos arribos al instante, desde
                 cualquier dispositivo.
@@ -177,7 +211,9 @@ export default function AcercaPage() {
           <div className="flex items-start gap-3 p-4 bg-muted/30 rounded-xl">
             <Zap className="h-5 w-5 text-mdp-amarillo shrink-0 mt-0.5" />
             <div>
-              <p className="font-semibold text-sm">Diseñada para usarse en segundos</p>
+              <p className="font-semibold text-sm">
+                Diseñada para usarse en segundos
+              </p>
               <p className="text-muted-foreground text-sm mt-1">
                 Sin registro, sin publicidad y sin pasos innecesarios. Abrís,
                 elegís tu línea y listo.
@@ -232,7 +268,9 @@ export default function AcercaPage() {
             <div className="flex items-center gap-3">
               <MessageCircle className="h-5 w-5 text-mdp-amarillo" />
               <div>
-                <p className="font-semibold text-sm">Reportar bugs o proponer mejoras</p>
+                <p className="font-semibold text-sm">
+                  Reportar bugs o proponer mejoras
+                </p>
                 <p className="text-muted-foreground text-xs">
                   El proyecto crece con la comunidad
                 </p>
@@ -261,12 +299,13 @@ export default function AcercaPage() {
 
       {/* ── FOOTER ───────────────────────────────────────────── */}
       <footer className="text-center pt-4 pb-2">
-        <p className="text-xs text-muted-foreground">© 2026 MiBondi · Mar del Plata</p>
+        <p className="text-xs text-muted-foreground">
+          © 2026 MiBondi · Mar del Plata
+        </p>
         <p className="text-xs text-muted-foreground mt-1">
           Hecha con ❤️ para marplatenses 🌊
         </p>
       </footer>
-
     </div>
   );
 }
