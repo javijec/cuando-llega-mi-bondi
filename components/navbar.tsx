@@ -29,7 +29,7 @@ export function Navbar() {
           )}
           aria-current={isConsultar ? "page" : undefined}
         >
-          <Search className={cn("h-6 w-6", isConsultar && "fill-current")} />
+          <Search className={cn("h-6 w-6", isConsultar ? "text-primary" : "text-muted-foreground")} />
           <span className="text-xs font-medium">Consultar</span>
         </Link>
 
@@ -43,7 +43,7 @@ export function Navbar() {
           )}
           aria-current={isRecorridos ? "page" : undefined}
         >
-          <Map className={cn("h-6 w-6", isRecorridos && "fill-current")} />
+          <Map className={cn("h-6 w-6", isRecorridos ? "text-primary" : "text-muted-foreground")} />
           <span className="text-xs font-medium">Recorridos</span>
         </Link>
 
@@ -57,7 +57,7 @@ export function Navbar() {
           )}
           aria-current={isFavoritos ? "page" : undefined}
         >
-          <Star className={cn("h-6 w-6", isFavoritos && "fill-current")} />
+          <Star className={cn("h-6 w-6", isFavoritos ? "text-primary" : "text-muted-foreground")} />
           <span className="text-xs font-medium">Favoritos</span>
         </Link>
 
@@ -71,7 +71,7 @@ export function Navbar() {
           )}
           aria-current={isAcerca ? "page" : undefined}
         >
-          <Info className={cn("h-6 w-6", isAcerca && "fill-current")} />
+          <Info className={cn("h-6 w-6", isAcerca ? "text-primary" : "text-muted-foreground")} />
           <span className="text-xs font-medium">Acerca de</span>
         </Link>
       </div>
