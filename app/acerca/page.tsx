@@ -290,8 +290,8 @@ export default function AcercaPage() {
         </h2>
 
         <div className="space-y-2">
-          {faq.map((item, i) => (
-            <div key={i} className="p-4 bg-muted/30 rounded-xl">
+          {faq.map((item) => (
+            <div key={item.q} className="p-4 bg-muted/30 rounded-xl">
               <p className="font-semibold text-sm">{item.q}</p>
               <p className="text-muted-foreground text-sm mt-1">{item.a}</p>
             </div>
