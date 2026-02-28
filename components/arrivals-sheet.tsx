@@ -211,7 +211,7 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                     aria-label="Lista de próximos arribos"
                   >
                     {arribos.map((arribo, index) => (
-                      <li key={`${arribo.IdentificadorCoche}-${index}`}>
+                      <li key={arribo.IdentificadorCoche}>
                         <BusArrivalCard arribo={arribo} index={index} />
                       </li>
                     ))}
