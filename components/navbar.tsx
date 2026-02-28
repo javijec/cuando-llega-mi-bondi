@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Star, Info } from "lucide-react";
+import { Search, Map, Star, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const pathname = usePathname();
 
   const isConsultar = pathname === "/consultar";
+  const isRecorridos = pathname === "/recorridos";
   const isFavoritos = pathname === "/favoritos";
   const isAcerca = pathname === "/acerca";
 
@@ -30,6 +31,20 @@ export function Navbar() {
         >
           <Search className={cn("h-6 w-6", isConsultar && "fill-current")} />
           <span className="text-xs font-medium">Consultar</span>
+        </Link>
+
+        <Link
+          href="/recorridos"
+          className={cn(
+            "flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all cursor-pointer",
+            isRecorridos
+              ? "text-mdp-amarillo"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+          aria-current={isRecorridos ? "page" : undefined}
+        >
+          <Map className={cn("h-6 w-6", isRecorridos && "fill-current")} />
+          <span className="text-xs font-medium">Recorridos</span>
         </Link>
 
         <Link
