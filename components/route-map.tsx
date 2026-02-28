@@ -74,129 +74,161 @@ export function RouteMap({
 
     const currentMap = map.current;
 
-    // Limpiar capas y fuentes anteriores
-    if (currentMap.getLayer("route-line")) {
-      currentMap.removeLayer("route-line");
-    }
-    if (currentMap.getLayer("route-points")) {
-      currentMap.removeLayer("route-points");
-    }
-    if (currentMap.getSource("route")) {
-      currentMap.removeSource("route");
-    }
-    if (currentMap.getSource("stops")) {
-      currentMap.removeSource("stops");
-    }
+    const updateRoute = () => {
+      // Verificar que el estilo esté completamente cargado
+      if (!currentMap.isStyleLoaded()) {
+        return;
+      }
 
-    if (puntos.length === 0) return;
+      // Limpiar capas y fuentes anteriores
+      if (currentMap.getLayer("route-line")) {
+        currentMap.removeLayer("route-line");
+      }
+      if (currentMap.getLayer("route-points")) {
+        currentMap.removeLayer("route-points");
+      }
+      if (currentMap.getSource("route")) {
+        currentMap.removeSource("route");
+      }
+      if (currentMap.getSource("stops")) {
+        currentMap.removeSource("stops");
+      }
 
-    // Preparar coordenadas para la línea del recorrido
-    const coordinates = puntos.map((p) => [p.Longitud, p.Latitud]);
+      if (puntos.length === 0) return;
 
-    // Filtrar solo las paradas (IsPuntoPaso = true)
-    const paradas = puntos.filter((p) => p.IsPuntoPaso);
+      // Preparar coordenadas para la línea del recorrido
+      const coordinates = puntos.map((p) => [p.Longitud, p.Latitud]);
 
-    // Agregar fuente de la línea
-    currentMap.addSource("route", {
-      type: "geojson",
-      data: {
-        type: "Feature",
-        properties: {},
-        geometry: {
-          type: "LineString",
-          coordinates: coordinates as [number, number][],
-        },
-      },
-    });
+      // Filtrar solo las paradas (IsPuntoPaso = true)
+      const paradas = puntos.filter((p) => p.IsPuntoPaso);
 
-    // Agregar fuente de paradas
-    currentMap.addSource("stops", {
-      type: "geojson",
-      data: {
-        type: "FeatureCollection",
-        features: paradas.map((p) => ({
+      // Agregar fuente de la línea
+      currentMap.addSource("route", {
+        type: "geojson",
+        data: {
           type: "Feature",
-          properties: {
-            description: p.Descripcion,
-            bandera: p.AbreviaturaBanderaSMP,
-          },
+          properties: {},
           geometry: {
-            type: "Point",
-            coordinates: [p.Longitud, p.Latitud],
+            type: "LineString",
+            coordinates: coordinates as [number, number][],
           },
-        })),
-      },
-    });
+        },
+      });
 
-    // Agregar capa de la línea
-    currentMap.addLayer({
-      id: "route-line",
-      type: "line",
-      source: "route",
-      layout: {
-        "line-join": "round",
-        "line-cap": "round",
-      },
-      paint: {
-        "line-color": color,
-        "line-width": 5,
-        "line-opacity": 0.9,
-      },
-    });
+      // Agregar fuente de paradas
+      currentMap.addSource("stops", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: paradas.map((p) => ({
+            type: "Feature",
+            properties: {
+              description: p.Descripcion,
+              bandera: p.AbreviaturaBanderaSMP,
+            },
+            geometry: {
+              type: "Point",
+              coordinates: [p.Longitud, p.Latitud],
+            },
+          })),
+        },
+      });
 
-    // Agregar capa de paradas
-    currentMap.addLayer({
-      id: "route-points",
-      type: "circle",
-      source: "stops",
-      paint: {
-        "circle-radius": 7,
-        "circle-color": color,
-        "circle-stroke-width": 2,
-        "circle-stroke-color": "#ffffff",
-      },
-    });
+      // Agregar capa de la línea
+      currentMap.addLayer({
+        id: "route-line",
+        type: "line",
+        source: "route",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": color,
+          "line-width": 5,
+          "line-opacity": 0.9,
+        },
+      });
 
-    // Ajustar el mapa para mostrar todo el recorrido
-    const bounds = new maplibregl.LngLatBounds();
-    coordinates.forEach((coord) => {
-      bounds.extend(coord as [number, number]);
-    });
-    currentMap.fitBounds(bounds, {
-      padding: 80,
-      maxZoom: 16,
-    });
+      // Agregar capa de paradas
+      currentMap.addLayer({
+        id: "route-points",
+        type: "circle",
+        source: "stops",
+        paint: {
+          "circle-radius": 7,
+          "circle-color": color,
+          "circle-stroke-width": 2,
+          "circle-stroke-color": "#ffffff",
+        },
+      });
 
-    // Agregar popups al hacer click en paradas
-    currentMap.on("click", "route-points", (e) => {
-      if (!e.features || e.features.length === 0) return;
+      // Ajustar el mapa para mostrar todo el recorrido
+      const bounds = new maplibregl.LngLatBounds();
+      coordinates.forEach((coord) => {
+        bounds.extend(coord as [number, number]);
+      });
+      currentMap.fitBounds(bounds, {
+        padding: 80,
+        maxZoom: 16,
+      });
 
-      const feature = e.features[0];
-      const coordinates = feature.geometry as GeoJSON.Point;
-      const { description, bandera } = feature.properties as {
-        description: string;
-        bandera: string;
+      // Agregar popups al hacer click en paradas
+      currentMap.on("click", "route-points", (e) => {
+        if (!e.features || e.features.length === 0) return;
+
+        const feature = e.features[0];
+        const coordinates = feature.geometry as GeoJSON.Point;
+        const { description, bandera } = feature.properties as {
+          description: string;
+          bandera: string;
+        };
+
+        new maplibregl.Popup()
+          .setLngLat(coordinates.coordinates as [number, number])
+          .setHTML(
+            `<div style="padding: 12px; min-width: 150px;">
+              <strong style="font-size: 15px; color: ${color}; display: block; margin-bottom: 4px;">${bandera}</strong>
+              <p style="margin: 0; font-size: 13px; color: #666;">${description}</p>
+            </div>`,
+          )
+          .addTo(currentMap);
+      });
+
+      // Cambiar cursor al pasar sobre paradas
+      currentMap.on("mouseenter", "route-points", () => {
+        currentMap.getCanvas().style.cursor = "pointer";
+      });
+
+      currentMap.on("mouseleave", "route-points", () => {
+        currentMap.getCanvas().style.cursor = "";
+      });
+    };
+
+    // Si el estilo no está cargado, esperar al evento style.load
+    if (currentMap.isStyleLoaded()) {
+      updateRoute();
+    } else {
+      // Usar requestAnimationFrame para reintentar hasta que el estilo esté listo
+      let animationFrameId: number;
+
+      const checkAndUpdate = () => {
+        if (currentMap.isStyleLoaded()) {
+          updateRoute();
+        } else {
+          animationFrameId = requestAnimationFrame(checkAndUpdate);
+        }
       };
 
-      new maplibregl.Popup()
-        .setLngLat(coordinates.coordinates as [number, number])
-        .setHTML(
-          `<div style="padding: 12px; min-width: 150px;">
-            <strong style="font-size: 15px; color: ${color}; display: block; margin-bottom: 4px;">${bandera}</strong>
-            <p style="margin: 0; font-size: 13px; color: #666;">${description}</p>
-          </div>`,
-        )
-        .addTo(currentMap);
-    });
+      checkAndUpdate();
 
-    // Cambiar cursor al pasar sobre paradas
-    currentMap.on("mouseenter", "route-points", () => {
-      currentMap.getCanvas().style.cursor = "pointer";
-    });
-
-    currentMap.on("mouseleave", "route-points", () => {
-      currentMap.getCanvas().style.cursor = "";
-    });
+      // Cleanup: cancelar el animation frame si el componente se desmonta
+      return () => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+        }
+      };
+    }
   }, [puntos, isMapLoaded, color]);
 
   return (

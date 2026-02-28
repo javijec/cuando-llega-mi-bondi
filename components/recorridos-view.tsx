@@ -30,8 +30,10 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
 
   useEffect(() => {
     if (lineaInfo && !isLoading.recorrido) {
-      setHighlightCard(true);
-      const t = setTimeout(() => setHighlightCard(false), 2600);
+      const t = setTimeout(() => {
+        setHighlightCard(true);
+        setTimeout(() => setHighlightCard(false), 2600);
+      }, 0);
       return () => clearTimeout(t);
     }
   }, [lineaInfo, isLoading.recorrido]);
