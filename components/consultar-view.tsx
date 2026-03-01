@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import { MapPin } from "lucide-react";
 import { CustomSelect } from "./custom-select";
 import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+import { ArrivalsPanel } from "./arrivals-panel";
 import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
 
 const STEPS = [
@@ -127,114 +128,122 @@ export function ConsultarView() {
   };
 
   return (
-    <section
-      id="panel-consultar"
-      role="tabpanel"
-      aria-labelledby="tab-consultar"
-      className="px-4 py-6 max-w-md mx-auto"
-    >
-      <header className="text-center mb-6">
-        <h2 className="text-2xl font-black text-foreground uppercase tracking-tight mb-1">
-          Consultá tu bondi
-        </h2>
-        <p className="text-sm text-muted-foreground font-medium">
-          Completá los 4 pasos
-        </p>
-      </header>
-
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        aria-label="Formulario de consulta de bondi"
+    <>
+      <section
+        id="panel-consultar"
+        role="tabpanel"
+        aria-labelledby="tab-consultar"
+        className="px-4 py-6 max-w-md mx-auto md:max-w-none md:w-full overflow-y-auto"
       >
-        <div
-          className="space-y-3"
-          role="list"
-          aria-label="Pasos para consultar"
+        <header className="text-center mb-6 md:text-left">
+          <h2 className="text-2xl font-black text-foreground uppercase tracking-tight mb-1">
+            Consultá tu bondi
+          </h2>
+          <p className="text-sm text-muted-foreground font-medium">
+            Completá los 4 pasos
+          </p>
+        </header>
+
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          aria-label="Formulario de consulta de bondi"
         >
-          <div role="listitem">
-            <CustomSelect
-              label={STEPS[0].label}
-              options={options.lineas}
-              value={state.lineaSeleccionada || ""}
-              onChange={(v) => handleSelection(actions.setLinea, v)}
-              isLoading={isLoading.lineas}
-              stepNumber={1}
-              isComplete={getStepStatus(0).isComplete}
-              isActive={getStepStatus(0).isActive}
-            />
+          <div
+            className="space-y-3"
+            role="list"
+            aria-label="Pasos para consultar"
+          >
+            <div role="listitem">
+              <CustomSelect
+                label={STEPS[0].label}
+                options={options.lineas}
+                value={state.lineaSeleccionada || ""}
+                onChange={(v) => handleSelection(actions.setLinea, v)}
+                isLoading={isLoading.lineas}
+                stepNumber={1}
+                isComplete={getStepStatus(0).isComplete}
+                isActive={getStepStatus(0).isActive}
+              />
+            </div>
+
+            {state.lineaSeleccionada && (
+              <div role="listitem">
+                <CustomSelect
+                  label={STEPS[1].label}
+                  options={options.calles}
+                  value={state.calleSeleccionada || ""}
+                  onChange={(v) => handleSelection(actions.setCalle, v)}
+                  isLoading={isLoading.calles}
+                  stepNumber={2}
+                  isComplete={getStepStatus(1).isComplete}
+                  isActive={getStepStatus(1).isActive}
+                />
+              </div>
+            )}
+
+            {state.calleSeleccionada && (
+              <div role="listitem">
+                <CustomSelect
+                  label={STEPS[2].label}
+                  options={options.intersecciones}
+                  value={state.interseccionSeleccionada || ""}
+                  onChange={(v) => handleSelection(actions.setInterseccion, v)}
+                  isLoading={isLoading.intersecciones}
+                  stepNumber={3}
+                  isComplete={getStepStatus(2).isComplete}
+                  isActive={getStepStatus(2).isActive}
+                />
+              </div>
+            )}
+
+            {state.interseccionSeleccionada && (
+              <div role="listitem">
+                <CustomSelect
+                  label={STEPS[3].label}
+                  options={options.paradas}
+                  value={state.paradaSeleccionada || ""}
+                  onChange={(v) => handleSelection(actions.setParada, v)}
+                  isLoading={isLoading.paradas}
+                  stepNumber={4}
+                  isComplete={getStepStatus(3).isComplete}
+                  isActive={getStepStatus(3).isActive}
+                />
+              </div>
+            )}
           </div>
 
-          {state.lineaSeleccionada && (
-            <div role="listitem">
-              <CustomSelect
-                label={STEPS[1].label}
-                options={options.calles}
-                value={state.calleSeleccionada || ""}
-                onChange={(v) => handleSelection(actions.setCalle, v)}
-                isLoading={isLoading.calles}
-                stepNumber={2}
-                isComplete={getStepStatus(1).isComplete}
-                isActive={getStepStatus(1).isActive}
-              />
-            </div>
-          )}
+          <button
+            type="button"
+            onClick={handleOpenSheet}
+            disabled={!state.paradaSeleccionada}
+            aria-disabled={!state.paradaSeleccionada}
+            className={`w-full mt-6 py-4 rounded-2xl font-black text-base uppercase tracking-wide shadow-lg transition-all flex items-center justify-center gap-3 cursor-pointer md:hidden ${
+              isComplete
+                ? "btn-mdp-turquesa"
+                : "btn-mdp-amarillo opacity-50 cursor-not-allowed"
+            }`}
+          >
+            <MapPin className="w-5 h-5" aria-hidden="true" />
+            <span>
+              {isComplete
+                ? "Ver cuándo llega"
+                : `${completedSteps} de ${STEPS.length} pasos completados`}
+            </span>
+          </button>
+        </form>
 
-          {state.calleSeleccionada && (
-            <div role="listitem">
-              <CustomSelect
-                label={STEPS[2].label}
-                options={options.intersecciones}
-                value={state.interseccionSeleccionada || ""}
-                onChange={(v) => handleSelection(actions.setInterseccion, v)}
-                isLoading={isLoading.intersecciones}
-                stepNumber={3}
-                isComplete={getStepStatus(2).isComplete}
-                isActive={getStepStatus(2).isActive}
-              />
-            </div>
-          )}
+        <ArrivalsSheet
+          isOpen={isOpen}
+          onClose={handleCloseSheet}
+          info={selectedInfo}
+        />
+      </section>
 
-          {state.interseccionSeleccionada && (
-            <div role="listitem">
-              <CustomSelect
-                label={STEPS[3].label}
-                options={options.paradas}
-                value={state.paradaSeleccionada || ""}
-                onChange={(v) => handleSelection(actions.setParada, v)}
-                isLoading={isLoading.paradas}
-                stepNumber={4}
-                isComplete={getStepStatus(3).isComplete}
-                isActive={getStepStatus(3).isActive}
-              />
-            </div>
-          )}
+      {isComplete && (
+        <div className="hidden md:block md:overflow-hidden">
+          <ArrivalsPanel info={selectedInfo} />
         </div>
-
-        <button
-          type="button"
-          onClick={handleOpenSheet}
-          disabled={!state.paradaSeleccionada}
-          aria-disabled={!state.paradaSeleccionada}
-          className={`w-full mt-6 py-4 rounded-2xl font-black text-base uppercase tracking-wide shadow-lg transition-all flex items-center justify-center gap-3 cursor-pointer ${
-            isComplete
-              ? "btn-mdp-turquesa"
-              : "btn-mdp-amarillo opacity-50 cursor-not-allowed"
-          }`}
-        >
-          <MapPin className="w-5 h-5" aria-hidden="true" />
-          <span>
-            {isComplete
-              ? "Ver cuándo llega"
-              : `${completedSteps} de ${STEPS.length} pasos completados`}
-          </span>
-        </button>
-      </form>
-
-      <ArrivalsSheet
-        isOpen={isOpen}
-        onClose={handleCloseSheet}
-        info={selectedInfo}
-      />
-    </section>
+      )}
+    </>
   );
 }
