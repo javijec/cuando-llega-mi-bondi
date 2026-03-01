@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Acerca de - MiBondi",
-  description: "Información sobre MiBondi, la app para consultar colectivos en Mar del Plata.",
+  description:
+    "Información sobre MiBondi, la app para consultar colectivos en Mar del Plata.",
 };
 
 export default function AcercaLayout({
@@ -13,11 +14,17 @@ export default function AcercaLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <main id="main-content" className="min-h-screen bg-background pb-20">
-        {children}
-      </main>
-      <Navbar />
-    </>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <div className="flex">
+        <Navbar />
+        <main
+          id="main-content"
+          className="flex-1 pb-20 md:pb-8 md:pl-64 transition-all"
+        >
+          {children}
+        </main>
+      </div>
+    </div>
   );
 }
