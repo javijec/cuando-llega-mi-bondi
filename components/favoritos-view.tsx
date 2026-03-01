@@ -85,7 +85,7 @@ export function FavoritosView() {
             <FavoritoCard
               favorito={fav}
               onEliminar={eliminarFavorito}
-              autoRefresh={true}
+              refreshMode="auto"
               index={index}
             />
           </li>

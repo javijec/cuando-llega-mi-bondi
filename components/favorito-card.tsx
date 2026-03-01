@@ -7,10 +7,12 @@ import { Trash2, MapPin, Loader2, ChevronRight } from "lucide-react";
 import { useVisibleArribos } from "@/lib/hooks/useFavoritos";
 import { cn } from "@/lib/utils";
 
+type RefreshMode = "auto" | "manual";
+
 interface FavoritoCardProps {
   favorito: Favorito;
   onEliminar: (id: string) => void;
-  autoRefresh?: boolean;
+  refreshMode?: RefreshMode;
   index?: number;
   activationDelay?: number;
 }
@@ -46,10 +48,11 @@ function getUrgencyLabel(minutes: number | null): string {
 export const FavoritoCard = memo(function FavoritoCard({
   favorito,
   onEliminar,
-  autoRefresh = true,
+  refreshMode = "auto",
   index = 0,
   activationDelay,
 }: FavoritoCardProps) {
+  const autoRefresh = refreshMode === "auto";
   const {
     ref,
     isVisibleDebounced,
