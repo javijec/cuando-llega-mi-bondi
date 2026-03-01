@@ -12,7 +12,7 @@ export function Header({ className }: HeaderProps) {
         className,
       )}
     >
-      <div className="max-w-md mx-auto">
+      <div className="max-w-md md:max-w-full md:pl-64 mx-auto">
         <div className="text-center py-3">
           <h1 className="text-2xl font-black uppercase tracking-tighter italic text-foreground">
             Mi<span className="text-mdp-amarillo font-light">Bondi</span>
