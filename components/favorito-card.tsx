@@ -78,14 +78,14 @@ export const FavoritoCard = memo(function FavoritoCard({
   return (
     <article
       ref={ref}
-      className="bg-card rounded-2xl p-4 border border-border active:scale-[0.98] transition-all cursor-pointer"
+      className="bg-card rounded-2xl p-4 border border-border active:scale-[0.98] transition-all cursor-pointer overflow-hidden"
       aria-labelledby={`${cardId}-title`}
     >
-      <header className="flex items-start justify-between mb-3">
-        <div className="min-w-0">
+      <header className="flex items-start justify-between mb-3 gap-2">
+        <div className="min-w-0 flex-1">
           <h3
             id={`${cardId}-title`}
-            className="text-xl font-black text-foreground uppercase tracking-tight"
+            className="text-xl font-black text-foreground uppercase tracking-tight truncate"
           >
             {favorito.nombreLinea}
           </h3>
@@ -104,11 +104,11 @@ export const FavoritoCard = memo(function FavoritoCard({
 
       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 font-medium">
         <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
-        <div className="flex flex-col truncate">
-          <span className="text-[1rem]">
+        <div className="flex flex-col min-w-0">
+          <span className="text-[1rem] truncate">
             {favorito.calle.replace("- MAR DEL PLATA", "")}
           </span>
-          <span className="text-[.8rem] opacity-50">
+          <span className="text-[.8rem] opacity-50 truncate">
             e/ {favorito.interseccion.replace("- MAR DEL PLATA", "")}
           </span>
         </div>
