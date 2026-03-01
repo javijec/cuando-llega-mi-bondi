@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useId } from "react";
 import { Search, X, ChevronDown } from "lucide-react";
 import type { Linea } from "@/lib/types/bus";
 
@@ -24,7 +24,7 @@ export function LineSearchDropdown({
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   const selectedLineaInfo = lineas.find(
-    (l) => l.CodigoLineaParada === selectedLinea
+    (l) => l.CodigoLineaParada === selectedLinea,
   );
 
   const filteredLineas = lineas.filter((linea) => {
@@ -86,8 +86,8 @@ export function LineSearchDropdown({
     }
   };
 
-  const listId = `lineas-list-${Math.random().toString(36).slice(2, 9)}`;
-  const inputId = `lineas-search-${Math.random().toString(36).slice(2, 9)}`;
+  const listId = useId();
+  const inputId = useId();
 
   return (
     <div ref={containerRef} className="relative w-full">
@@ -102,7 +102,10 @@ export function LineSearchDropdown({
         className="w-full bg-card border border-border rounded-2xl shadow-lg p-4 flex items-center justify-between hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         <div className="flex items-center gap-3 flex-1 min-w-0">
-          <div className="w-10 h-10 bg-mdp-turquesa rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+          <div
+            className="w-10 h-10 bg-mdp-turquesa rounded-full flex items-center justify-center flex-shrink-0"
+            aria-hidden="true"
+          >
             <Search className="w-5 h-5 text-white" />
           </div>
           {selectedLineaInfo ? (
@@ -158,7 +161,10 @@ export function LineSearchDropdown({
           {/* Search Input inside dropdown */}
           <div className="p-3 border-b border-border sticky top-0 bg-card">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" aria-hidden="true" />
+              <Search
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground"
+                aria-hidden="true"
+              />
               <input
                 ref={inputRef}
                 id={inputId}
@@ -193,7 +199,7 @@ export function LineSearchDropdown({
               </div>
             ) : (
               <div className="divide-y divide-border" role="presentation">
-                {filteredLineas.map((linea, index) => (
+                {filteredLineas.map((linea) => (
                   <button
                     key={linea.CodigoLineaParada}
                     onClick={() => handleSelect(linea.CodigoLineaParada)}
@@ -224,7 +230,10 @@ export function LineSearchDropdown({
                       </p>
                     </div>
                     {selectedLinea === linea.CodigoLineaParada && (
-                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" aria-hidden="true" />
+                      <div
+                        className="w-2 h-2 rounded-full bg-primary flex-shrink-0"
+                        aria-hidden="true"
+                      />
                     )}
                   </button>
                 ))}
