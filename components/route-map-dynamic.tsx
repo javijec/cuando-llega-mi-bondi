@@ -9,4 +9,4 @@ const RouteMap = dynamic(
   },
 );
 
-export { RouteMap };
+export { RouteMap, RouteMapSkeleton };

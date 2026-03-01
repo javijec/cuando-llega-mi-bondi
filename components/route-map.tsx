@@ -7,15 +7,10 @@ import type { PuntoRecorrido } from "@/lib/types/bus";
 
 interface RouteMapProps {
   puntos: PuntoRecorrido[];
-  isLoading?: boolean;
   color?: string;
 }
 
-export function RouteMap({
-  puntos,
-  isLoading,
-  color = "#1d7570",
-}: RouteMapProps) {
+export function RouteMap({ puntos, color = "#1d7570" }: RouteMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -235,18 +230,18 @@ export function RouteMap({
     <div className="absolute inset-0 w-full h-full">
       <div ref={mapContainer} className="w-full h-full" />
 
-      {(isLoading || !isMapLoaded) && (
+      {!isMapLoaded && (
         <div className="absolute inset-0 bg-muted flex items-center justify-center z-10">
           <div className="flex flex-col items-center gap-2 bg-white/90 px-6 py-4 rounded-2xl shadow-lg">
             <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
             <span className="text-sm text-muted-foreground font-medium">
-              {isLoading ? "Cargando recorrido..." : "Iniciando mapa..."}
+              Iniciando mapa...
             </span>
           </div>
         </div>
       )}
 
-      {puntos.length === 0 && !isLoading && isMapLoaded && (
+      {puntos.length === 0 && isMapLoaded && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="bg-white/90 px-6 py-4 rounded-2xl shadow-lg">
             <p className="text-muted-foreground text-center">
