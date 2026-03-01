@@ -2,9 +2,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Bus, X, MapPin } from "lucide-react";
-import { RouteMap } from "./route-map-dynamic";
+import { RouteMap, RouteMapSkeleton } from "./route-map-dynamic";
 import { LineSearchDropdown } from "./line-search-dropdown";
-import { BranchPills } from "./branch-pills";
+import { BranchPills, BranchPillsSkeleton } from "./branch-pills";
 import { useRecorridos, type Bandera } from "@/lib/hooks/use-recorridos";
 import type { Linea } from "@/lib/types/bus";
 
@@ -13,8 +13,12 @@ interface RecorridosViewProps {
 }
 
 export function RecorridosView({ lineas }: RecorridosViewProps) {
-  const [lineaSeleccionada, setLineaSeleccionada] = useState<string | null>(null);
-  const [banderaSeleccionada, setBanderaSeleccionada] = useState<string | null>(null);
+  const [lineaSeleccionada, setLineaSeleccionada] = useState<string | null>(
+    null,
+  );
+  const [banderaSeleccionada, setBanderaSeleccionada] = useState<string | null>(
+    null,
+  );
   const [highlightCard, setHighlightCard] = useState(false);
 
   const clearBtnRef = useRef<HTMLButtonElement>(null);
@@ -51,7 +55,8 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
     setLineaSeleccionada(null);
     setBanderaSeleccionada(null);
     requestAnimationFrame(() => {
-      const input = dropdownRef.current?.querySelector<HTMLElement>("input, button");
+      const input =
+        dropdownRef.current?.querySelector<HTMLElement>("input, button");
       input?.focus();
     });
   };
@@ -59,8 +64,8 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
   const statusMessage = isLoading.recorrido
     ? "Cargando recorrido…"
     : lineaInfo
-    ? `Mostrando recorrido de línea ${lineaInfo.CodigoLineaParada}: ${lineaInfo.Descripcion}${banderaEfectiva ? `, ramal ${banderaEfectiva.descripcion}` : ""}.`
-    : "Ninguna línea seleccionada. Usá el buscador para elegir una línea y ver su recorrido en el mapa.";
+      ? `Mostrando recorrido de línea ${lineaInfo.CodigoLineaParada}: ${lineaInfo.Descripcion}${banderaEfectiva ? `, ramal ${banderaEfectiva.descripcion}` : ""}.`
+      : "Ninguna línea seleccionada. Usá el buscador para elegir una línea y ver su recorrido en el mapa.";
 
   return (
     <div
@@ -68,16 +73,19 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
       role="region"
       aria-label="Mapa de recorridos de colectivos"
     >
-      <RouteMap
-        puntos={puntosFiltrados}
-        isLoading={isLoading.recorrido}
-        color="#1d7570"
-        aria-label={
-          lineaInfo
-            ? `Mapa mostrando recorrido de línea ${lineaInfo.CodigoLineaParada}`
-            : "Mapa de recorridos"
-        }
-      />
+      {isLoading.recorrido ? (
+        <RouteMapSkeleton />
+      ) : (
+        <RouteMap
+          puntos={puntosFiltrados}
+          color="#1d7570"
+          aria-label={
+            lineaInfo
+              ? `Mapa mostrando recorrido de línea ${lineaInfo.CodigoLineaParada}`
+              : "Mapa de recorridos"
+          }
+        />
+      )}
 
       <div
         className="absolute inset-0 z-10 pointer-events-none dark:hidden"
@@ -125,19 +133,11 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
             branches={banderasDisponibles}
             selectedBranch={banderaEfectiva}
             onSelectBranch={handleBanderaChange}
-            isLoading={isLoading.recorrido}
             aria-label="Seleccionar ramal"
           />
         )}
 
-        {lineaSeleccionada && isLoading.recorrido && (
-          <div
-            className="h-9 w-48 rounded-full skeleton"
-            role="status"
-            aria-label="Cargando ramales…"
-            aria-busy="true"
-          />
-        )}
+        {lineaSeleccionada && isLoading.recorrido && <BranchPillsSkeleton />}
 
         {lineaSeleccionada && lineaInfo && (
           <div
@@ -148,10 +148,7 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
             aria-label={`Línea seleccionada: ${lineaInfo.CodigoLineaParada} — ${lineaInfo.Descripcion}`}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <div
-                className="recorridos-icon-wrap shrink-0"
-                aria-hidden="true"
-              >
+              <div className="recorridos-icon-wrap shrink-0" aria-hidden="true">
                 <Bus className="w-5 h-5" />
               </div>
               <div className="min-w-0">

@@ -8,14 +8,12 @@ interface BranchPillsProps {
   branches: Bandera[];
   selectedBranch: Bandera | null;
   onSelectBranch: (branch: Bandera) => void;
-  isLoading?: boolean;
 }
 
 export function BranchPills({
   branches,
   selectedBranch,
   onSelectBranch,
-  isLoading = false,
 }: BranchPillsProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -47,20 +45,6 @@ export function BranchPills({
     return `linear-gradient(to right, ${left}, ${right})`;
   };
 
-  if (isLoading) {
-    return (
-      <div
-        className="flex gap-2 overflow-x-auto pb-2 scrollbar-hidden"
-        role="status"
-        aria-label="Cargando ramales"
-      >
-        <div className="h-9 w-32 bg-muted rounded-full animate-pulse flex-shrink-0" />
-        <div className="h-9 w-32 bg-muted rounded-full animate-pulse flex-shrink-0" />
-        <div className="h-9 w-32 bg-muted rounded-full animate-pulse flex-shrink-0" />
-      </div>
-    );
-  }
-
   if (branches.length === 0) return null;
 
   return (
@@ -86,12 +70,26 @@ export function BranchPills({
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
             selectedBranch?.codigo === branch.codigo
               ? "bg-mdp-turquesa text-white shadow-lg"
-              : "bg-card/90 text-foreground hover:bg-card border border-border"
+              : "bg-card/90 text-foreground hover:bg-card border border-border",
           )}
         >
           {branch.descripcion}
         </button>
       ))}
+    </div>
+  );
+}
+
+export function BranchPillsSkeleton() {
+  return (
+    <div
+      className="flex gap-2 overflow-x-auto pb-2 scrollbar-hidden"
+      role="status"
+      aria-label="Cargando ramales"
+    >
+      <div className="h-9 w-32 bg-muted rounded-full animate-pulse flex-shrink-0" />
+      <div className="h-9 w-32 bg-muted rounded-full animate-pulse flex-shrink-0" />
+      <div className="h-9 w-32 bg-muted rounded-full animate-pulse flex-shrink-0" />
     </div>
   );
 }
