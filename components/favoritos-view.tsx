@@ -37,7 +37,7 @@ export function FavoritosView() {
         id="panel-favoritos"
         role="tabpanel"
         aria-labelledby="tab-favoritos"
-        className="px-4 py-16 max-w-md mx-auto text-center"
+        className="px-4 py-16 md:max-w-md mx-auto text-center"
       >
         <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
           <Star className="w-8 h-8 text-muted-foreground" aria-hidden="true" />
@@ -64,7 +64,7 @@ export function FavoritosView() {
       id="panel-favoritos"
       role="tabpanel"
       aria-labelledby="tab-favoritos"
-      className="px-4 py-5 max-w-md mx-auto"
+      className="px-4 py-5 md:max-w-4xl mx-auto"
     >
       <div className="mb-5">
         <CustomSelect
@@ -76,7 +76,7 @@ export function FavoritosView() {
       </div>
 
       <ul
-        className="space-y-4"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
         role="list"
         aria-label="Lista de paradas favoritas"
       >
