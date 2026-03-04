@@ -8,7 +8,7 @@ export function Header({ className }: HeaderProps) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 bg-background border-b border-border",
+        "sticky top-0 z-40 bg-background border-b border-border pt-[env(safe-area-inset-top)]",
         className,
       )}
     >
