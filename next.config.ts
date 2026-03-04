@@ -31,6 +31,28 @@ const nextConfig: NextConfig = {
       expire: 120, // 2 minutos - limpia del cache después de este tiempo
     },
   },
+
+  /**
+   * 🔒 HEADERS DE SEGURIDAD - PWA
+   * Headers para service worker y recursos estáticos
+   */
+  async headers() {
+    return [
+      {
+        source: "/sw.js",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "application/javascript; charset=utf-8",
+          },
+          {
+            key: "Cache-Control",
+            value: "no-cache, no-store, must-revalidate",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
