@@ -116,7 +116,7 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
 
       <div
         ref={dropdownRef}
-        className="absolute top-4 left-4 right-4 z-20 space-y-3 recorridos-top-controls"
+        className="absolute top-4 left-4 right-4 z-20 pt-[env(safe-area-inset-top)] space-y-3 recorridos-top-controls"
         role="group"
         aria-label="Selección de línea y ramal"
       >
