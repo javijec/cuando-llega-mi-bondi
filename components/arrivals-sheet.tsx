@@ -87,9 +87,7 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
           <Sheet.Header>
             <div className="px-5 pt-4 pb-3">
               <div className="flex justify-center mb-3">
-                <Sheet.DragIndicator
-                  aria-hidden="true"
-                />
+                <Sheet.DragIndicator aria-hidden="true" />
               </div>
 
               <div className="flex items-start justify-between gap-3">
@@ -105,12 +103,22 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                     {interseccion?.Descripcion}
                   </p>
                   <div className="flex items-center gap-3 mt-2">
-                    <span className="px-3 py-1 bg-mdp-amarillo text-foreground text-xs font-black rounded-full uppercase tracking-wide">
+                    <span
+                      className="px-3 py-1 bg-mdp-amarillo text-primary-foreground text-xs font-black rounded-full uppercase tracking-wide"
+                    >
                       {parada?.AbreviaturaBandera}
                     </span>
-                    <span className="text-sm font-bold text-muted-foreground">
-                      {arribos.length}{" "}
-                      {arribos.length === 1 ? "unidad" : "unidades"}
+                    <span
+                      className="text-sm font-bold text-muted-foreground"
+                      aria-live="polite" // anuncia cambios cuando arriban nuevas unidades
+                      aria-atomic="true"
+                    >
+                      <span
+                        aria-label={`${arribos.length} ${arribos.length === 1 ? "unidad en camino" : "unidades en camino"}`}
+                      >
+                        {arribos.length}{" "}
+                        {arribos.length === 1 ? "unidad" : "unidades"}
+                      </span>
                     </span>
                   </div>
                   <address className="flex items-center gap-2 mt-3 text-sm text-muted-foreground font-medium not-italic">
@@ -119,7 +127,13 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                       <span className="text-[1rem] truncate">
                         {calle?.Descripcion.replace("- MAR DEL PLATA", "")}
                       </span>
-                      <span className="text-[.8rem] opacity-50">e/ {interseccion?.Descripcion.replace("- MAR DEL PLATA", "")}</span>
+                      <span className="text-[.8rem] opacity-50">
+                        e/{" "}
+                        {interseccion?.Descripcion.replace(
+                          "- MAR DEL PLATA",
+                          "",
+                        )}
+                      </span>
                     </div>
                   </address>
                 </div>
