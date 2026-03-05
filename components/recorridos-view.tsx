@@ -38,7 +38,6 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
     setBanderaSeleccionada(branch.codigo);
   };
 
-
   const statusMessage = isLoading.recorrido
     ? "Cargando recorrido…"
     : lineaInfo
@@ -56,7 +55,6 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
       ) : (
         <RouteMap
           puntos={puntosFiltrados}
-          color="#1d7570"
           aria-label={
             lineaInfo
               ? `Mapa mostrando recorrido de línea ${lineaInfo.CodigoLineaParada}`
@@ -116,7 +114,6 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
         )}
 
         {lineaSeleccionada && isLoading.recorrido && <BranchPillsSkeleton />}
-
       </div>
 
       {!lineaSeleccionada && (
