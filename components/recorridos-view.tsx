@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Bus, X, MapPin } from "lucide-react";
+import { useState, useRef } from "react";
+import { MapPin } from "lucide-react";
 import { RouteMap, RouteMapSkeleton } from "./route-map-dynamic";
 import { LineSearchDropdown } from "./line-search-dropdown";
 import { BranchPills, BranchPillsSkeleton } from "./branch-pills";
@@ -19,9 +19,6 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
   const [banderaSeleccionada, setBanderaSeleccionada] = useState<string | null>(
     null,
   );
-  const [highlightCard, setHighlightCard] = useState(false);
-
-  const clearBtnRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -32,16 +29,6 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
     isLoading,
   } = useRecorridos(lineas, lineaSeleccionada, banderaSeleccionada);
 
-  useEffect(() => {
-    if (lineaInfo && !isLoading.recorrido) {
-      const t = setTimeout(() => {
-        setHighlightCard(true);
-        setTimeout(() => setHighlightCard(false), 2600);
-      }, 0);
-      return () => clearTimeout(t);
-    }
-  }, [lineaInfo, isLoading.recorrido]);
-
   const handleLineaChange = (value: string) => {
     setLineaSeleccionada(value || null);
     setBanderaSeleccionada(null);
@@ -51,15 +38,6 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
     setBanderaSeleccionada(branch.codigo);
   };
 
-  const handleClearLinea = () => {
-    setLineaSeleccionada(null);
-    setBanderaSeleccionada(null);
-    requestAnimationFrame(() => {
-      const input =
-        dropdownRef.current?.querySelector<HTMLElement>("input, button");
-      input?.focus();
-    });
-  };
 
   const statusMessage = isLoading.recorrido
     ? "Cargando recorrido…"
@@ -139,39 +117,6 @@ export function RecorridosView({ lineas }: RecorridosViewProps) {
 
         {lineaSeleccionada && isLoading.recorrido && <BranchPillsSkeleton />}
 
-        {lineaSeleccionada && lineaInfo && (
-          <div
-            className={`recorridos-card flex items-center justify-between p-3 rounded-2xl bg-card${
-              highlightCard ? " animate-pulse-highlight" : ""
-            }`}
-            role="region"
-            aria-label={`Línea seleccionada: ${lineaInfo.CodigoLineaParada} — ${lineaInfo.Descripcion}`}
-          >
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="recorridos-icon-wrap shrink-0" aria-hidden="true">
-                <Bus className="w-5 h-5" />
-              </div>
-              <div className="min-w-0">
-                <p className="font-bold text-sm leading-tight truncate text-foreground">
-                  {lineaInfo.Descripcion}
-                </p>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  Línea {lineaInfo.CodigoLineaParada}
-                </p>
-              </div>
-            </div>
-
-            <button
-              ref={clearBtnRef}
-              onClick={handleClearLinea}
-              className="recorridos-icon-btn shrink-0 ml-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-full"
-              aria-label={`Quitar selección: línea ${lineaInfo.CodigoLineaParada} ${lineaInfo.Descripcion}`}
-              type="button"
-            >
-              <X className="w-4 h-4" aria-hidden="true" />
-            </button>
-          </div>
-        )}
       </div>
 
       {!lineaSeleccionada && (
