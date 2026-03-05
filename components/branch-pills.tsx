@@ -69,7 +69,7 @@ export function BranchPills({
             "shadow-md backdrop-blur-sm",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
             selectedBranch?.codigo === branch.codigo
-              ? "bg-mdp-turquesa text-white shadow-lg"
+              ? "bg-mdp-amarillo text-black shadow-lg"
               : "bg-card/90 text-foreground hover:bg-card border border-border",
           )}
         >
