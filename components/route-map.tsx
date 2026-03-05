@@ -14,27 +14,27 @@ interface RouteMapProps {
 
 const MDP = {
   // Brand
-  amarillo:         "#f9cd4a",
-  turquesa:         "#1d7570",
-  turquesaMid:      "#24908a",
-  turquesaLight:    "#289b95",
-  rosa:             "#c93679",
-  rosaDark:         "#e05588",
+  amarillo: "#f9cd4a",
+  turquesa: "#1d7570",
+  turquesaMid: "#24908a",
+  turquesaLight: "#289b95",
+  rosa: "#c93679",
+  rosaDark: "#e05588",
   // Grises azulados (modo oscuro)
-  azulNoche:        "#0f2d4a",
-  azulNocheMid:     "#122843",
-  azulNocheSec:     "#0a2038",
-  azulBorde:        "#1e3f5c",
-  azulBordeSutil:   "#183352",
+  azulNoche: "#0f2d4a",
+  azulNocheMid: "#122843",
+  azulNocheSec: "#0a2038",
+  azulBorde: "#1e3f5c",
+  azulBordeSutil: "#183352",
   // Texto
-  textoClaro:       "#f0f4f8",
-  textoClaroMuted:  "#8ba4bb",
-  textoOscuro:      "#0f2d4a",
-  textoMuted:       "#4a6070",
+  textoClaro: "#f0f4f8",
+  textoClaroMuted: "#8ba4bb",
+  textoOscuro: "#0f2d4a",
+  textoMuted: "#4a6070",
   // Fondos claro
-  bgClaro:          "#f7f7f4",
-  bgClaroSec:       "#ededea",
-  bordeClaro:       "#d4d4d0",
+  bgClaro: "#f7f7f4",
+  bgClaroSec: "#ededea",
+  bordeClaro: "#d4d4d0",
 } as const;
 
 // ─── Source de tiles vectoriales ──────────────────────────────────────────────
@@ -90,7 +90,16 @@ function buildLightStyle(): StyleSpecification {
         type: "fill",
         source: "openmaptiles",
         "source-layer": "landuse",
-        filter: ["in", "class", "grass", "park", "forest", "cemetery", "garden", "pitch"],
+        filter: [
+          "in",
+          "class",
+          "grass",
+          "park",
+          "forest",
+          "cemetery",
+          "garden",
+          "pitch",
+        ],
         paint: { "fill-color": "#daeee4", "fill-opacity": 0.8 },
       },
       {
@@ -161,7 +170,11 @@ function buildLightStyle(): StyleSpecification {
         "source-layer": "transportation",
         filter: ["in", "class", "path", "track"],
         layout: { "line-cap": "round", "line-join": "round" },
-        paint: { "line-color": "#e8e2d5", "line-width": 1, "line-dasharray": [2, 2] },
+        paint: {
+          "line-color": "#e8e2d5",
+          "line-width": 1,
+          "line-dasharray": [2, 2],
+        },
       },
       {
         id: "road-minor",
@@ -225,43 +238,6 @@ function buildLightStyle(): StyleSpecification {
           "text-halo-width": 1.5,
         },
       },
-
-      // ── Etiquetas de lugares ──────────────────────────────────────────────
-      {
-        id: "place-suburb",
-        type: "symbol",
-        source: "openmaptiles",
-        "source-layer": "place",
-        filter: ["in", "class", "suburb", "neighbourhood", "quarter"],
-        layout: {
-          "text-field": ["coalesce", ["get", "name:es"], ["get", "name"]],
-          "text-font": ["Noto Sans Regular"],
-          "text-size": 10,
-          "text-letter-spacing": 0.05,
-        },
-        paint: {
-          "text-color": MDP.textoMuted,
-          "text-halo-color": MDP.bgClaro,
-          "text-halo-width": 1,
-        },
-      },
-      {
-        id: "place-town",
-        type: "symbol",
-        source: "openmaptiles",
-        "source-layer": "place",
-        filter: ["in", "class", "village", "town", "city"],
-        layout: {
-          "text-field": ["coalesce", ["get", "name:es"], ["get", "name"]],
-          "text-font": ["Noto Sans Bold"],
-          "text-size": ["interpolate", ["linear"], ["zoom"], 8, 11, 14, 16],
-        },
-        paint: {
-          "text-color": MDP.textoOscuro,
-          "text-halo-color": "#ffffff",
-          "text-halo-width": 2,
-        },
-      },
     ],
   };
 }
@@ -310,7 +286,16 @@ function buildDarkStyle(): StyleSpecification {
         type: "fill",
         source: "openmaptiles",
         "source-layer": "landuse",
-        filter: ["in", "class", "grass", "park", "forest", "cemetery", "garden", "pitch"],
+        filter: [
+          "in",
+          "class",
+          "grass",
+          "park",
+          "forest",
+          "cemetery",
+          "garden",
+          "pitch",
+        ],
         paint: { "fill-color": "#0d2a3e", "fill-opacity": 0.8 },
       },
 
@@ -433,43 +418,6 @@ function buildDarkStyle(): StyleSpecification {
           "text-halo-width": 1.5,
         },
       },
-
-      // ── Etiquetas de lugares ──────────────────────────────────────────────
-      {
-        id: "place-suburb",
-        type: "symbol",
-        source: "openmaptiles",
-        "source-layer": "place",
-        filter: ["in", "class", "suburb", "neighbourhood", "quarter"],
-        layout: {
-          "text-field": ["coalesce", ["get", "name:es"], ["get", "name"]],
-          "text-font": ["Noto Sans Regular"],
-          "text-size": 10,
-          "text-letter-spacing": 0.05,
-        },
-        paint: {
-          "text-color": "#4a6a80",
-          "text-halo-color": MDP.azulNoche,
-          "text-halo-width": 1,
-        },
-      },
-      {
-        id: "place-town",
-        type: "symbol",
-        source: "openmaptiles",
-        "source-layer": "place",
-        filter: ["in", "class", "village", "town", "city"],
-        layout: {
-          "text-field": ["coalesce", ["get", "name:es"], ["get", "name"]],
-          "text-font": ["Noto Sans Bold"],
-          "text-size": ["interpolate", ["linear"], ["zoom"], 8, 11, 14, 16],
-        },
-        paint: {
-          "text-color": MDP.textoClaroMuted,
-          "text-halo-color": MDP.azulNoche,
-          "text-halo-width": 2,
-        },
-      },
     ],
   };
 }
@@ -487,12 +435,12 @@ function isDarkMode(): boolean {
 
 function getThemeColors(dark: boolean, colorOverride?: string) {
   return {
-    style:       dark ? buildDarkStyle() : buildLightStyle(),
-    route:       colorOverride ?? (dark ? MDP.turquesaMid : MDP.turquesa),
+    style: dark ? buildDarkStyle() : buildLightStyle(),
+    route: colorOverride ?? (dark ? "#ffffff" : MDP.turquesa),
     routeBorder: dark ? MDP.azulNoche : "#ffffff",
-    colorInicio: dark ? MDP.rosaDark  : MDP.rosa,
-    colorFin:    MDP.amarillo, // siempre amarillo — máximo reconocimiento
-    pointStroke: MDP.azulNoche,
+    colorInicio: dark ? MDP.rosaDark : MDP.rosa,
+    colorFin: MDP.amarillo,
+    pointStroke: dark ? "#0f2d4a" : MDP.azulNoche,
   };
 }
 
@@ -508,8 +456,9 @@ export function RouteMap({ puntos, color }: RouteMapProps) {
     const m = map.current;
     if (!m || !m.isStyleLoaded()) return;
 
+    const dark = isDarkMode();
     const { route, routeBorder, colorInicio, colorFin, pointStroke } =
-      getThemeColors(isDarkMode(), color);
+      getThemeColors(dark, color);
 
     // Limpiar capas y fuentes anteriores
     ["route-line-border", "route-line", "route-points"].forEach((id) => {
@@ -567,17 +516,30 @@ export function RouteMap({ puntos, color }: RouteMapProps) {
         paint: {
           "circle-radius": [
             "case",
-            ["==", ["get", "tipo"], "fin"], 10, // destino (amarillo) un poco más grande
+            ["==", ["get", "tipo"], "fin"],
+            10, // destino (amarillo) un poco más grande
             8,
           ],
           "circle-color": [
             "case",
-            ["==", ["get", "tipo"], "inicio"], colorInicio, // rosa MDP
-            ["==", ["get", "tipo"], "fin"],    colorFin,    // amarillo MDP
+            ["==", ["get", "tipo"], "inicio"],
+            colorInicio, // rosa MDP
+            ["==", ["get", "tipo"], "fin"],
+            colorFin, // amarillo MDP
             "transparent",
           ],
-          "circle-stroke-width": 2,
-          "circle-stroke-color": pointStroke,
+          "circle-stroke-width": [
+            "case",
+            ["==", ["get", "tipo"], "intermedio"],
+            0,
+            2,
+          ],
+          "circle-stroke-color": [
+            "case",
+            ["==", ["get", "tipo"], "intermedio"],
+            "transparent",
+            pointStroke,
+          ],
         },
       });
     }
@@ -588,7 +550,11 @@ export function RouteMap({ puntos, color }: RouteMapProps) {
       type: "line",
       source: "route",
       layout: { "line-join": "round", "line-cap": "round" },
-      paint: { "line-color": routeBorder, "line-width": 9, "line-opacity": 0.45 },
+      paint: {
+        "line-color": routeBorder,
+        "line-width": 9,
+        "line-opacity": 0.45,
+      },
     });
 
     // Línea principal
