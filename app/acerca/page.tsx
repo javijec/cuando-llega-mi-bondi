@@ -152,7 +152,7 @@ export default function AcercaPage() {
             </a>
 
             <a
-              href="https://dotfn.github.io/portafolio-live-cv/"
+              href="https://dotfn.github.io/dotfn/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted hover:bg-muted/60 text-sm font-medium transition-colors"
