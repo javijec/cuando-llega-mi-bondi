@@ -2282,3 +2282,2130 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
 Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
 [0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
  POST /api/bus/arribos 200 in 1138ms (compile: 6ms, render: 1132ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:05:24.966Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:05:24.966Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 676ms (compile: 7ms, render: 669ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:06:25.661Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:06:25.661Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 633ms (compile: 7ms, render: 627ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:07:26.306Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:07:26.306Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 935ms (compile: 7ms, render: 928ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:08:27.257Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:08:27.257Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 608ms (compile: 8ms, render: 600ms)
+Ô£ô Compiled in 65ms
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:08:27.257Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 27ms (compile: 9ms, render: 18ms)
+Ô£ô Compiled in 80ms
+Ô£ô Compiled in 75ms
+ GET /consultar 200 in 385ms (compile: 97ms, render: 288ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 35ms (compile: 10ms, render: 25ms)
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/consultar-view.tsx:7:1
+Module not found: Can't resolve './arrivals-panel'
+   5 | import { CustomSelect } from "./custom-select";
+   6 | import { ArrivalsSheet } from "./arrivals-sheet-dynamic";
+>  7 | import { ArrivalsPanel } from "./arrivals-panel";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { useConsultarBus } from "@/lib/hooks/use-consultar-bus";
+   9 |
+  10 | const STEPS = [
+
+
+
+Import trace:
+  Server Component:
+    ./components/consultar-view.tsx
+    ./components/consultar-view-suspense.tsx
+    ./app/consultar/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô£ô Compiled in 55ms
+ GET /consultar 200 in 446ms (compile: 93ms, render: 353ms)
+ GET /consultar 200 in 215ms (compile: 3ms, render: 211ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 30ms (compile: 9ms, render: 21ms)
+Ô£ô Compiled in 87ms
+Ô£ô Compiled in 63ms
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx:10:5
+Module not found: Can't resolve './arrivals-sheet'
+   8 | const ArrivalsSheetDynamic = dynamic(
+   9 |   () =>
+> 10 |     import("./arrivals-sheet").then((mod) => ({ default: mod.ArrivalsSheet })),
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 |   {
+  12 |     ssr: false,
+  13 |     loading: () => (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx:10:5
+Module not found: Can't resolve './arrivals-sheet'
+   8 | const ArrivalsSheetDynamic = dynamic(
+   9 |   () =>
+> 10 |     import("./arrivals-sheet").then((mod) => ({ default: mod.ArrivalsSheet })),
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 |   {
+  12 |     ssr: false,
+  13 |     loading: () => (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx:10:5
+Module not found: Can't resolve './arrivals-sheet'
+   8 | const ArrivalsSheetDynamic = dynamic(
+   9 |   () =>
+> 10 |     import("./arrivals-sheet").then((mod) => ({ default: mod.ArrivalsSheet })),
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 |   {
+  12 |     ssr: false,
+  13 |     loading: () => (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx:10:5
+Module not found: Can't resolve './arrivals-sheet'
+   8 | const ArrivalsSheetDynamic = dynamic(
+   9 |   () =>
+> 10 |     import("./arrivals-sheet").then((mod) => ({ default: mod.ArrivalsSheet })),
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 |   {
+  12 |     ssr: false,
+  13 |     loading: () => (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx
+Module not found: Can't resolve './arrivals-sheet'
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet-dynamic.tsx:10:5
+Module not found: Can't resolve './arrivals-sheet'
+   8 | const ArrivalsSheetDynamic = dynamic(
+   9 |   () =>
+> 10 |     import("./arrivals-sheet").then((mod) => ({ default: mod.ArrivalsSheet })),
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 |   {
+  12 |     ssr: false,
+  13 |     loading: () => (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-sheet-dynamic.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô£ô Compiled in 59ms
+ GET /consultar 200 in 432ms (compile: 101ms, render: 331ms)
+ GET /consultar 200 in 239ms (compile: 6ms, render: 233ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 18ms (compile: 10ms, render: 8ms)
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-panel.tsx:6:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+  4 | import { Loader2, MapPin, RefreshCw } from "lucide-react";
+  5 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+> 6 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+  8 | import { BusArrivalCard } from "./bus-arrival-card";
+  9 | import { StopLineSelector } from "./stop-line-selector";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/arrivals-panel.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/arrivals-panel.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Client Component SSR]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô¿» ./components/arrivals-sheet.tsx:9:1
+Module not found: Can't resolve '@/lib/hooks/use-stop-line-options'
+   7 | import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+   8 | import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+>  9 | import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { BusArrivalCard } from "./bus-arrival-card";
+  11 | import { StopLineSelector } from "./stop-line-selector";
+  12 | import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+
+Import map: aliased to relative './lib/hooks/use-stop-line-options' inside of [project]/
+
+
+Import trace:
+  Client Component Browser:
+    ./components/arrivals-sheet.tsx [Client Component Browser]
+    ./components/arrivals-sheet-dynamic.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Client Component Browser]
+    ./components/consultar-view.tsx [Server Component]
+    ./components/consultar-view-suspense.tsx [Server Component]
+    ./app/consultar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+Ô£ô Compiled in 75ms
+ GET /consultar 200 in 497ms (compile: 94ms, render: 402ms)
+ GET /consultar 200 in 260ms (compile: 44ms, render: 216ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 17ms (compile: 9ms, render: 8ms)
+ GET /consultar 200 in 121ms (compile: 3ms, render: 118ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 14ms (compile: 8ms, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.925Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+ GET /api/bus/calles?codLinea=110 200 in 8ms (compile: 1767┬Ás, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:44.788Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+ GET /api/bus/intersecciones?codLinea=110&codCalle=5429 200 in 8ms (compile: 1896┬Ás, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:45.345Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+ GET /api/bus/paradas?codLinea=110&codCalle=5429&codInterseccion=5484 200 in 9ms (compile: 1920┬Ás, render: 7ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:42.885Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:42.885Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.099Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '93' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.105Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '98' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.109Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '99' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.112Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:49:57.293Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '101' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.656Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.685Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.862Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.718Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '104' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.875Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.877Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.885Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '104', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.283Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.638Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.652Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.119Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '105' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:46.663Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '105', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.155Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '106' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.542Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '107' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.582Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '108' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.601Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '109' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.925Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:44.788Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:45.345Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.960Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:46.755Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.006Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.067Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.030Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '116' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.344Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.084Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.179Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.383Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.213Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.536Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.637Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.432Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '120' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.457Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.665Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.673Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.769Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.965Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.807Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '123' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.067Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '123', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.083Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.861Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.096Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.385Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.888Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '125' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.222Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.495Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.312Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '127' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.323Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '344' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.511Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '344', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.520Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.915Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+ GET /api/bus/parada-lineas?identificadorParada=P3606&calleDescripcion=AVENIDA+INDEPENDENCIA+-+MAR+DEL+PLATA&interseccionDescripcion=SAN+MART%C3%8DN+-+MAR+DEL+PLATA 200 in 43ms (compile: 1392┬Ás, render: 42ms)
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 630ms (compile: 2ms, render: 628ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:46.365Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:46.365Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 527ms (compile: 7ms, render: 520ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:47.846Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '102' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:47.846Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '102' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 535ms (compile: 7ms, render: 528ms)
+Ô£ô Compiled in 56ms
+ GET /consultar 200 in 326ms (compile: 82ms, render: 244ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 15ms (compile: 9ms, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.925Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+ GET /api/bus/calles?codLinea=110 200 in 8ms (compile: 1559┬Ás, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:44.788Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+ GET /api/bus/intersecciones?codLinea=110&codCalle=5429 200 in 8ms (compile: 1609┬Ás, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:45.345Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+ GET /api/bus/paradas?codLinea=110&codCalle=5429&codInterseccion=5484 200 in 8ms (compile: 1788┬Ás, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.099Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '93' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.105Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '98' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.109Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '99' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.112Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:49:57.293Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '101' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.656Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.685Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.862Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.718Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '104' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.875Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.877Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.885Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '104', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.283Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.638Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.652Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.119Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '105' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:46.663Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '105', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.155Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '106' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.542Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '107' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.582Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '108' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.601Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '109' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.925Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:44.788Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:45.345Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.960Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:46.755Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.006Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.067Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.030Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '116' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.344Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.084Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.179Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.383Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.213Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.536Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.637Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.432Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '120' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.457Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.665Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.673Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.769Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.965Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.807Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '123' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.067Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '123', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.083Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.861Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.096Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.385Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.888Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '125' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.222Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.495Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.312Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '127' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.323Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '344' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.511Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '344', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.520Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.915Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+ GET /api/bus/parada-lineas?identificadorParada=P3606&calleDescripcion=AVENIDA+INDEPENDENCIA+-+MAR+DEL+PLATA&interseccionDescripcion=SAN+MART%C3%8DN+-+MAR+DEL+PLATA 200 in 44ms (compile: 6ms, render: 37ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:42.885Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 48ms (compile: 2ms, render: 46ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:46.365Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 24ms (compile: 7ms, render: 16ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:15:47.846Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '102' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 24ms (compile: 8ms, render: 16ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:17:17.041Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:17:17.041Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 628ms (compile: 9ms, render: 619ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:17:25.605Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:17:25.605Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 610ms (compile: 9ms, render: 601ms)

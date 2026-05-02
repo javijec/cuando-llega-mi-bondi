@@ -64,7 +64,7 @@ export function useStopLineOptions({
     !!parada && !!calle && !!interseccion,
   );
 
-  const options = useMemo(() => {
+  const stopLineOptions = useMemo(() => {
     const relatedOptions = (stopLinesQuery.data?.lineas ?? []).map(
       toStopLineOption,
     );
@@ -74,27 +74,93 @@ export function useStopLineOptions({
     );
   }, [currentOption, stopLinesQuery.data]);
 
-  const [activeOption, setActiveOption] = useState<StopLineOption | null>(
-    null,
+  const currentOptionKey = currentOption ? getOptionKey(currentOption) : null;
+  const [selectedOptionKeys, setSelectedOptionKeys] = useState<string[]>(
+    currentOptionKey ? [currentOptionKey] : [],
   );
-  const resolvedActiveOption = useMemo(() => {
-    if (activeOption) {
-      const existingActiveOption = options.find(
-        (option) => getOptionKey(option) === getOptionKey(activeOption),
-      );
+  const [activeOptionKey, setActiveOptionKey] = useState<string | null>(
+    currentOptionKey,
+  );
 
-      if (existingActiveOption) {
-        return existingActiveOption;
-      }
+  const selectedKeys = useMemo(() => {
+    const nextKeys = selectedOptionKeys.filter((key) =>
+      stopLineOptions.some((option) => getOptionKey(option) === key),
+    );
+
+    if (nextKeys.length > 0) {
+      return new Set(nextKeys);
     }
 
-    return currentOption;
-  }, [activeOption, currentOption, options]);
+    return currentOptionKey ? new Set([currentOptionKey]) : new Set<string>();
+  }, [currentOptionKey, selectedOptionKeys, stopLineOptions]);
+
+  const selectedOptions = useMemo(() => {
+    const options = stopLineOptions.filter((option) =>
+      selectedKeys.has(getOptionKey(option)),
+    );
+
+    if (options.length > 0) {
+      return options;
+    }
+
+    return currentOption ? [currentOption] : [];
+  }, [currentOption, selectedKeys, stopLineOptions]);
+
+  const activeOption = useMemo(() => {
+    const matchingActiveOption = stopLineOptions.find(
+      (option) => getOptionKey(option) === activeOptionKey,
+    );
+
+    if (matchingActiveOption && selectedKeys.has(getOptionKey(matchingActiveOption))) {
+      return matchingActiveOption;
+    }
+
+    return selectedOptions[0] ?? currentOption;
+  }, [activeOptionKey, currentOption, selectedKeys, selectedOptions, stopLineOptions]);
+
+  function selectOption(option: StopLineOption): void {
+    const optionKey = getOptionKey(option);
+
+    setSelectedOptionKeys((currentKeys) => {
+      const baseKeys =
+        currentKeys.length === 0 && currentOptionKey ? [currentOptionKey] : currentKeys;
+
+      return baseKeys.includes(optionKey) ? baseKeys : [...baseKeys, optionKey];
+    });
+    setActiveOptionKey(optionKey);
+  }
+
+  function removeOption(option: StopLineOption): void {
+    const optionKey = getOptionKey(option);
+
+    setSelectedOptionKeys((currentKeys) => {
+      if (currentKeys.length <= 1) {
+        return currentKeys;
+      }
+
+      return currentKeys.filter((key) => key !== optionKey);
+    });
+
+    setActiveOptionKey((currentKey) => {
+      if (currentKey !== optionKey) {
+        return currentKey;
+      }
+
+      const nextOption = selectedOptions.find(
+        (selectedOption) => getOptionKey(selectedOption) !== optionKey,
+      );
+
+      return nextOption ? getOptionKey(nextOption) : currentOptionKey;
+    });
+  }
 
   return {
-    activeOption: resolvedActiveOption,
-    setActiveOption,
-    stopLineOptions: options,
+    activeOption,
+    selectedOptions,
+    selectedKeys,
+    selectOption,
+    removeOption,
+    stopLineOptions,
     isLoadingStopLines: stopLinesQuery.isLoading,
     stopLinesError: stopLinesQuery.error,
   };

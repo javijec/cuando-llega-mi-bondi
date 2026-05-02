@@ -5,8 +5,10 @@ import type { StopLineOption } from "@/lib/hooks/use-stop-line-options";
 interface StopLineSelectorProps {
   options: StopLineOption[];
   activeOption: StopLineOption | null;
+  selectedKeys: Set<string>;
   isLoading?: boolean;
   onSelect: (option: StopLineOption) => void;
+  onRemove: (option: StopLineOption) => void;
 }
 
 function getOptionKey(option: StopLineOption): string {
@@ -16,8 +18,10 @@ function getOptionKey(option: StopLineOption): string {
 export function StopLineSelector({
   options,
   activeOption,
+  selectedKeys,
   isLoading = false,
   onSelect,
+  onRemove,
 }: StopLineSelectorProps) {
   if (isLoading) {
     return (
@@ -47,35 +51,72 @@ export function StopLineSelector({
       <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
         También pasan por esta parada
       </p>
+      <p className="text-[11px] text-muted-foreground mb-3">
+        Podés marcar varias líneas para comparar sus arribos al mismo tiempo.
+      </p>
       <div
         className="flex gap-2 overflow-x-auto pb-1"
         role="list"
         aria-label="Líneas disponibles en esta parada"
       >
         {options.map((option) => {
+          const optionKey = getOptionKey(option);
+          const isSelected = selectedKeys.has(getOptionKey(option));
           const isActive =
             activeOption &&
             getOptionKey(activeOption) === getOptionKey(option);
 
           return (
-            <button
-              key={getOptionKey(option)}
-              type="button"
-              onClick={() => onSelect(option)}
-              className={`shrink-0 rounded-full border px-4 py-2 text-left transition-all cursor-pointer ${
+            <div
+              key={optionKey}
+              className={`shrink-0 rounded-full border transition-all ${
                 isActive
                   ? "border-mdp-amarillo bg-mdp-amarillo text-foreground"
-                  : "border-border bg-muted/60 text-foreground"
+                  : isSelected
+                    ? "border-mdp-turquesa bg-mdp-turquesa/15 text-foreground"
+                    : "border-border bg-muted/60 text-foreground"
               }`}
-              aria-pressed={isActive}
             >
-              <div className="text-sm font-black leading-none">
-                {option.linea.Descripcion}
-              </div>
-              <div className="text-[11px] font-medium opacity-80 mt-1">
-                {option.parada.AbreviaturaBandera}
-              </div>
-            </button>
+              <button
+                type="button"
+                onClick={() => onSelect(option)}
+                className="px-4 py-2 text-left cursor-pointer"
+                aria-pressed={isSelected}
+                aria-label={`${option.linea.Descripcion} ${option.parada.AbreviaturaBandera}${isSelected ? ", seleccionada" : ", no seleccionada"}`}
+              >
+                <div className="flex items-start gap-2">
+                  <span
+                    className={`mt-0.5 h-3 w-3 rounded-full border shrink-0 ${
+                      isActive
+                        ? "border-foreground bg-foreground"
+                        : isSelected
+                          ? "border-mdp-turquesa bg-mdp-turquesa"
+                          : "border-muted-foreground/40"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <div className="text-sm font-black leading-none">
+                      {option.linea.Descripcion}
+                    </div>
+                    <div className="text-[11px] font-medium opacity-80 mt-1">
+                      {option.parada.AbreviaturaBandera}
+                    </div>
+                  </div>
+                </div>
+              </button>
+
+              {isSelected && options.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => onRemove(option)}
+                  className="w-full border-t border-black/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-wide cursor-pointer"
+                  aria-label={`Quitar ${option.linea.Descripcion} de la comparación`}
+                >
+                  Quitar
+                </button>
+              )}
+            </div>
           );
         })}
       </div>

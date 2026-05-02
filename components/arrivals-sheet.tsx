@@ -1,15 +1,15 @@
 "use client";
 
-import { useRef, useCallback } from "react";
-import { Sheet, type SheetRef } from "react-modal-sheet";
+import { useMemo, useRef } from "react";
 import { FocusScope } from "react-aria";
-import { useArribos, useRefreshArribos } from "@/lib/hooks/useBusQuery";
-import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
+import { Sheet, type SheetRef } from "react-modal-sheet";
+import { Loader2, MapPin, RefreshCw, Star, X } from "lucide-react";
 import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
+import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
 import { BusArrivalCard } from "./bus-arrival-card";
 import { StopLineSelector } from "./stop-line-selector";
-import { X, RefreshCw, Loader2, Star, MapPin } from "lucide-react";
-import type { Linea, Calle, Interseccion, Parada } from "@/lib/types/bus";
+import type { Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
 
 const SNAP_POINTS = [0, 0.5, 1];
 
@@ -26,6 +26,16 @@ interface ArrivalsSheetProps {
   info: ArrivalsInfo;
 }
 
+function parseArrivalMinutes(arribo: string): number | null {
+  const match = arribo.match(/(\d+)\s*min/i);
+
+  if (match) {
+    return Number(match[1]);
+  }
+
+  return /arrib/i.test(arribo) ? 0 : null;
+}
+
 export function ArrivalsSheet({
   isOpen,
   onClose,
@@ -35,28 +45,59 @@ export function ArrivalsSheet({
   const { calle, interseccion } = info;
   const {
     activeOption,
-    setActiveOption,
+    selectedOptions,
+    selectedKeys,
     stopLineOptions,
     isLoadingStopLines,
+    removeOption,
+    selectOption,
   } = useStopLineOptions(info);
 
-  const activeLinea = activeOption?.linea;
-  const activeParada = activeOption?.parada;
-
-  const {
-    data: arribosData,
-    isLoading,
-    isFetching,
-    error,
-  } = useArribos(
-    activeParada?.Identificador || "",
-    activeLinea?.CodigoLineaParada || "",
+  const multiArribos = useMultiArribos(
+    selectedOptions.map((option) => ({
+      identificadorParada: option.parada.Identificador,
+      codigoLineaParada: option.linea.CodigoLineaParada,
+    })),
     {
-      enabled: isOpen && !!activeParada && !!activeLinea,
+      enabled: isOpen && selectedOptions.length > 0,
     },
   );
 
-  const refreshArribos = useRefreshArribos();
+  const sections = useMemo(() => {
+    return selectedOptions
+      .map((option, index) => {
+        const result = multiArribos.results[index];
+        const arribos = result?.data?.arribos ?? [];
+        const nextArrival =
+          arribos
+            .map((arribo) => parseArrivalMinutes(arribo.Arribo))
+            .find((value) => value !== null) ?? Number.POSITIVE_INFINITY;
+
+        return {
+          option,
+          result,
+          arribos,
+          nextArrival,
+        };
+      })
+      .sort((a, b) => {
+        if (a.nextArrival !== b.nextArrival) {
+          return a.nextArrival - b.nextArrival;
+        }
+
+        return a.option.linea.Descripcion.localeCompare(
+          b.option.linea.Descripcion,
+          "es",
+        );
+      });
+  }, [multiArribos.results, selectedOptions]);
+
+  const activeLinea = activeOption?.linea;
+  const activeParada = activeOption?.parada;
+  const totalArribos = sections.reduce(
+    (total, section) => total + section.arribos.length,
+    0,
+  );
 
   const { isFavorito, toggle, label } = useFavoritoToggle(
     activeParada?.Identificador || "",
@@ -72,16 +113,11 @@ export function ArrivalsSheet({
     },
   );
 
-  const arribos = arribosData?.arribos || [];
-
-  const handleRefresh = useCallback(() => {
-    if (activeParada && activeLinea) {
-      refreshArribos.mutate({
-        identificadorParada: activeParada.Identificador,
-        codigoLineaParada: activeLinea.CodigoLineaParada,
-      });
-    }
-  }, [activeParada, activeLinea, refreshArribos]);
+  async function handleRefresh(): Promise<void> {
+    await Promise.all(
+      sections.map((section) => section.result?.refetch?.()).filter(Boolean),
+    );
+  }
 
   return (
     <Sheet
@@ -115,7 +151,9 @@ export function ArrivalsSheet({
                     id="sheet-title"
                     className="text-2xl font-black text-foreground uppercase tracking-tight truncate"
                   >
-                    {activeLinea?.Descripcion}
+                    {selectedOptions.length === 1
+                      ? activeLinea?.Descripcion
+                      : `${selectedOptions.length} lineas en esta parada`}
                   </h2>
                   <p id="sheet-description" className="sr-only">
                     Información de arribos para la parada {calle?.Descripcion} e{" "}
@@ -123,19 +161,12 @@ export function ArrivalsSheet({
                   </p>
                   <div className="flex items-center gap-3 mt-2">
                     <span className="px-3 py-1 bg-mdp-amarillo text-primary-foreground text-xs font-black rounded-full uppercase tracking-wide">
-                      {activeParada?.AbreviaturaBandera}
+                      {selectedOptions.length === 1
+                        ? activeParada?.AbreviaturaBandera
+                        : "Comparando lineas"}
                     </span>
-                    <span
-                      className="text-sm font-bold text-muted-foreground"
-                      aria-live="polite"
-                      aria-atomic="true"
-                    >
-                      <span
-                        aria-label={`${arribos.length} ${arribos.length === 1 ? "unidad en camino" : "unidades en camino"}`}
-                      >
-                        {arribos.length}{" "}
-                        {arribos.length === 1 ? "unidad" : "unidades"}
-                      </span>
+                    <span className="text-sm font-bold text-muted-foreground">
+                      {totalArribos} {totalArribos === 1 ? "unidad" : "unidades"}
                     </span>
                   </div>
                   <address className="flex items-center gap-2 mt-3 text-sm text-muted-foreground font-medium not-italic">
@@ -169,35 +200,33 @@ export function ArrivalsSheet({
               <StopLineSelector
                 options={stopLineOptions}
                 activeOption={activeOption}
+                selectedKeys={selectedKeys}
                 isLoading={isLoadingStopLines}
-                onSelect={setActiveOption}
+                onSelect={selectOption}
+                onRemove={removeOption}
               />
 
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                  Próximos arribos
+                  Proximos arribos
                 </h3>
                 <button
                   onClick={handleRefresh}
-                  disabled={refreshArribos.isPending || isFetching}
+                  disabled={multiArribos.isFetching}
                   aria-label="Actualizar lista de arribos"
-                  aria-busy={refreshArribos.isPending || isFetching}
+                  aria-busy={multiArribos.isFetching}
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-muted text-sm font-bold transition-all active:scale-95 cursor-pointer disabled:opacity-50"
                 >
                   <RefreshCw
-                    className={`w-4 h-4 ${
-                      refreshArribos.isPending || isFetching
-                        ? "animate-spin"
-                        : ""
-                    }`}
+                    className={`w-4 h-4 ${multiArribos.isFetching ? "animate-spin" : ""}`}
                     aria-hidden="true"
                   />
                   Actualizar
                 </button>
               </div>
 
-              <div aria-live="polite" aria-atomic="true">
-                {isLoading && (
+              <div className="space-y-4" aria-live="polite">
+                {multiArribos.isLoading && (
                   <div
                     className="flex flex-col items-center justify-center py-12"
                     role="status"
@@ -212,50 +241,68 @@ export function ArrivalsSheet({
                   </div>
                 )}
 
-                {error && (
-                  <div className="text-center py-10" role="alert">
-                    <p className="text-mdp-rosa text-lg font-black mb-3">
-                      Error al cargar
-                    </p>
-                    <button
-                      onClick={handleRefresh}
-                      className="btn-mdp-amarillo px-5 py-2.5 rounded-xl text-sm font-bold cursor-pointer"
+                {!multiArribos.isLoading &&
+                  sections.map((section) => (
+                    <section
+                      key={`${section.option.linea.CodigoLineaParada}:${section.option.parada.Codigo}`}
+                      className="rounded-2xl border border-border bg-background/60 p-4"
                     >
-                      Reintentar
-                    </button>
-                  </div>
-                )}
+                      <div className="mb-3">
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-lg font-black text-foreground">
+                            {section.option.linea.Descripcion}
+                          </h4>
+                          <span className="rounded-full bg-mdp-amarillo px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-foreground">
+                            {section.option.parada.AbreviaturaBandera}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-xs font-medium text-muted-foreground">
+                          {section.arribos.length}{" "}
+                          {section.arribos.length === 1 ? "unidad en camino" : "unidades en camino"}
+                        </p>
+                      </div>
 
-                {!isLoading && !error && arribos.length === 0 && (
-                  <div className="text-center py-10" role="status">
-                    <MapPin
-                      className="w-14 h-14 mx-auto text-muted-foreground/40 mb-4"
-                      aria-hidden="true"
-                    />
-                    <p className="text-muted-foreground text-base font-bold">
-                      No hay unidades en camino
-                    </p>
-                  </div>
-                )}
+                      {section.result?.error && (
+                        <div className="rounded-2xl bg-mdp-rosa/10 px-4 py-3 text-sm font-bold text-mdp-rosa">
+                          No pudimos cargar los arribos de esta línea.
+                        </div>
+                      )}
 
-                {!isLoading && !error && arribos.length > 0 && (
-                  <ul
-                    className="space-y-3"
-                    role="list"
-                    aria-label="Lista de próximos arribos"
-                  >
-                    {arribos.map((arribo, index) => (
-                      <li key={arribo.IdentificadorCoche}>
-                        <BusArrivalCard arribo={arribo} index={index} />
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                      {!section.result?.error && section.result?.isLoading && (
+                        <div className="flex items-center gap-2 rounded-2xl bg-muted/40 px-4 py-3 text-sm font-bold text-muted-foreground">
+                          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                          Cargando esta línea...
+                        </div>
+                      )}
+
+                      {!section.result?.error &&
+                        !section.result?.isLoading &&
+                        section.arribos.length === 0 && (
+                          <div className="rounded-2xl bg-muted/40 px-4 py-3 text-sm font-bold text-muted-foreground">
+                            No hay unidades en camino para esta línea.
+                          </div>
+                        )}
+
+                      {!section.result?.error &&
+                        !section.result?.isLoading &&
+                        section.arribos.length > 0 && (
+                          <ul className="space-y-3" role="list">
+                            {section.arribos.map((arribo, index) => (
+                              <li
+                                key={`${section.option.linea.CodigoLineaParada}-${arribo.IdentificadorCoche}-${index}`}
+                              >
+                                <BusArrivalCard arribo={arribo} index={index} />
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                    </section>
+                  ))}
               </div>
             </div>
           </Sheet.Content>
 
-          {activeParada && activeLinea && (
+          {selectedOptions.length === 1 && activeParada && activeLinea && (
             <div className="absolute bottom-0 left-0 right-0 bg-background border-t border-border px-5 py-4">
               <button
                 onClick={toggle}

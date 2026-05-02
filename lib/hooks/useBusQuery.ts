@@ -1,6 +1,7 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { busService } from "@/lib/services/busService";
 import type {
+  Arribo,
   LineasResponse,
   CallesResponse,
   InterseccionesResponse,
@@ -126,6 +127,53 @@ export function useArribos(
     retry: 2,
     retryDelay,
   });
+}
+
+interface MultiArribosInput {
+  identificadorParada: string
+  codigoLineaParada: string
+}
+
+export function useMultiArribos(
+  inputs: MultiArribosInput[],
+  options?: {
+    enabled?: boolean
+  },
+) {
+  const enabled = options?.enabled ?? true
+
+  return useQueries({
+    queries: inputs.map((input) => {
+      const queryEnabled =
+        enabled && !!input.identificadorParada && !!input.codigoLineaParada
+
+      return {
+        queryKey: ["arribos", input.identificadorParada, input.codigoLineaParada],
+        queryFn: () =>
+          busService.fetchArrivals(
+            input.identificadorParada,
+            input.codigoLineaParada,
+          ),
+        enabled: queryEnabled,
+        staleTime: 30_000,
+        gcTime: 2 * 60_000,
+        refetchInterval: false,
+        refetchIntervalInBackground: false,
+        refetchOnWindowFocus: true,
+        refetchOnReconnect: true,
+        retry: 2,
+        retryDelay,
+      }
+    }),
+    combine: (results) => ({
+      results,
+      isLoading: results.some((result) => result.isLoading),
+      isFetching: results.some((result) => result.isFetching),
+      hasError: results.some((result) => !!result.error),
+      firstError: results.find((result) => result.error)?.error ?? null,
+      arrivals: results.flatMap((result) => result.data?.arribos ?? [] as Arribo[]),
+    }),
+  })
 }
 
 // === MUTATIONS / HELPERS DE CACHÉ ===
