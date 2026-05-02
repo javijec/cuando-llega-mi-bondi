@@ -4409,3 +4409,61 @@ https://nextjs.org/docs/messages/module-not-found
 Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
 [0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
  POST /api/bus/arribos 200 in 610ms (compile: 9ms, render: 601ms)
+Ô£ô Compiled in 81ms
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:18:47.533Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:18:47.533Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:18:48.111Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '102' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:18:48.111Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '102' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 600ms (compile: 7ms, render: 593ms)
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 601ms (compile: 2ms, render: 598ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:28:53.298Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:28:53.298Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:28:54.045Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '102' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:28:54.045Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '102' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 823ms (compile: 8ms, render: 815ms)
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 612ms (compile: 8ms, render: 604ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:29:10.075Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '112' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:29:10.075Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '112' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 657ms (compile: 9ms, render: 648ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:31:29.162Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:31:29.162Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:31:29.171Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '112' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:31:29.171Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '112' }
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 633ms (compile: 8ms, render: 625ms)
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 665ms (compile: 17ms, render: 648ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:31:29.171Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '112' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 18ms (compile: 6ms, render: 11ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T13:31:29.162Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 19ms (compile: 11ms, render: 8ms)

@@ -55,7 +55,7 @@ export function StopLineSelector({
         Podés marcar varias líneas para comparar sus arribos al mismo tiempo.
       </p>
       <div
-        className="flex gap-2 overflow-x-auto pb-1"
+        className="flex gap-1.5 overflow-x-auto pb-1 md:gap-2"
         role="list"
         aria-label="Líneas disponibles en esta parada"
       >
@@ -80,13 +80,13 @@ export function StopLineSelector({
               <button
                 type="button"
                 onClick={() => onSelect(option)}
-                className="px-4 py-2 text-left cursor-pointer"
+                className="px-3 py-1.5 text-left cursor-pointer md:px-4 md:py-2"
                 aria-pressed={isSelected}
                 aria-label={`${option.linea.Descripcion} ${option.parada.AbreviaturaBandera}${isSelected ? ", seleccionada" : ", no seleccionada"}`}
               >
                 <div className="flex items-start gap-2">
                   <span
-                    className={`mt-0.5 h-3 w-3 rounded-full border shrink-0 ${
+                    className={`mt-0.5 h-2.5 w-2.5 rounded-full border shrink-0 md:h-3 md:w-3 ${
                       isActive
                         ? "border-foreground bg-foreground"
                         : isSelected
@@ -96,10 +96,10 @@ export function StopLineSelector({
                     aria-hidden="true"
                   />
                   <div>
-                    <div className="text-sm font-black leading-none">
+                    <div className="text-[13px] font-black leading-none md:text-sm">
                       {option.linea.Descripcion}
                     </div>
-                    <div className="text-[11px] font-medium opacity-80 mt-1">
+                    <div className="mt-0.5 text-[10px] font-medium opacity-80 md:mt-1 md:text-[11px]">
                       {option.parada.AbreviaturaBandera}
                     </div>
                   </div>
@@ -110,7 +110,7 @@ export function StopLineSelector({
                 <button
                   type="button"
                   onClick={() => onRemove(option)}
-                  className="w-full border-t border-black/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-wide cursor-pointer"
+                  className="w-full border-t border-black/10 px-2.5 py-1 text-[9px] font-black uppercase tracking-wide cursor-pointer md:px-3 md:py-1.5 md:text-[10px]"
                   aria-label={`Quitar ${option.linea.Descripcion} de la comparación`}
                 >
                   Quitar
