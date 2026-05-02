@@ -18,6 +18,7 @@ import type { APIResponse } from "@/lib/types/bus";
  * - GET /api/bus/calles?codLinea=501
  * - GET /api/bus/intersecciones?codLinea=501&codCalle=123
  * - GET /api/bus/paradas?codLinea=501&codCalle=123&codInterseccion=456
+ * - GET /api/bus/parada-lineas?identificadorParada=XXX&calleDescripcion=YYY&interseccionDescripcion=ZZZ
  * - GET /api/bus/recorrido?codLinea=501&isSublinea=0
  */
 export async function GET(

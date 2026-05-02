@@ -25,6 +25,7 @@ export const STATIC_ACTIONS = [
   "calles",
   "intersecciones",
   "paradas",
+  "parada-lineas",
   "recorrido",
 ] as const;
 

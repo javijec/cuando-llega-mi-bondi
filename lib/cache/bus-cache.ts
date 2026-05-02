@@ -65,6 +65,11 @@ export async function fetchMuniAPICached(
   // Tag para invalidación manual si es necesario
   cacheTag(`bus-${accion}`);
 
+  if (accion === "parada-lineas") {
+    const stopParams = params as unknown as FindLinesByStopParams;
+    return await findLinesByStop(stopParams);
+  }
+
   const accionAPI = ACTION_TO_API_MAP[accion];
 
   if (!accionAPI) {
