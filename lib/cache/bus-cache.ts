@@ -28,6 +28,28 @@ function getEnvVar(key: string): string {
 const API_URL = getEnvVar("MUNI_API_URL");
 const ORIGIN = getEnvVar("MUNI_ORIGIN");
 const REFERER = getEnvVar("MUNI_REFERER");
+const ARRIBOS_BLOCK_WINDOW_MS = 60_000
+const ARRIBOS_STALE_WINDOW_MS = 2 * 60_000
+
+type CachedArribosEntry = {
+  data: unknown
+  expiresAt: number
+}
+
+class UpstreamAPIError extends Error {
+  status: number
+  retryAfter: number | null
+
+  constructor(message: string, status: number, retryAfter: number | null = null) {
+    super(message)
+    this.name = "UpstreamAPIError"
+    this.status = status
+    this.retryAfter = retryAfter
+  }
+}
+
+const arrivalsBlockedUntil = new Map<string, number>()
+const arrivalsStaleCache = new Map<string, CachedArribosEntry>()
 
 // 🗺️ Mapeo de acciones simplificadas a nombres de API de la muni
 const ACTION_TO_API_MAP: Record<string, string> = {
@@ -38,6 +60,35 @@ const ACTION_TO_API_MAP: Record<string, string> = {
   recorrido: "RecuperarRecorridoParaMapaAbrevYAmpliPorEntidadYLinea",
   arribos: "RecuperarProximosArribosW",
 };
+
+function buildArribosCacheKey(params: Record<string, string>): string {
+  return Object.entries(params)
+    .sort(([leftKey], [rightKey]) => leftKey.localeCompare(rightKey))
+    .map(([key, value]) => `${key}:${value}`)
+    .join("|")
+}
+
+function getCachedArribos(key: string): unknown | null {
+  const cached = arrivalsStaleCache.get(key)
+
+  if (!cached) {
+    return null
+  }
+
+  if (cached.expiresAt <= Date.now()) {
+    arrivalsStaleCache.delete(key)
+    return null
+  }
+
+  return cached.data
+}
+
+function setCachedArribos(key: string, data: unknown): void {
+  arrivalsStaleCache.set(key, {
+    data,
+    expiresAt: Date.now() + ARRIBOS_STALE_WINDOW_MS,
+  })
+}
 
 /**
  * ✅ Función con 'use cache' - SOLO corre en el servidor
@@ -84,6 +135,32 @@ export async function fetchMuniAPICached(
     formData.append(key, value);
   });
 
+  const isArribos = accion === "arribos"
+  const arribosCacheKey = isArribos ? buildArribosCacheKey(params) : null
+
+  if (isArribos && arribosCacheKey) {
+    const blockedUntil = arrivalsBlockedUntil.get(arribosCacheKey) ?? 0
+
+    if (blockedUntil > Date.now()) {
+      const cached = getCachedArribos(arribosCacheKey)
+
+      if (cached) {
+        return cached
+      }
+
+      const retryAfterSeconds = Math.max(
+        1,
+        Math.ceil((blockedUntil - Date.now()) / 1000),
+      )
+
+      throw new UpstreamAPIError(
+        "La API bloqueó temporalmente consultas repetidas. Esperá un momento y reintentá.",
+        403,
+        retryAfterSeconds,
+      )
+    }
+  }
+
   if (process.env.NODE_ENV === "development") {
     console.log(
       `🌐 [MUNI API CALL] ${accionAPI} - ${new Date().toISOString()}`,
@@ -116,7 +193,26 @@ export async function fetchMuniAPICached(
     console.error(
       `❌ MUNI API HTTP ${response.status} ${response.statusText}: ${errorText}`,
     );
-    throw new Error(`API error: ${response.status} ${response.statusText}`);
+
+    if (isArribos && arribosCacheKey && response.status === 403) {
+      arrivalsBlockedUntil.set(arribosCacheKey, Date.now() + ARRIBOS_BLOCK_WINDOW_MS)
+
+      const cached = getCachedArribos(arribosCacheKey)
+      if (cached) {
+        return cached
+      }
+
+      throw new UpstreamAPIError(
+        "La API bloqueó temporalmente consultas repetidas. Esperá un minuto y reintentá.",
+        403,
+        Math.ceil(ARRIBOS_BLOCK_WINDOW_MS / 1000),
+      )
+    }
+
+    throw new UpstreamAPIError(
+      `API error: ${response.status} ${response.statusText}`,
+      response.status,
+    )
   }
 
   const rawText = await response.text();
@@ -131,6 +227,11 @@ export async function fetchMuniAPICached(
 
   if (process.env.NODE_ENV === "development") {
     console.log(`✅ [MUNI SUCCESS] ${accionAPI}`);
+  }
+
+  if (isArribos && arribosCacheKey) {
+    arrivalsBlockedUntil.delete(arribosCacheKey)
+    setCachedArribos(arribosCacheKey, cleanJson)
   }
 
   return cleanJson;

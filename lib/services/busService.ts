@@ -10,6 +10,36 @@ import type {
   APIResponse,
 } from "@/lib/types/bus";
 
+export class BusServiceError extends Error {
+  status: number
+  retryAfter: number | null
+
+  constructor(message: string, status: number, retryAfter: number | null = null) {
+    super(message)
+    this.name = "BusServiceError"
+    this.status = status
+    this.retryAfter = retryAfter
+  }
+}
+
+async function createBusServiceError(response: Response): Promise<BusServiceError> {
+  const errorData = await response
+    .json()
+    .catch(() => ({ error: "Unknown error" }))
+
+  const retryAfterHeader = response.headers.get("Retry-After")
+  const retryAfter =
+    retryAfterHeader && !Number.isNaN(Number(retryAfterHeader))
+      ? Number(retryAfterHeader)
+      : null
+
+  return new BusServiceError(
+    errorData.error || `Error ${response.status}: ${response.statusText}`,
+    response.status,
+    retryAfter,
+  )
+}
+
 /**
  * 🔥 Cliente HTTP optimizado con enfoque híbrido:
  * - GET para datos estáticos (aprovecha Vercel CDN)
@@ -51,12 +81,7 @@ async function fetchStatic<T>(
   });
 
   if (!response.ok) {
-    const errorData = await response
-      .json()
-      .catch(() => ({ error: "Unknown error" }));
-    throw new Error(
-      errorData.error || `Error ${response.status}: ${response.statusText}`,
-    );
+    throw await createBusServiceError(response)
   }
 
   const data: APIResponse<T> = await response.json();
@@ -86,12 +111,7 @@ async function fetchDynamic<T>(
   });
 
   if (!response.ok) {
-    const errorData = await response
-      .json()
-      .catch(() => ({ error: "Unknown error" }));
-    throw new Error(
-      errorData.error || `Error ${response.status}: ${response.statusText}`,
-    );
+    throw await createBusServiceError(response)
   }
 
   const data: APIResponse<T> = await response.json();

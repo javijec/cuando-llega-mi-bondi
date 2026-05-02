@@ -1,5 +1,5 @@
 import { useMutation, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
-import { busService } from "@/lib/services/busService";
+import { BusServiceError, busService } from "@/lib/services/busService";
 import type {
   Arribo,
   LineasResponse,
@@ -14,6 +14,14 @@ import type {
 const retryDelay = (attemptIndex: number): number =>
   Math.min(1000 * 2 ** attemptIndex, 30000);
 
+const shouldRetryQuery = (failureCount: number, error: Error): boolean => {
+  if (error instanceof BusServiceError && [403, 429].includes(error.status)) {
+    return false
+  }
+
+  return failureCount < 2
+}
+
 const STATIC_QUERY_OPTIONS = {
   staleTime: 24 * 60 * 60 * 1000,
   gcTime: 7 * 24 * 60 * 60 * 1000,
@@ -27,7 +35,7 @@ export function useLineas() {
   return useQuery<LineasResponse>({
     queryKey: ["lineas"],
     queryFn: () => busService.fetchLines(),
-    retry: 3,
+    retry: shouldRetryQuery,
     retryDelay,
     ...STATIC_QUERY_OPTIONS,
   });
@@ -122,9 +130,9 @@ export function useArribos(
     gcTime: 2 * 60_000,
     refetchInterval: queryEnabled && enableAutoRefresh ? refetchInterval : false,
     refetchIntervalInBackground: false,
-    refetchOnWindowFocus: true,
-    refetchOnReconnect: true,
-    retry: 2,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    retry: shouldRetryQuery,
     retryDelay,
   });
 }
@@ -159,9 +167,9 @@ export function useMultiArribos(
         gcTime: 2 * 60_000,
         refetchInterval: false,
         refetchIntervalInBackground: false,
-        refetchOnWindowFocus: true,
-        refetchOnReconnect: true,
-        retry: 2,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+        retry: shouldRetryQuery,
         retryDelay,
       }
     }),

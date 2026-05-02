@@ -70,11 +70,19 @@ export async function GET(
   } catch (error) {
     console.error("❌ ERROR API GET:", error);
 
+    const status =
+      typeof error === "object" &&
+      error !== null &&
+      "status" in error &&
+      typeof error.status === "number"
+        ? error.status
+        : 500
+
     return NextResponse.json(
       {
         error: error instanceof Error ? error.message : "Error en el servidor",
       },
-      { status: 500 },
+      { status },
     );
   }
 }
@@ -127,11 +135,29 @@ export async function POST(
   } catch (error) {
     console.error("❌ ERROR API POST:", error);
 
+    const status =
+      typeof error === "object" &&
+      error !== null &&
+      "status" in error &&
+      typeof error.status === "number"
+        ? error.status
+        : 500
+    const retryAfter =
+      typeof error === "object" &&
+      error !== null &&
+      "retryAfter" in error &&
+      typeof error.retryAfter === "number"
+        ? error.retryAfter
+        : null
+
     return NextResponse.json(
       {
         error: error instanceof Error ? error.message : "Error en el servidor",
       },
-      { status: 500 },
+      {
+        status,
+        headers: retryAfter ? { "Retry-After": retryAfter.toString() } : undefined,
+      },
     );
   }
 }

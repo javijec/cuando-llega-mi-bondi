@@ -6120,3 +6120,12 @@ https://nextjs.org/docs/messages/module-not-found
 [0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
 [0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
  GET /api/bus/parada-lineas?identificadorParada=P3606&calleDescripcion=AVENIDA+INDEPENDENCIA+-+MAR+DEL+PLATA&interseccionDescripcion=SAN+MART%C3%8DN+-+MAR+DEL+PLATA 200 in 26ms (compile: 2ms, render: 24ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T16:27:37.259Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T16:27:37.259Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+Ô£ô Compiled in 52ms
+Ô£ô Compiled in 111ms
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 654ms (compile: 8ms, render: 646ms)
