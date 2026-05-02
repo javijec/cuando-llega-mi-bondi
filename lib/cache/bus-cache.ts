@@ -124,7 +124,8 @@ export async function fetchMuniAPICached(
   return cleanJson;
 }
 
-const stripCity = (value: string): string => value.replace(" - MAR DEL PLATA", "");
+const stripCity = (value: string): string =>
+  value.replace(" - MAR DEL PLATA", "");
 const normalizeText = (value: string): string =>
   stripCity(value).trim().toLocaleLowerCase("es");
 
@@ -241,5 +242,7 @@ export async function findLinesByStop({
       ),
   );
 
-  return matches.filter((match): match is ParadaLineaRelacion => match !== null);
+  return matches.filter(
+    (match): match is ParadaLineaRelacion => match !== null,
+  );
 }
