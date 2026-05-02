@@ -6,13 +6,12 @@ import { RouteMap, RouteMapSkeleton } from "./route-map-dynamic";
 import { LineSearchDropdown } from "./line-search-dropdown";
 import { BranchPills, BranchPillsSkeleton } from "./branch-pills";
 import { useRecorridos, type Bandera } from "@/lib/hooks/use-recorridos";
+import { useLineas } from "@/lib/hooks/useBusQuery";
 import type { Linea } from "@/lib/types/bus";
 
-interface RecorridosViewProps {
-  lineas: Linea[];
-}
-
-export function RecorridosView({ lineas }: RecorridosViewProps) {
+export function RecorridosView() {
+  const { data, isLoading: areLinesLoading, error } = useLineas();
+  const lineas = data?.lineas ?? [];
   const [lineaSeleccionada, setLineaSeleccionada] = useState<string | null>(
     null,
   );
