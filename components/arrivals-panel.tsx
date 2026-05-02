@@ -7,7 +7,13 @@ import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
 import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
 import { BusArrivalCard } from "./bus-arrival-card";
 import { StopLineSelector } from "./stop-line-selector";
-import type { Arribo, Calle, Interseccion, Linea, Parada } from "@/lib/types/bus";
+import type {
+  Arribo,
+  Calle,
+  Interseccion,
+  Linea,
+  Parada,
+} from "@/lib/types/bus";
 
 interface ArrivalsInfo {
   linea?: Linea;
@@ -38,7 +44,6 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
     selectedKeys,
     stopLineOptions,
     isLoadingStopLines,
-    removeOption,
     selectOption,
   } = useStopLineOptions(info);
 
@@ -140,7 +145,8 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
                     {calle?.Descripcion.replace("- MAR DEL PLATA", "")}
                   </span>
                   <span className="text-[.8rem] opacity-50">
-                    e/ {interseccion?.Descripcion.replace("- MAR DEL PLATA", "")}
+                    e/{" "}
+                    {interseccion?.Descripcion.replace("- MAR DEL PLATA", "")}
                   </span>
                 </div>
               </address>
@@ -154,7 +160,6 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
           selectedKeys={selectedKeys}
           isLoading={isLoadingStopLines}
           onSelect={selectOption}
-          onRemove={removeOption}
         />
 
         <div className="flex items-center justify-between mb-4">
@@ -176,9 +181,12 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto space-y-4" aria-live="polite">
+        <div className="flex-1 overflow-y-auto" aria-live="polite">
           {multiArribos.isLoading && (
-            <div className="flex flex-col items-center justify-center py-12" role="status">
+            <div
+              className="flex flex-col items-center justify-center py-12"
+              role="status"
+            >
               <Loader2
                 className="w-10 h-10 text-mdp-amarillo animate-spin"
                 aria-hidden="true"
@@ -201,63 +209,74 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
             </div>
           )}
 
-          {!multiArribos.isLoading &&
-            sections.map((section) => (
-              <section
-                key={`${section.option.linea.CodigoLineaParada}:${section.option.parada.Codigo}`}
-                className="rounded-2xl border border-border bg-background/60 p-4"
-              >
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-lg font-black text-foreground">
+          {!multiArribos.isLoading && (
+            <div className="grid gap-4 lg:grid-cols-2">
+              {sections.map((section) => (
+                <section
+                  key={`${section.option.linea.CodigoLineaParada}:${section.option.parada.Codigo}`}
+                  className="rounded-3xl border border-border bg-background/70 p-4 shadow-sm"
+                >
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <div className="min-w-0">
+                      <h4 className="text-lg font-black text-foreground truncate">
                         {section.option.linea.Descripcion}
                       </h4>
-                      <span className="rounded-full bg-mdp-amarillo px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-foreground">
-                        {section.option.parada.AbreviaturaBandera}
-                      </span>
+                      <p className="mt-1 text-xs text-muted-foreground truncate">
+                        {section.arribos.length}{" "}
+                        {section.arribos.length === 1
+                          ? "unidad en camino"
+                          : "unidades en camino"}
+                      </p>
                     </div>
-                    <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      {section.arribos.length}{" "}
-                      {section.arribos.length === 1 ? "unidad en camino" : "unidades en camino"}
-                    </p>
+                    <span className="rounded-full bg-mdp-amarillo/10 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-mdp-amarillo">
+                      {section.option.parada.AbreviaturaBandera}
+                    </span>
                   </div>
-                </div>
 
-                {section.result?.error && (
-                  <div className="rounded-2xl bg-mdp-rosa/10 px-4 py-3 text-sm font-bold text-mdp-rosa">
-                    No pudimos cargar los arribos de esta línea.
-                  </div>
-                )}
-
-                {!section.result?.error && section.result?.isLoading && (
-                  <div className="flex items-center gap-2 rounded-2xl bg-muted/40 px-4 py-3 text-sm font-bold text-muted-foreground">
-                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                    Cargando esta línea...
-                  </div>
-                )}
-
-                {!section.result?.error &&
-                  !section.result?.isLoading &&
-                  section.arribos.length === 0 && (
-                    <div className="rounded-2xl bg-muted/40 px-4 py-3 text-sm font-bold text-muted-foreground">
-                      No hay unidades en camino para esta línea.
+                  {section.result?.error && (
+                    <div className="rounded-2xl bg-mdp-rosa/10 px-4 py-3 text-sm font-bold text-mdp-rosa">
+                      No pudimos cargar los arribos de esta línea.
                     </div>
                   )}
 
-                {!section.result?.error &&
-                  !section.result?.isLoading &&
-                  section.arribos.length > 0 && (
-                    <ul className="space-y-3" role="list">
-                      {section.arribos.map((arribo, index) => (
-                        <li key={`${section.option.linea.CodigoLineaParada}-${arribo.IdentificadorCoche}-${index}`}>
-                          <BusArrivalCard arribo={arribo as Arribo} index={index} />
-                        </li>
-                      ))}
-                    </ul>
+                  {!section.result?.error && section.result?.isLoading && (
+                    <div className="flex items-center gap-2 rounded-2xl bg-muted/40 px-4 py-3 text-sm font-bold text-muted-foreground">
+                      <Loader2
+                        className="h-4 w-4 animate-spin"
+                        aria-hidden="true"
+                      />
+                      Cargando esta línea...
+                    </div>
                   )}
-              </section>
-            ))}
+
+                  {!section.result?.error &&
+                    !section.result?.isLoading &&
+                    section.arribos.length === 0 && (
+                      <div className="rounded-2xl bg-muted/40 px-4 py-3 text-sm font-bold text-muted-foreground">
+                        No hay unidades en camino para esta línea.
+                      </div>
+                    )}
+
+                  {!section.result?.error &&
+                    !section.result?.isLoading &&
+                    section.arribos.length > 0 && (
+                      <ul className="space-y-3" role="list">
+                        {section.arribos.map((arribo, index) => (
+                          <li
+                            key={`${section.option.linea.CodigoLineaParada}-${arribo.IdentificadorCoche}-${index}`}
+                          >
+                            <BusArrivalCard
+                              arribo={arribo as Arribo}
+                              index={index}
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                </section>
+              ))}
+            </div>
+          )}
         </div>
 
         {selectedOptions.length === 1 && activeParada && activeLinea && (

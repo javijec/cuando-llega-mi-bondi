@@ -40,34 +40,33 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
 
   return (
     <article
-      className={`p-4 rounded-2xl flex justify-between items-center transition-all ${
+      className={`p-3 rounded-3xl flex items-center gap-4 border transition-all ${
         isUrgent
-          ? "bg-mdp-amarillo/15 border-2 border-mdp-amarillo"
-          : "bg-card border border-border"
+          ? "bg-mdp-amarillo/10 border-mdp-amarillo"
+          : "bg-card border-border"
       }`}
       style={{ animationDelay: `${index * 50}ms` }}
       aria-label={`${arribo.DescripcionCortaBandera || arribo.DescripcionBandera}, coche ${arribo.IdentificadorCoche}, llega en ${parsed.value} ${parsed.unit}${urgencyLabel}`}
     >
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <span className="text-[11px] font-black uppercase tracking-[0.24em] text-muted-foreground">
             Coche {arribo.IdentificadorCoche || "---"}
           </span>
           {isAdaptado && (
             <span
               title="Unidad adaptada para personas con movilidad reducida"
-              className="inline-flex items-center gap-1 text-xs text-mdp-turquesa font-bold"
+              className="inline-flex items-center gap-1 rounded-full bg-mdp-turquesa/10 px-2 py-1 text-[11px] font-bold text-mdp-turquesa"
             >
-              <Accessibility className="w-3.5 h-3.5" aria-hidden="true" />
-              <span className="sr-only">Unidad adaptada</span>
+              <Accessibility className="w-3 h-3" aria-hidden="true" />
               Adaptado
             </span>
           )}
         </div>
-        <h4 className="text-base font-bold text-foreground truncate">
+        <h4 className="text-sm font-black text-foreground truncate">
           {arribo.DescripcionCortaBandera || arribo.DescripcionBandera}
         </h4>
-        <p className="text-xs text-muted-foreground mt-1 font-medium flex items-center gap-1">
+        <p className="text-[11px] text-muted-foreground mt-2 font-medium flex items-center gap-1">
           <Clock className="w-3 h-3" aria-hidden="true" />
           <span>
             GPS {gpsTime}
@@ -83,14 +82,9 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
         </p>
       </div>
 
-      <div
-        className={`text-right shrink-0 ml-4 pl-4 ${
-          isVeryUrgent ? "border-l-2 border-red-400" : "border-l border-border"
-        }`}
-        aria-hidden="true"
-      >
+      <div className="shrink-0 flex flex-col items-end gap-1">
         {parsed.unit ? (
-          <div className="flex flex-col items-end">
+          <>
             <span
               className={`font-black tabular-nums leading-none ${
                 isVeryUrgent
@@ -100,12 +94,12 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
             >
               {parsed.value}
             </span>
-            <span className="text-xs text-muted-foreground font-bold uppercase tracking-wide mt-0.5">
+            <span className="text-[11px] text-muted-foreground font-bold uppercase tracking-[0.25em]">
               {parsed.unit}
             </span>
-          </div>
+          </>
         ) : (
-          <span className="text-base font-bold text-muted-foreground">
+          <span className="text-sm font-bold text-muted-foreground">
             {parsed.value}
           </span>
         )}

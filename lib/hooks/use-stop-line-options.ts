@@ -87,71 +87,56 @@ export function useStopLineOptions({
       stopLineOptions.some((option) => getOptionKey(option) === key),
     );
 
-    if (nextKeys.length > 0) {
-      return new Set(nextKeys);
-    }
-
-    return currentOptionKey ? new Set([currentOptionKey]) : new Set<string>();
-  }, [currentOptionKey, selectedOptionKeys, stopLineOptions]);
+    return nextKeys.length > 0 ? new Set(nextKeys) : new Set<string>();
+  }, [selectedOptionKeys, stopLineOptions]);
 
   const selectedOptions = useMemo(() => {
-    const options = stopLineOptions.filter((option) =>
+    return stopLineOptions.filter((option) =>
       selectedKeys.has(getOptionKey(option)),
     );
-
-    if (options.length > 0) {
-      return options;
-    }
-
-    return currentOption ? [currentOption] : [];
-  }, [currentOption, selectedKeys, stopLineOptions]);
+  }, [selectedKeys, stopLineOptions]);
 
   const activeOption = useMemo(() => {
+    if (selectedOptions.length === 0) {
+      return null;
+    }
+
     const matchingActiveOption = stopLineOptions.find(
       (option) => getOptionKey(option) === activeOptionKey,
     );
 
-    if (matchingActiveOption && selectedKeys.has(getOptionKey(matchingActiveOption))) {
+    if (
+      matchingActiveOption &&
+      selectedKeys.has(getOptionKey(matchingActiveOption))
+    ) {
       return matchingActiveOption;
     }
 
-    return selectedOptions[0] ?? currentOption;
-  }, [activeOptionKey, currentOption, selectedKeys, selectedOptions, stopLineOptions]);
+    return selectedOptions[0] ?? null;
+  }, [activeOptionKey, selectedKeys, selectedOptions, stopLineOptions]);
 
   function selectOption(option: StopLineOption): void {
     const optionKey = getOptionKey(option);
+    const isSelected = selectedKeys.has(optionKey);
 
     setSelectedOptionKeys((currentKeys) => {
-      const baseKeys =
-        currentKeys.length === 0 && currentOptionKey ? [currentOptionKey] : currentKeys;
+      const nextKeys = isSelected
+        ? currentKeys.filter((key) => key !== optionKey)
+        : [...currentKeys, optionKey];
 
-      return baseKeys.includes(optionKey) ? baseKeys : [...baseKeys, optionKey];
+      return nextKeys;
     });
-    setActiveOptionKey(optionKey);
-  }
 
-  function removeOption(option: StopLineOption): void {
-    const optionKey = getOptionKey(option);
-
-    setSelectedOptionKeys((currentKeys) => {
-      if (currentKeys.length <= 1) {
-        return currentKeys;
+    if (isSelected) {
+      if (activeOptionKey === optionKey) {
+        const remainingKeys = Array.from(selectedKeys).filter(
+          (key) => key !== optionKey,
+        );
+        setActiveOptionKey(remainingKeys[remainingKeys.length - 1] ?? null);
       }
-
-      return currentKeys.filter((key) => key !== optionKey);
-    });
-
-    setActiveOptionKey((currentKey) => {
-      if (currentKey !== optionKey) {
-        return currentKey;
-      }
-
-      const nextOption = selectedOptions.find(
-        (selectedOption) => getOptionKey(selectedOption) !== optionKey,
-      );
-
-      return nextOption ? getOptionKey(nextOption) : currentOptionKey;
-    });
+    } else {
+      setActiveOptionKey(optionKey);
+    }
   }
 
   return {
@@ -159,7 +144,6 @@ export function useStopLineOptions({
     selectedOptions,
     selectedKeys,
     selectOption,
-    removeOption,
     stopLineOptions,
     isLoadingStopLines: stopLinesQuery.isLoading,
     stopLinesError: stopLinesQuery.error,
