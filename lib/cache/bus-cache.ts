@@ -95,15 +95,27 @@ export async function fetchMuniAPICached(
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
+      Accept: "application/json, text/javascript, */*; q=0.01",
+      "Accept-Language": "es-AR,es;q=0.9",
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-      "User-Agent": "Mozilla/5.0",
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "X-Requested-With": "XMLHttpRequest",
       Origin: ORIGIN,
       Referer: REFERER,
+      Host: new URL(API_URL).host,
+      "Sec-Fetch-Site": "same-site",
+      "Sec-Fetch-Mode": "cors",
+      "Sec-Fetch-Dest": "empty",
     },
     body: formData,
   });
 
   if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    console.error(
+      `❌ MUNI API HTTP ${response.status} ${response.statusText}: ${errorText}`,
+    );
     throw new Error(`API error: ${response.status} ${response.statusText}`);
   }
 
