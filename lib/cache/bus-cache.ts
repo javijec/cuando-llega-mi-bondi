@@ -10,9 +10,12 @@ import type {
   InterseccionesResponse,
   Linea,
   LineasResponse,
+  NearbyStop,
   Parada,
   ParadaLineaRelacion,
   ParadasResponse,
+  PuntoRecorrido,
+  RecorridoResponse,
 } from "@/lib/types/bus";
 
 // 🔐 Helper para validar variables de entorno
@@ -248,6 +251,12 @@ function getIntersectionItems(
   return [...(response.intersecciones ?? []), ...(response.calles ?? [])];
 }
 
+function parseRouteStopDescription(description: string): string {
+  const parts = description.split(";").map((part) => part.trim()).filter(Boolean)
+
+  return parts[2] ?? parts[1] ?? description
+}
+
 async function mapWithConcurrencyLimit<T, R>(
   items: T[],
   limit: number,
@@ -358,4 +367,49 @@ export async function findLinesByStop({
   return matches.filter(
     (match): match is ParadaLineaRelacion => match !== null,
   );
+}
+
+export async function fetchAllRouteStopsCached(): Promise<Omit<NearbyStop, "distanciaMetros">[]> {
+  "use cache";
+
+  cacheLife("static");
+  cacheTag("bus-nearby-stops");
+
+  const lineas = (await fetchMuniAPICached("lineas", {})) as LineasResponse;
+
+  const routeStopsByKey = new Map<string, Omit<NearbyStop, "distanciaMetros">>()
+
+  await mapWithConcurrencyLimit(lineas.lineas ?? [], 4, async (linea) => {
+    const recorrido = (await fetchMuniAPICached("recorrido", {
+      codLinea: linea.CodigoLineaParada,
+      isSublinea: "0",
+    })) as RecorridoResponse
+
+    ;(recorrido.puntos ?? [])
+      .filter((punto: PuntoRecorrido) => punto.IsPuntoPaso)
+      .forEach((punto) => {
+        const key = [
+          linea.CodigoLineaParada,
+          punto.AbreviaturaBanderaSMP,
+          punto.Latitud.toFixed(6),
+          punto.Longitud.toFixed(6),
+        ].join(":")
+
+        if (routeStopsByKey.has(key)) {
+          return
+        }
+
+        routeStopsByKey.set(key, {
+          id: key,
+          codigoLineaParada: linea.CodigoLineaParada,
+          nombreLinea: linea.Descripcion,
+          bandera: punto.AbreviaturaBanderaSMP,
+          descripcion: parseRouteStopDescription(punto.Descripcion),
+          latitud: punto.Latitud,
+          longitud: punto.Longitud,
+        })
+      })
+  })
+
+  return Array.from(routeStopsByKey.values())
 }

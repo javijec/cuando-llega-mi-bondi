@@ -140,6 +140,24 @@ export interface RecorridoResponse extends APIBaseResponse {
   puntos: PuntoRecorrido[];
 }
 
+/**
+ * Parada cercana derivada de recorridos agregados
+ */
+export interface NearbyStop {
+  id: string;
+  codigoLineaParada: string;
+  nombreLinea: string;
+  bandera: string;
+  descripcion: string;
+  latitud: number;
+  longitud: number;
+  distanciaMetros: number;
+}
+
+export interface NearbyStopsResponse {
+  paradas: NearbyStop[];
+}
+
 // === FAVORITOS ===
 
 /**

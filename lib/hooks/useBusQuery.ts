@@ -8,6 +8,7 @@ import type {
   ParadasResponse,
   ParadaLineasResponse,
   ArribosResponse,
+  NearbyStopsResponse,
   RecorridoResponse,
 } from "@/lib/types/bus";
 
@@ -103,6 +104,28 @@ export function useParadaLineas(
       !!interseccionDescripcion,
     ...STATIC_QUERY_OPTIONS,
   });
+}
+
+export function useNearbyStops(
+  latitude: number | null,
+  longitude: number | null,
+  radius: number = 1000,
+  enabled: boolean = true,
+) {
+  const queryEnabled =
+    enabled && latitude !== null && longitude !== null
+
+  return useQuery<NearbyStopsResponse>({
+    queryKey: ["nearby-stops", latitude, longitude, radius],
+    queryFn: () => busService.fetchNearbyStops(latitude as number, longitude as number, radius),
+    enabled: queryEnabled,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
+    retry: shouldRetryQuery,
+    retryDelay,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  })
 }
 
 // === QUERIES DINÁMICAS ===

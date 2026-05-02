@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Map, Star, Info } from "lucide-react";
+import { Search, Map, Star, Info, LocateFixed } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -10,12 +10,14 @@ export function Navbar() {
 
   const isConsultar = pathname === "/consultar";
   const isRecorridos = pathname === "/recorridos";
+  const isCercanas = pathname === "/cercanas";
   const isFavoritos = pathname === "/favoritos";
   const isAcerca = pathname === "/acerca";
 
   const navItems = [
     { href: "/consultar", label: "Consultar", icon: Search, active: isConsultar },
     { href: "/recorridos", label: "Recorridos", icon: Map, active: isRecorridos },
+    { href: "/cercanas", label: "Cercanas", icon: LocateFixed, active: isCercanas },
     { href: "/favoritos", label: "Favoritos", icon: Star, active: isFavoritos },
     { href: "/acerca", label: "Acerca de", icon: Info, active: isAcerca },
   ];

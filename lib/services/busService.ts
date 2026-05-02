@@ -6,6 +6,7 @@ import type {
   ParadasResponse,
   ParadaLineasResponse,
   ArribosResponse,
+  NearbyStopsResponse,
   RecorridoResponse,
   APIResponse,
 } from "@/lib/types/bus";
@@ -86,6 +87,30 @@ async function fetchStatic<T>(
 
   const data: APIResponse<T> = await response.json();
   return data.resultado as T;
+}
+
+async function fetchAbsolute<T>(
+  url: string,
+  params?: Record<string, string | number>,
+): Promise<T> {
+  const searchParams = new URLSearchParams()
+
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => {
+      searchParams.append(key, value.toString())
+    })
+  }
+
+  const fullUrl = `${url}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`
+
+  const response = await fetch(fullUrl, { method: "GET" })
+
+  if (!response.ok) {
+    throw await createBusServiceError(response)
+  }
+
+  const data: APIResponse<T> = await response.json()
+  return data.resultado as T
 }
 
 /**
@@ -218,5 +243,17 @@ export const busService = {
       codLinea: codigoLinea,
       isSublinea,
     });
+  },
+
+  async fetchNearbyStops(
+    lat: number,
+    lng: number,
+    radius: number = 1000,
+  ): Promise<NearbyStopsResponse> {
+    return fetchAbsolute<NearbyStopsResponse>("/api/nearby-stops", {
+      lat,
+      lng,
+      radius,
+    })
   },
 };
