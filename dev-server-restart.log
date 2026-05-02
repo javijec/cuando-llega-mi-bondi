@@ -4532,3 +4532,5 @@ https://nextjs.org/docs/messages/module-not-found
  GET /consultar 200 in 303ms (compile: 22ms, render: 280ms)
  GET /consultar 200 in 221ms (compile: 21ms, render: 200ms)
  GET /consultar 200 in 141ms (compile: 23ms, render: 118ms)
+Ô£ô Compiled in 49ms
+ GET /consultar 200 in 150ms (compile: 5ms, render: 145ms)

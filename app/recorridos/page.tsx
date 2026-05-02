@@ -7,10 +7,13 @@ export default function RecorridosPage() {
       <a href="#main-content" className="sr-only">
         Saltar al contenido principal
       </a>
-      <main id="main-content" className="flex-1 w-full overflow-hidden relative">
+      <main
+        id="main-content"
+        className="flex-1 w-full overflow-hidden relative"
+      >
         <RecorridosView />
       </main>
-      <Navbar/>
+      <Navbar />
     </div>
   );
 }
