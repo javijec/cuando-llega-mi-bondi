@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef, useCallback } from "react";
-import { Sheet, SheetRef } from "react-modal-sheet";
+import { Sheet, type SheetRef } from "react-modal-sheet";
 import { FocusScope } from "react-aria";
 import { useArribos, useRefreshArribos } from "@/lib/hooks/useBusQuery";
+import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
 import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
 import { BusArrivalCard } from "./bus-arrival-card";
+import { StopLineSelector } from "./stop-line-selector";
 import { X, RefreshCw, Loader2, Star, MapPin } from "lucide-react";
 import type { Linea, Calle, Interseccion, Parada } from "@/lib/types/bus";
 
@@ -24,30 +26,47 @@ interface ArrivalsSheetProps {
   info: ArrivalsInfo;
 }
 
-export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
+export function ArrivalsSheet({
+  isOpen,
+  onClose,
+  info,
+}: ArrivalsSheetProps) {
   const sheetRef = useRef<SheetRef>(null);
-  const { parada, linea, calle, interseccion } = info;
+  const { calle, interseccion } = info;
+  const {
+    activeOption,
+    setActiveOption,
+    stopLineOptions,
+    isLoadingStopLines,
+  } = useStopLineOptions(info);
+
+  const activeLinea = activeOption?.linea;
+  const activeParada = activeOption?.parada;
 
   const {
     data: arribosData,
     isLoading,
     isFetching,
     error,
-  } = useArribos(parada?.Identificador || "", linea?.CodigoLineaParada || "", {
-    enabled: isOpen && !!parada && !!linea,
-  });
+  } = useArribos(
+    activeParada?.Identificador || "",
+    activeLinea?.CodigoLineaParada || "",
+    {
+      enabled: isOpen && !!activeParada && !!activeLinea,
+    },
+  );
 
   const refreshArribos = useRefreshArribos();
 
   const { isFavorito, toggle, label } = useFavoritoToggle(
-    parada?.Identificador || "",
-    linea?.CodigoLineaParada || "",
+    activeParada?.Identificador || "",
+    activeLinea?.CodigoLineaParada || "",
     {
-      nombreLinea: linea?.Descripcion || "",
-      bandera: parada?.AbreviaturaBandera || "",
-      codigoParada: parada?.Codigo || "",
-      banderaCompleta: parada?.AbreviaturaAmpliadaBandera || "",
-      descripcionParada: parada?.Descripcion || "",
+      nombreLinea: activeLinea?.Descripcion || "",
+      bandera: activeParada?.AbreviaturaBandera || "",
+      codigoParada: activeParada?.Codigo || "",
+      banderaCompleta: activeParada?.AbreviaturaAmpliadaBandera || "",
+      descripcionParada: activeParada?.Descripcion || "",
       calle: calle?.Descripcion || "",
       interseccion: interseccion?.Descripcion || "",
     },
@@ -56,13 +75,13 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
   const arribos = arribosData?.arribos || [];
 
   const handleRefresh = useCallback(() => {
-    if (parada && linea) {
+    if (activeParada && activeLinea) {
       refreshArribos.mutate({
-        identificadorParada: parada.Identificador,
-        codigoLineaParada: linea.CodigoLineaParada,
+        identificadorParada: activeParada.Identificador,
+        codigoLineaParada: activeLinea.CodigoLineaParada,
       });
     }
-  }, [parada, linea, refreshArribos]);
+  }, [activeParada, activeLinea, refreshArribos]);
 
   return (
     <Sheet
@@ -96,21 +115,19 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                     id="sheet-title"
                     className="text-2xl font-black text-foreground uppercase tracking-tight truncate"
                   >
-                    {linea?.Descripcion}
+                    {activeLinea?.Descripcion}
                   </h2>
                   <p id="sheet-description" className="sr-only">
                     Información de arribos para la parada {calle?.Descripcion} e{" "}
                     {interseccion?.Descripcion}
                   </p>
                   <div className="flex items-center gap-3 mt-2">
-                    <span
-                      className="px-3 py-1 bg-mdp-amarillo text-primary-foreground text-xs font-black rounded-full uppercase tracking-wide"
-                    >
-                      {parada?.AbreviaturaBandera}
+                    <span className="px-3 py-1 bg-mdp-amarillo text-primary-foreground text-xs font-black rounded-full uppercase tracking-wide">
+                      {activeParada?.AbreviaturaBandera}
                     </span>
                     <span
                       className="text-sm font-bold text-muted-foreground"
-                      aria-live="polite" // anuncia cambios cuando arriban nuevas unidades
+                      aria-live="polite"
                       aria-atomic="true"
                     >
                       <span
@@ -123,16 +140,12 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
                   </div>
                   <address className="flex items-center gap-2 mt-3 text-sm text-muted-foreground font-medium not-italic">
                     <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
-                    <div className="flex flex-col ">
+                    <div className="flex flex-col">
                       <span className="text-[1rem] truncate">
                         {calle?.Descripcion.replace("- MAR DEL PLATA", "")}
                       </span>
                       <span className="text-[.8rem] opacity-50">
-                        e/{" "}
-                        {interseccion?.Descripcion.replace(
-                          "- MAR DEL PLATA",
-                          "",
-                        )}
+                        e/ {interseccion?.Descripcion.replace("- MAR DEL PLATA", "")}
                       </span>
                     </div>
                   </address>
@@ -153,6 +166,13 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
             className="px-5 pb-safe"
           >
             <div className="pb-24">
+              <StopLineSelector
+                options={stopLineOptions}
+                activeOption={activeOption}
+                isLoading={isLoadingStopLines}
+                onSelect={setActiveOption}
+              />
+
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                   Próximos arribos
@@ -235,14 +255,14 @@ export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
             </div>
           </Sheet.Content>
 
-          {parada && linea && (
+          {activeParada && activeLinea && (
             <div className="absolute bottom-0 left-0 right-0 bg-background border-t border-border px-5 py-4">
               <button
                 onClick={toggle}
                 aria-label={
                   isFavorito
-                    ? `Quitar ${linea?.Descripcion} de favoritos`
-                    : `Guardar ${linea?.Descripcion} en favoritos`
+                    ? `Quitar ${activeLinea.Descripcion} de favoritos`
+                    : `Guardar ${activeLinea.Descripcion} en favoritos`
                 }
                 aria-pressed={isFavorito}
                 className={`w-full py-4 rounded-2xl font-black text-base flex items-center justify-center gap-3 transition-all active:scale-[0.98] cursor-pointer ${

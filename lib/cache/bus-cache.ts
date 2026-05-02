@@ -3,6 +3,17 @@
 
 import { cacheLife, cacheTag } from "next/cache";
 import { TTL_MAP, DEFAULT_TTL } from "@/lib/constants/cache";
+import type {
+  Calle,
+  CallesResponse,
+  Interseccion,
+  InterseccionesResponse,
+  Linea,
+  LineasResponse,
+  Parada,
+  ParadaLineaRelacion,
+  ParadasResponse,
+} from "@/lib/types/bus";
 
 // 🔐 Helper para validar variables de entorno
 function getEnvVar(key: string): string {
@@ -106,4 +117,124 @@ export async function fetchMuniAPICached(
   }
 
   return cleanJson;
+}
+
+const stripCity = (value: string): string => value.replace(" - MAR DEL PLATA", "");
+const normalizeText = (value: string): string =>
+  stripCity(value).trim().toLocaleLowerCase("es");
+
+function getIntersectionItems(
+  response: InterseccionesResponse,
+): Interseccion[] {
+  return [...(response.intersecciones ?? []), ...(response.calles ?? [])];
+}
+
+async function mapWithConcurrencyLimit<T, R>(
+  items: T[],
+  limit: number,
+  mapper: (item: T) => Promise<R>,
+): Promise<R[]> {
+  const results: R[] = new Array(items.length);
+  let nextIndex = 0;
+
+  async function worker(): Promise<void> {
+    while (nextIndex < items.length) {
+      const currentIndex = nextIndex++;
+      results[currentIndex] = await mapper(items[currentIndex]);
+    }
+  }
+
+  await Promise.all(
+    Array.from({ length: Math.min(limit, items.length) }, () => worker()),
+  );
+
+  return results;
+}
+
+interface FindLinesByStopParams {
+  identificadorParada: string;
+  calleDescripcion: string;
+  interseccionDescripcion: string;
+}
+
+async function findMatchingStopForLine(
+  linea: Linea,
+  identificadorParada: string,
+  normalizedCalle: string,
+  normalizedInterseccion: string,
+): Promise<ParadaLineaRelacion | null> {
+  const calles = (await fetchMuniAPICached("calles", {
+    codLinea: linea.CodigoLineaParada,
+  })) as CallesResponse;
+
+  const calle = calles.calles?.find(
+    (item: Calle) => normalizeText(item.Descripcion) === normalizedCalle,
+  );
+
+  if (!calle) {
+    return null;
+  }
+
+  const intersecciones = (await fetchMuniAPICached("intersecciones", {
+    codLinea: linea.CodigoLineaParada,
+    codCalle: calle.Codigo,
+  })) as InterseccionesResponse;
+
+  const interseccion = getIntersectionItems(intersecciones).find(
+    (item) => normalizeText(item.Descripcion) === normalizedInterseccion,
+  );
+
+  if (!interseccion) {
+    return null;
+  }
+
+  const paradas = (await fetchMuniAPICached("paradas", {
+    codLinea: linea.CodigoLineaParada,
+    codCalle: calle.Codigo,
+    codInterseccion: interseccion.Codigo,
+  })) as ParadasResponse;
+
+  const parada = paradas.paradas?.find(
+    (item: Parada) => item.Identificador === identificadorParada,
+  );
+
+  if (!parada) {
+    return null;
+  }
+
+  return { linea, parada };
+}
+
+export async function findLinesByStop({
+  identificadorParada,
+  calleDescripcion,
+  interseccionDescripcion,
+}: FindLinesByStopParams): Promise<ParadaLineaRelacion[]> {
+  "use cache";
+
+  cacheLife("static");
+  cacheTag("bus-parada-lineas");
+
+  if (!identificadorParada || !calleDescripcion || !interseccionDescripcion) {
+    return [];
+  }
+
+  const normalizedCalle = normalizeText(calleDescripcion);
+  const normalizedInterseccion = normalizeText(interseccionDescripcion);
+
+  const lineas = (await fetchMuniAPICached("lineas", {})) as LineasResponse;
+
+  const matches = await mapWithConcurrencyLimit(
+    lineas.lineas ?? [],
+    4,
+    async (linea) =>
+      findMatchingStopForLine(
+        linea,
+        identificadorParada,
+        normalizedCalle,
+        normalizedInterseccion,
+      ),
+  );
+
+  return matches.filter((match): match is ParadaLineaRelacion => match !== null);
 }

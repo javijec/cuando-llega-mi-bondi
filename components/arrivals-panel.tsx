@@ -2,8 +2,10 @@
 
 import { useCallback } from "react";
 import { useArribos, useRefreshArribos } from "@/lib/hooks/useBusQuery";
+import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
 import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
 import { BusArrivalCard } from "./bus-arrival-card";
+import { StopLineSelector } from "./stop-line-selector";
 import { RefreshCw, Loader2, MapPin } from "lucide-react";
 import type { Linea, Calle, Interseccion, Parada } from "@/lib/types/bus";
 
@@ -19,28 +21,41 @@ interface ArrivalsPanelProps {
 }
 
 export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
-  const { parada, linea, calle, interseccion } = info;
+  const { calle, interseccion } = info;
+  const {
+    activeOption,
+    setActiveOption,
+    stopLineOptions,
+    isLoadingStopLines,
+  } = useStopLineOptions(info);
+
+  const activeLinea = activeOption?.linea;
+  const activeParada = activeOption?.parada;
 
   const {
     data: arribosData,
     isLoading,
     isFetching,
     error,
-  } = useArribos(parada?.Identificador || "", linea?.CodigoLineaParada || "", {
-    enabled: !!parada && !!linea,
-  });
+  } = useArribos(
+    activeParada?.Identificador || "",
+    activeLinea?.CodigoLineaParada || "",
+    {
+      enabled: !!activeParada && !!activeLinea,
+    },
+  );
 
   const refreshArribos = useRefreshArribos();
 
   const { isFavorito, toggle, label } = useFavoritoToggle(
-    parada?.Identificador || "",
-    linea?.CodigoLineaParada || "",
+    activeParada?.Identificador || "",
+    activeLinea?.CodigoLineaParada || "",
     {
-      nombreLinea: linea?.Descripcion || "",
-      bandera: parada?.AbreviaturaBandera || "",
-      codigoParada: parada?.Codigo || "",
-      banderaCompleta: parada?.AbreviaturaAmpliadaBandera || "",
-      descripcionParada: parada?.Descripcion || "",
+      nombreLinea: activeLinea?.Descripcion || "",
+      bandera: activeParada?.AbreviaturaBandera || "",
+      codigoParada: activeParada?.Codigo || "",
+      banderaCompleta: activeParada?.AbreviaturaAmpliadaBandera || "",
+      descripcionParada: activeParada?.Descripcion || "",
       calle: calle?.Descripcion || "",
       interseccion: interseccion?.Descripcion || "",
     },
@@ -49,15 +64,15 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
   const arribos = arribosData?.arribos || [];
 
   const handleRefresh = useCallback(() => {
-    if (parada && linea) {
+    if (activeParada && activeLinea) {
       refreshArribos.mutate({
-        identificadorParada: parada.Identificador,
-        codigoLineaParada: linea.CodigoLineaParada,
+        identificadorParada: activeParada.Identificador,
+        codigoLineaParada: activeLinea.CodigoLineaParada,
       });
     }
-  }, [parada, linea, refreshArribos]);
+  }, [activeParada, activeLinea, refreshArribos]);
 
-  if (!parada || !linea) {
+  if (!activeParada || !activeLinea) {
     return null;
   }
 
@@ -68,15 +83,14 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
               <h2 className="text-2xl font-black text-foreground uppercase tracking-tight truncate">
-                {linea?.Descripcion}
+                {activeLinea.Descripcion}
               </h2>
               <div className="flex items-center gap-3 mt-2">
                 <span className="px-3 py-1 bg-mdp-amarillo text-foreground text-xs font-black rounded-full uppercase tracking-wide">
-                  {parada?.AbreviaturaBandera}
+                  {activeParada.AbreviaturaBandera}
                 </span>
                 <span className="text-sm font-bold text-muted-foreground">
-                  {arribos.length}{" "}
-                  {arribos.length === 1 ? "unidad" : "unidades"}
+                  {arribos.length} {arribos.length === 1 ? "unidad" : "unidades"}
                 </span>
               </div>
               <address className="flex items-center gap-2 mt-3 text-sm text-muted-foreground font-medium not-italic">
@@ -86,14 +100,20 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
                     {calle?.Descripcion.replace("- MAR DEL PLATA", "")}
                   </span>
                   <span className="text-[.8rem] opacity-50">
-                    e/{" "}
-                    {interseccion?.Descripcion.replace("- MAR DEL PLATA", "")}
+                    e/ {interseccion?.Descripcion.replace("- MAR DEL PLATA", "")}
                   </span>
                 </div>
               </address>
             </div>
           </div>
         </div>
+
+        <StopLineSelector
+          options={stopLineOptions}
+          activeOption={activeOption}
+          isLoading={isLoadingStopLines}
+          onSelect={setActiveOption}
+        />
 
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
@@ -182,8 +202,8 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
             onClick={toggle}
             aria-label={
               isFavorito
-                ? `Quitar ${linea?.Descripcion} de favoritos`
-                : `Guardar ${linea?.Descripcion} en favoritos`
+                ? `Quitar ${activeLinea.Descripcion} de favoritos`
+                : `Guardar ${activeLinea.Descripcion} en favoritos`
             }
             aria-pressed={isFavorito}
             className={`w-full py-4 rounded-2xl font-black text-base flex items-center justify-center gap-3 transition-all active:scale-[0.98] cursor-pointer ${

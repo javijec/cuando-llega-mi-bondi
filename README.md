@@ -115,6 +115,23 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
 Crea un archivo `.env.local` en la raíz del proyecto:
 
+```bash
+cp .env.example .env.local
+```
+
+Luego completa estas variables:
+
+```env
+MUNI_API_URL=
+MUNI_ORIGIN=
+MUNI_REFERER=
+```
+
+- `MUNI_API_URL`: endpoint base de la API municipal que responde las acciones como `RecuperarLineaPorCuandoLlega`
+- `MUNI_ORIGIN`: origin esperado por la API remota
+- `MUNI_REFERER`: referer esperado por la API remota
+
+Sin esas variables, las rutas como `/api/bus/lineas` devolverán `500`.
 
 ---
 

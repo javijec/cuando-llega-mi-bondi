@@ -5,6 +5,7 @@ import type {
   CallesResponse,
   InterseccionesResponse,
   ParadasResponse,
+  ParadaLineasResponse,
   ArribosResponse,
   RecorridoResponse,
 } from "@/lib/types/bus";
@@ -63,6 +64,34 @@ export function useRecorrido(codigoLinea: string, isSublinea: number = 0) {
     queryKey: ["recorrido", codigoLinea, isSublinea],
     queryFn: () => busService.fetchRecorrido(codigoLinea, isSublinea),
     enabled: !!codigoLinea,
+    ...STATIC_QUERY_OPTIONS,
+  });
+}
+
+export function useParadaLineas(
+  identificadorParada: string,
+  calleDescripcion: string,
+  interseccionDescripcion: string,
+  enabled: boolean = true,
+) {
+  return useQuery<ParadaLineasResponse>({
+    queryKey: [
+      "parada-lineas",
+      identificadorParada,
+      calleDescripcion,
+      interseccionDescripcion,
+    ],
+    queryFn: () =>
+      busService.fetchStopLines(
+        identificadorParada,
+        calleDescripcion,
+        interseccionDescripcion,
+      ),
+    enabled:
+      enabled &&
+      !!identificadorParada &&
+      !!calleDescripcion &&
+      !!interseccionDescripcion,
     ...STATIC_QUERY_OPTIONS,
   });
 }

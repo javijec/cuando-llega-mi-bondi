@@ -1,0 +1,178 @@
+
+> cuando-llega-mi-bondi@0.1.0 dev F:\Programacion\cuando-llega-mi-bondi
+> next dev
+
+Ôû▓ Next.js 16.1.6 (Turbopack, Cache Components)
+- Local:         http://localhost:3000
+- Network:       http://192.168.68.56:3000
+
+Ô£ô Starting...
+Ô£ô Ready in 1563ms
+ GET / 200 in 2.5s (compile: 2.3s, render: 242ms)
+ GET / 200 in 72ms (compile: 3ms, render: 69ms)
+ÔÜá Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET /consultar 200 in 1142ms (compile: 1059ms, render: 83ms)
+ GET /consultar 200 in 48ms (compile: 5ms, render: 43ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 1247ms (compile: 1126ms, render: 121ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 34ms (compile: 26ms, render: 8ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 33ms (compile: 24ms, render: 9ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 32ms (compile: 27ms, render: 5ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 45ms (compile: 38ms, render: 7ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 33ms (compile: 26ms, render: 8ms)
+ GET /consultar 200 in 175ms (compile: 3ms, render: 172ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 61ms (compile: 54ms, render: 6ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 32ms (compile: 25ms, render: 7ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 33ms (compile: 26ms, render: 7ms)
+Ô¿» Error: ÔØî Falta variable de entorno: MUNI_API_URL
+    at getEnvVar (lib\cache\bus-cache.ts:11:11)
+    at module evaluation (lib\cache\bus-cache.ts:17:17)
+    at module evaluation (app\api\bus\[action]\route.ts:3:1)
+    at Object.<anonymous> (F:\Programacion\cuando-llega-mi-bondi\.next\dev\server\app\api\bus\[action]\route.js:9:3)
+   9 |   const value = process.env[key];
+  10 |   if (!value) {
+> 11 |     throw new Error(`ÔØî Falta variable de entorno: ${key}`);
+     |           ^
+  12 |   }
+  13 |   return value;
+  14 | } {
+  page: '/api/bus/lineas'
+}
+ GET /api/bus/lineas 500 in 33ms (compile: 26ms, render: 7ms)
+  Reload env: .env.local
+ GET /consultar 200 in 245ms (compile: 60ms, render: 185ms)
+­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:36:33.119Z
+­ƒôè Params: {}
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:36:33.119Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 1439ms (compile: 646ms, render: 794ms)
+  Reload env: .env.local
+ GET /consultar 200 in 229ms (compile: 53ms, render: 176ms)

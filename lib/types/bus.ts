@@ -3,7 +3,7 @@
 /**
  * Respuesta base de todas las llamadas a la API
  */
-export interface APIBaseResponse<T> {
+export interface APIBaseResponse {
   CodigoEstado: number;
   MensajeEstado: string;
   // El contenido específico varía según el endpoint
@@ -22,7 +22,7 @@ export interface Linea {
 /**
  * Respuesta del endpoint RecuperarLineaPorCuandoLlega
  */
-export interface LineasResponse extends APIBaseResponse<Linea[]> {
+export interface LineasResponse extends APIBaseResponse {
   lineas: Linea[];
 }
 
@@ -37,7 +37,7 @@ export interface Calle {
 /**
  * Respuesta del endpoint RecuperarCallesPrincipalPorLinea
  */
-export interface CallesResponse extends APIBaseResponse<Calle[]> {
+export interface CallesResponse extends APIBaseResponse {
   calles: Calle[];
 }
 
@@ -52,9 +52,7 @@ export interface Interseccion {
 /**
  * Respuesta del endpoint RecuperarInterseccionPorLineaYCalle
  */
-export interface InterseccionesResponse extends APIBaseResponse<
-  Interseccion[]
-> {
+export interface InterseccionesResponse extends APIBaseResponse {
   intersecciones?: Interseccion[];
   calles?: Interseccion[]; // A veces la API devuelve "calles" en lugar de "intersecciones"
 }
@@ -75,8 +73,23 @@ export interface Parada {
 /**
  * Respuesta del endpoint RecuperarParadasConBanderaPorLineaCalleEInterseccion
  */
-export interface ParadasResponse extends APIBaseResponse<Parada[]> {
+export interface ParadasResponse extends APIBaseResponse {
   paradas: Parada[];
+}
+
+/**
+ * Relación entre una parada física y una línea que pasa por ella
+ */
+export interface ParadaLineaRelacion {
+  linea: Linea;
+  parada: Parada;
+}
+
+/**
+ * Respuesta derivada para obtener todas las líneas que comparten una parada
+ */
+export interface ParadaLineasResponse extends APIBaseResponse {
+  lineas: ParadaLineaRelacion[];
 }
 
 /**
@@ -104,7 +117,7 @@ export interface Arribo {
 /**
  * Respuesta del endpoint RecuperarProximosArribosW
  */
-export interface ArribosResponse extends APIBaseResponse<Arribo[]> {
+export interface ArribosResponse extends APIBaseResponse {
   arribos: Arribo[];
 }
 
@@ -123,7 +136,7 @@ export interface PuntoRecorrido {
 /**
  * Respuesta del endpoint RecuperarRecorridoParaMapaAbrevYAmpliPorEntidadYLinea
  */
-export interface RecorridoResponse extends APIBaseResponse<PuntoRecorrido[]> {
+export interface RecorridoResponse extends APIBaseResponse {
   puntos: PuntoRecorrido[];
 }
 

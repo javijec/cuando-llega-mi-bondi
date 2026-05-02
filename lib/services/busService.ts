@@ -4,6 +4,7 @@ import type {
   CallesResponse,
   InterseccionesResponse,
   ParadasResponse,
+  ParadaLineasResponse,
   ArribosResponse,
   RecorridoResponse,
   APIResponse,
@@ -149,6 +150,23 @@ export const busService = {
       codLinea: codigoLinea,
       codCalle: codigoCalle,
       codInterseccion: codigoInterseccion,
+    });
+  },
+
+  /**
+   * 🚏 Obtener todas las líneas que comparten una misma parada física
+   * Método: GET (derivado de datos estáticos, cachea 24h)
+   * Endpoint: GET /api/bus/parada-lineas?identificadorParada=XXX&calleDescripcion=YYY&interseccionDescripcion=ZZZ
+   */
+  async fetchStopLines(
+    identificadorParada: string,
+    calleDescripcion: string,
+    interseccionDescripcion: string,
+  ): Promise<ParadaLineasResponse> {
+    return fetchStatic<ParadaLineasResponse>("parada-lineas", {
+      identificadorParada,
+      calleDescripcion,
+      interseccionDescripcion,
     });
   },
 

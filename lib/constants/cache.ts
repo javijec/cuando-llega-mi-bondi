@@ -7,6 +7,7 @@ export const TTL_MAP: Record<string, number> = {
   calles: 86400, // 24 horas - casi estático
   intersecciones: 86400, // 24 horas - casi estático
   paradas: 86400, // 24 horas - casi estático
+  "parada-lineas": 86400, // 24 horas - derivado de datos estáticos
   recorrido: 86400, // 24 horas - estático
   arribos: 60, // 1 minuto - dinámico
 } as const;
