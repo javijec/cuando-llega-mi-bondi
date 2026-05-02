@@ -88,9 +88,7 @@ export interface ParadaLineaRelacion {
 /**
  * Respuesta derivada para obtener todas las líneas que comparten una parada
  */
-export interface ParadaLineasResponse extends APIBaseResponse {
-  lineas: ParadaLineaRelacion[];
-}
+export type ParadaLineasResponse = ParadaLineaRelacion[];
 
 /**
  * Arribo próximo de un colectivo

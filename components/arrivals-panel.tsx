@@ -2,7 +2,8 @@
 
 import { useMemo } from "react";
 import { Loader2, MapPin, RefreshCw } from "lucide-react";
-import { useMultiArribos } from "@/lib/hooks/useBusQuery";
+import { ArrivalsRouteMap, ArrivalsRouteMapSkeleton } from "./arrivals-route-map-dynamic";
+import { useMultiArribos, useRecorrido } from "@/lib/hooks/useBusQuery";
 import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
 import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
 import { BusArrivalCard } from "./bus-arrival-card";
@@ -24,6 +25,14 @@ interface ArrivalsInfo {
 
 interface ArrivalsPanelProps {
   info: ArrivalsInfo;
+}
+
+function normalizeBranchLabel(value: string | undefined): string {
+  return (value ?? "").replace(/\s+/g, " ").trim().toLocaleLowerCase("es")
+}
+
+function getRouteBranchLabel(description: string): string {
+  return description.split(";")[1]?.trim() ?? description
 }
 
 function parseArrivalMinutes(arribo: string): number | null {
@@ -94,10 +103,26 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
 
   const activeLinea = activeOption?.linea;
   const activeParada = activeOption?.parada;
+  const activeSection = sections.find(
+    (section) =>
+      section.option.linea.CodigoLineaParada === activeLinea?.CodigoLineaParada &&
+      section.option.parada.Codigo === activeParada?.Codigo,
+  ) ?? sections[0] ?? null
   const totalArribos = sections.reduce(
     (total, section) => total + section.arribos.length,
     0,
   );
+  const recorridoQuery = useRecorrido(activeLinea?.CodigoLineaParada || "", 0)
+  const puntosRecorrido = !activeParada?.AbreviaturaBandera
+    ? []
+    : (recorridoQuery.data?.puntos ?? []).filter(
+        (punto) =>
+          punto.AbreviaturaBanderaSMP === activeParada.AbreviaturaBandera ||
+          normalizeBranchLabel(getRouteBranchLabel(punto.Descripcion)) ===
+            normalizeBranchLabel(activeParada.AbreviaturaBandera) ||
+          normalizeBranchLabel(getRouteBranchLabel(punto.Descripcion)) ===
+            normalizeBranchLabel(activeParada.AbreviaturaAmpliadaBandera),
+      )
 
   const { isFavorito, toggle, label } = useFavoritoToggle(
     activeParada?.Identificador || "",
@@ -125,17 +150,20 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
 
   return (
     <div className="hidden md:block h-full">
-      <div className="bg-card border border-border rounded-3xl p-6 h-full flex flex-col">
-        <div className="border-b border-border pb-4 mb-4">
+      <div className="flex h-full flex-col rounded-[2rem] border border-border bg-card p-6 shadow-sm">
+        <div className="mb-5 rounded-[1.75rem] border border-border/80 bg-[linear-gradient(135deg,rgba(20,184,166,0.12),transparent_50%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)] p-5">
           <div className="flex items-start justify-between gap-3">
-            <div className="flex-1 min-w-0">
-              <h2 className="text-2xl font-black text-foreground uppercase tracking-tight truncate">
+            <div className="min-w-0 flex-1">
+              <p className="text-[11px] font-black uppercase tracking-[0.22em] text-mdp-turquesa">
+                Llegadas en vivo
+              </p>
+              <h2 className="mt-2 text-3xl font-black text-foreground tracking-tight truncate">
                 {selectedOptions.length === 1
                   ? activeLinea?.Descripcion
                   : `${selectedOptions.length} lineas en esta parada`}
               </h2>
-              <div className="flex items-center gap-3 mt-2">
-                <span className="px-3 py-1 bg-mdp-amarillo text-foreground text-xs font-black rounded-full uppercase tracking-wide">
+              <div className="mt-3 flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-mdp-amarillo px-3 py-1 text-xs font-black uppercase tracking-wide text-foreground">
                   {selectedOptions.length === 1
                     ? activeParada.AbreviaturaBandera
                     : "Comparando lineas"}
@@ -144,50 +172,94 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
                   {totalArribos} {totalArribos === 1 ? "unidad" : "unidades"}
                 </span>
               </div>
-              <address className="flex items-center gap-2 mt-3 text-sm text-muted-foreground font-medium not-italic">
-                <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <address className="mt-4 flex items-center gap-2 text-sm font-medium not-italic text-muted-foreground">
+                <MapPin className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <div className="flex flex-col">
-                  <span className="text-[1rem] truncate">
+                  <span className="truncate text-[1rem] text-foreground">
                     {calle?.Descripcion.replace("- MAR DEL PLATA", "")}
                   </span>
-                  <span className="text-[.8rem] opacity-50">
+                  <span className="text-[.8rem] opacity-70">
                     e/{" "}
                     {interseccion?.Descripcion.replace("- MAR DEL PLATA", "")}
                   </span>
                 </div>
               </address>
             </div>
+            <div className="grid shrink-0 gap-2 text-right">
+              <div className="rounded-2xl border border-border/70 bg-background/70 px-3 py-2">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">
+                  Lineas
+                </p>
+                <p className="mt-1 text-xl font-black text-foreground">
+                  {selectedOptions.length}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <StopLineSelector
-          options={stopLineOptions}
-          activeOption={activeOption}
-          selectedKeys={selectedKeys}
-          isLoading={isLoadingStopLines}
-          onSelect={selectOption}
-        />
+        <div className="mb-5 rounded-[1.5rem] border border-border bg-background/60 p-4">
+          <StopLineSelector
+            options={stopLineOptions}
+            activeOption={activeOption}
+            selectedKeys={selectedKeys}
+            isLoading={isLoadingStopLines}
+            onSelect={selectOption}
+          />
 
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-            Proximos arribos
-          </h3>
-          <button
-            onClick={handleRefresh}
-            disabled={multiArribos.isFetching}
-            aria-label="Actualizar lista de arribos"
-            aria-busy={multiArribos.isFetching}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-muted text-sm font-bold transition-all active:scale-95 cursor-pointer disabled:opacity-50"
-          >
-            <RefreshCw
-              className={`w-4 h-4 ${multiArribos.isFetching ? "animate-spin" : ""}`}
-              aria-hidden="true"
-            />
-            Actualizar
-          </button>
+          <div className="mt-4">
+            <div>
+              <div className="mb-2 flex items-center justify-between">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                  Mapa del recorrido
+                </h3>
+                <span className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+                  Colectivos en tiempo real
+                </span>
+              </div>
+
+              {recorridoQuery.isLoading ? (
+                <ArrivalsRouteMapSkeleton />
+              ) : (
+                <ArrivalsRouteMap
+                  puntos={puntosRecorrido}
+                  arribos={activeSection?.arribos ?? []}
+                  parada={{
+                    latitud: activeParada?.LatitudParada ?? null,
+                    longitud: activeParada?.LongitudParada ?? null,
+                    bandera: activeParada?.AbreviaturaBandera ?? "",
+                  }}
+                />
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="flex-1 overflow-y-auto" aria-live="polite">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                Proximos arribos
+              </h3>
+              <p className="mt-1 text-sm font-medium text-muted-foreground">
+                Ordenados por la llegada más próxima.
+              </p>
+            </div>
+            <button
+              onClick={handleRefresh}
+              disabled={multiArribos.isFetching}
+              aria-label="Actualizar lista de arribos"
+              aria-busy={multiArribos.isFetching}
+              className="flex items-center gap-2 rounded-xl bg-muted px-4 py-2.5 text-sm font-bold transition-all active:scale-95 cursor-pointer disabled:opacity-50"
+            >
+              <RefreshCw
+                className={`h-4 w-4 ${multiArribos.isFetching ? "animate-spin" : ""}`}
+                aria-hidden="true"
+              />
+              Actualizar
+            </button>
+          </div>
+
           {multiArribos.isLoading && (
             <div
               className="flex flex-col items-center justify-center py-12"
@@ -220,23 +292,37 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
               {sections.map((section) => (
                 <section
                   key={`${section.option.linea.CodigoLineaParada}:${section.option.parada.Codigo}`}
-                  className="rounded-3xl border border-border bg-background/70 p-4 shadow-sm"
+                  className="rounded-[1.75rem] border border-border bg-background/70 p-4 shadow-sm"
                 >
-                  <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="mb-4 flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <h4 className="text-lg font-black text-foreground truncate">
-                        {section.option.linea.Descripcion}
-                      </h4>
-                      <p className="mt-1 text-xs text-muted-foreground truncate">
+                      <div className="flex items-center gap-2">
+                        <h4 className="truncate text-lg font-black text-foreground">
+                          {section.option.linea.Descripcion}
+                        </h4>
+                        <span className="rounded-full bg-mdp-amarillo/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-mdp-amarillo">
+                          {section.option.parada.AbreviaturaBandera}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-xs font-medium text-muted-foreground truncate">
                         {section.arribos.length}{" "}
                         {section.arribos.length === 1
                           ? "unidad en camino"
                           : "unidades en camino"}
                       </p>
                     </div>
-                    <span className="rounded-full bg-mdp-amarillo/10 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-mdp-amarillo">
-                      {section.option.parada.AbreviaturaBandera}
-                    </span>
+                    {section.nextArrival !== Number.POSITIVE_INFINITY && (
+                      <div className="rounded-2xl bg-background/80 px-3 py-2 text-right">
+                        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">
+                          Proximo
+                        </p>
+                        <p className="mt-1 text-lg font-black text-foreground">
+                          {section.nextArrival === 0
+                            ? "Ahora"
+                            : `${section.nextArrival} min`}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   {section.result?.error && (
@@ -266,7 +352,7 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
                   {!section.result?.error &&
                     !section.result?.isLoading &&
                     section.arribos.length > 0 && (
-                      <ul className="space-y-3" role="list">
+                      <ul className="space-y-2.5" role="list">
                         {section.arribos.map((arribo, index) => (
                           <li
                             key={`${section.option.linea.CodigoLineaParada}-${arribo.IdentificadorCoche}-${index}`}

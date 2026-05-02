@@ -40,39 +40,39 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
 
   return (
     <article
-      className={`p-3 rounded-3xl flex items-center gap-4 border transition-all ${
+      className={`flex items-center gap-4 rounded-[1.5rem] border px-4 py-3 transition-all ${
         isUrgent
-          ? "bg-mdp-amarillo/10 border-mdp-amarillo"
-          : "bg-card border-border"
+          ? "border-mdp-amarillo/60 bg-mdp-amarillo/8"
+          : "border-border bg-card/70"
       }`}
       style={{ animationDelay: `${index * 50}ms` }}
       aria-label={`${arribo.DescripcionCortaBandera || arribo.DescripcionBandera}, coche ${arribo.IdentificadorCoche}, llega en ${parsed.value} ${parsed.unit}${urgencyLabel}`}
     >
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="text-[11px] font-black uppercase tracking-[0.24em] text-muted-foreground">
+        <div className="mb-1.5 flex flex-wrap items-center gap-2">
+          <span className="text-[10px] font-black uppercase tracking-[0.22em] text-muted-foreground">
             Coche {arribo.IdentificadorCoche || "---"}
           </span>
           {isAdaptado && (
             <span
               title="Unidad adaptada para personas con movilidad reducida"
-              className="inline-flex items-center gap-1 rounded-full bg-mdp-turquesa/10 px-2 py-1 text-[11px] font-bold text-mdp-turquesa"
+              className="inline-flex items-center gap-1 rounded-full bg-mdp-turquesa/10 px-2 py-1 text-[10px] font-bold text-mdp-turquesa"
             >
               <Accessibility className="w-3 h-3" aria-hidden="true" />
               Adaptado
             </span>
           )}
         </div>
-        <h4 className="text-sm font-black text-foreground truncate">
+        <h4 className="truncate text-sm font-black text-foreground">
           {arribo.DescripcionCortaBandera || arribo.DescripcionBandera}
         </h4>
-        <p className="text-[11px] text-muted-foreground mt-2 font-medium flex items-center gap-1">
-          <Clock className="w-3 h-3" aria-hidden="true" />
+        <p className="mt-2 flex items-center gap-1 text-[11px] font-medium text-muted-foreground">
+          <Clock className="h-3 w-3" aria-hidden="true" />
           <span>
             GPS {gpsTime}
             {arribo.DesvioHorario && arribo.DesvioHorario !== "00:00" && (
               <span
-                className="text-mdp-rosa ml-1 font-bold"
+                className="ml-1 font-bold text-mdp-rosa"
                 aria-label={`desvío de ${arribo.DesvioHorario}`}
               >
                 ({arribo.DesvioHorario})
@@ -82,19 +82,19 @@ export function BusArrivalCard({ arribo, index }: BusArrivalCardProps) {
         </p>
       </div>
 
-      <div className="shrink-0 flex flex-col items-end gap-1">
+      <div className="shrink-0 rounded-2xl bg-background/70 px-3 py-2 text-right">
         {parsed.unit ? (
           <>
             <span
-              className={`font-black tabular-nums leading-none ${
+              className={`block font-black tabular-nums leading-none ${
                 isVeryUrgent
-                  ? "text-4xl text-red-500"
-                  : "text-3xl text-mdp-amarillo"
+                  ? "text-3xl text-red-500"
+                  : "text-[2rem] text-mdp-amarillo"
               }`}
             >
               {parsed.value}
             </span>
-            <span className="text-[11px] text-muted-foreground font-bold uppercase tracking-[0.25em]">
+            <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">
               {parsed.unit}
             </span>
           </>

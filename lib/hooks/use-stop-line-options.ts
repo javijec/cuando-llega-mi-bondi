@@ -65,9 +65,7 @@ export function useStopLineOptions({
   );
 
   const stopLineOptions = useMemo(() => {
-    const relatedOptions = (stopLinesQuery.data?.lineas ?? []).map(
-      toStopLineOption,
-    );
+    const relatedOptions = (stopLinesQuery.data ?? []).map(toStopLineOption);
 
     return dedupeOptions(
       currentOption ? [currentOption, ...relatedOptions] : relatedOptions,
@@ -81,14 +79,19 @@ export function useStopLineOptions({
   const [activeOptionKey, setActiveOptionKey] = useState<string | null>(
     currentOptionKey,
   );
+  const [hasManualSelection, setHasManualSelection] = useState(false);
 
   const selectedKeys = useMemo(() => {
+    if (!hasManualSelection) {
+      return currentOptionKey ? new Set([currentOptionKey]) : new Set<string>();
+    }
+
     const nextKeys = selectedOptionKeys.filter((key) =>
       stopLineOptions.some((option) => getOptionKey(option) === key),
     );
 
     return nextKeys.length > 0 ? new Set(nextKeys) : new Set<string>();
-  }, [selectedOptionKeys, stopLineOptions]);
+  }, [hasManualSelection, selectedOptionKeys, stopLineOptions]);
 
   const selectedOptions = useMemo(() => {
     return stopLineOptions.filter((option) =>
@@ -99,6 +102,10 @@ export function useStopLineOptions({
   const activeOption = useMemo(() => {
     if (selectedOptions.length === 0) {
       return null;
+    }
+
+    if (!hasManualSelection && currentOption) {
+      return currentOption;
     }
 
     const matchingActiveOption = stopLineOptions.find(
@@ -113,13 +120,23 @@ export function useStopLineOptions({
     }
 
     return selectedOptions[0] ?? null;
-  }, [activeOptionKey, selectedKeys, selectedOptions, stopLineOptions]);
+  }, [
+    activeOptionKey,
+    currentOption,
+    hasManualSelection,
+    selectedKeys,
+    selectedOptions,
+    stopLineOptions,
+  ]);
 
   function selectOption(option: StopLineOption): void {
+    setHasManualSelection(true);
+
     const optionKey = getOptionKey(option);
     const isSelected = selectedKeys.has(optionKey);
+    const currentKeys = Array.from(selectedKeys);
 
-    setSelectedOptionKeys((currentKeys) => {
+    setSelectedOptionKeys(() => {
       const nextKeys = isSelected
         ? currentKeys.filter((key) => key !== optionKey)
         : [...currentKeys, optionKey];
