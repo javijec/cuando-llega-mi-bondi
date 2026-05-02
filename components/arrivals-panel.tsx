@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
-import { Loader2, MapPin, RefreshCw } from "lucide-react";
+import { useMemo, useState } from "react";
+import { ChevronDown, Loader2, MapPin, RefreshCw, Route } from "lucide-react";
 import { ArrivalsRouteMap, ArrivalsRouteMapSkeleton } from "./arrivals-route-map-dynamic";
-import { useMultiArribos, useRecorrido } from "@/lib/hooks/useBusQuery";
+import { useMultiArribos, useMultiRecorridos } from "@/lib/hooks/useBusQuery";
 import { useStopLineOptions } from "@/lib/hooks/use-stop-line-options";
 import { useFavoritoToggle } from "@/lib/hooks/useFavoritos";
 import { BusArrivalCard } from "./bus-arrival-card";
@@ -35,6 +35,10 @@ function getRouteBranchLabel(description: string): string {
   return description.split(";")[1]?.trim() ?? description
 }
 
+function getSectionKey(linea: Linea, parada: Parada): string {
+  return `${linea.CodigoLineaParada}:${parada.Codigo}`
+}
+
 function parseArrivalMinutes(arribo: string): number | null {
   const match = arribo.match(/(\d+)\s*min/i);
 
@@ -53,6 +57,9 @@ export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
 
 function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
   const { calle, interseccion } = info;
+  const [expandedMapKeys, setExpandedMapKeys] = useState<Set<string>>(
+    () => new Set(),
+  );
   const {
     activeOption,
     selectedOptions,
@@ -71,22 +78,44 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
       enabled: selectedOptions.length > 0,
     },
   );
+  const recorridoResults = useMultiRecorridos(
+    selectedOptions.map((option) => ({
+      codigoLinea: option.linea.CodigoLineaParada,
+      isSublinea: 0,
+    })),
+    {
+      enabled: selectedOptions.length > 0,
+    },
+  );
 
   const sections = useMemo(() => {
     return selectedOptions
       .map((option, index) => {
         const result = multiArribos.results[index];
+        const recorridoResult = recorridoResults[index];
         const arribos = result?.data?.arribos ?? [];
         const nextArrival =
           arribos
             .map((arribo) => parseArrivalMinutes(arribo.Arribo))
             .find((value) => value !== null) ?? Number.POSITIVE_INFINITY;
 
+        const puntosRecorrido =
+          recorridoResult?.data?.puntos?.filter(
+            (punto) =>
+              punto.AbreviaturaBanderaSMP === option.parada.AbreviaturaBandera ||
+              normalizeBranchLabel(getRouteBranchLabel(punto.Descripcion)) ===
+                normalizeBranchLabel(option.parada.AbreviaturaBandera) ||
+              normalizeBranchLabel(getRouteBranchLabel(punto.Descripcion)) ===
+                normalizeBranchLabel(option.parada.AbreviaturaAmpliadaBandera),
+          ) ?? [];
+
         return {
           option,
           result,
+          recorridoResult,
           arribos,
           nextArrival,
+          puntosRecorrido,
         };
       })
       .sort((a, b) => {
@@ -99,30 +128,14 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
           "es",
         );
       });
-  }, [multiArribos.results, selectedOptions]);
+  }, [multiArribos.results, recorridoResults, selectedOptions]);
 
   const activeLinea = activeOption?.linea;
   const activeParada = activeOption?.parada;
-  const activeSection = sections.find(
-    (section) =>
-      section.option.linea.CodigoLineaParada === activeLinea?.CodigoLineaParada &&
-      section.option.parada.Codigo === activeParada?.Codigo,
-  ) ?? sections[0] ?? null
   const totalArribos = sections.reduce(
     (total, section) => total + section.arribos.length,
     0,
   );
-  const recorridoQuery = useRecorrido(activeLinea?.CodigoLineaParada || "", 0)
-  const puntosRecorrido = !activeParada?.AbreviaturaBandera
-    ? []
-    : (recorridoQuery.data?.puntos ?? []).filter(
-        (punto) =>
-          punto.AbreviaturaBanderaSMP === activeParada.AbreviaturaBandera ||
-          normalizeBranchLabel(getRouteBranchLabel(punto.Descripcion)) ===
-            normalizeBranchLabel(activeParada.AbreviaturaBandera) ||
-          normalizeBranchLabel(getRouteBranchLabel(punto.Descripcion)) ===
-            normalizeBranchLabel(activeParada.AbreviaturaAmpliadaBandera),
-      )
 
   const { isFavorito, toggle, label } = useFavoritoToggle(
     activeParada?.Identificador || "",
@@ -142,6 +155,20 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
     await Promise.all(
       sections.map((section) => section.result?.refetch?.()).filter(Boolean),
     );
+  }
+
+  function toggleMap(sectionKey: string): void {
+    setExpandedMapKeys((currentKeys) => {
+      const nextKeys = new Set(currentKeys)
+
+      if (nextKeys.has(sectionKey)) {
+        nextKeys.delete(sectionKey)
+      } else {
+        nextKeys.add(sectionKey)
+      }
+
+      return nextKeys
+    })
   }
 
   if (!activeParada) {
@@ -206,33 +233,6 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
             isLoading={isLoadingStopLines}
             onSelect={selectOption}
           />
-
-          <div className="mt-4">
-            <div>
-              <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                  Mapa del recorrido
-                </h3>
-                <span className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
-                  Colectivos en tiempo real
-                </span>
-              </div>
-
-              {recorridoQuery.isLoading ? (
-                <ArrivalsRouteMapSkeleton />
-              ) : (
-                <ArrivalsRouteMap
-                  puntos={puntosRecorrido}
-                  arribos={activeSection?.arribos ?? []}
-                  parada={{
-                    latitud: activeParada?.LatitudParada ?? null,
-                    longitud: activeParada?.LongitudParada ?? null,
-                    bandera: activeParada?.AbreviaturaBandera ?? "",
-                  }}
-                />
-              )}
-            </div>
-          </div>
         </div>
 
         <div className="flex-1 overflow-y-auto" aria-live="polite">
@@ -291,9 +291,18 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
             <div className="grid gap-4 lg:grid-cols-2">
               {sections.map((section) => (
                 <section
-                  key={`${section.option.linea.CodigoLineaParada}:${section.option.parada.Codigo}`}
+                  key={getSectionKey(section.option.linea, section.option.parada)}
                   className="rounded-[1.75rem] border border-border bg-background/70 p-4 shadow-sm"
                 >
+                  {(() => {
+                    const sectionKey = getSectionKey(
+                      section.option.linea,
+                      section.option.parada,
+                    )
+                    const isMapExpanded = expandedMapKeys.has(sectionKey)
+
+                    return (
+                      <>
                   <div className="mb-4 flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
@@ -324,6 +333,43 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
                       </div>
                     )}
                   </div>
+
+                  <div className="mb-4 flex items-center justify-between gap-3 rounded-2xl border border-border/70 bg-card/60 px-3 py-2.5">
+                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                      <Route className="h-4 w-4" aria-hidden="true" />
+                      <span>Mapa del recorrido de esta línea</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => toggleMap(sectionKey)}
+                      className="flex items-center gap-2 rounded-xl bg-muted px-3 py-2 text-sm font-bold text-foreground transition-all active:scale-95"
+                      aria-expanded={isMapExpanded}
+                    >
+                      {isMapExpanded ? "Ocultar mapa" : "Ver mapa"}
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${isMapExpanded ? "rotate-180" : ""}`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
+
+                  {isMapExpanded && (
+                    <div className="mb-4">
+                      {section.recorridoResult?.isLoading ? (
+                        <ArrivalsRouteMapSkeleton />
+                      ) : (
+                        <ArrivalsRouteMap
+                          puntos={section.puntosRecorrido}
+                          arribos={section.arribos}
+                          parada={{
+                            latitud: section.option.parada.LatitudParada ?? null,
+                            longitud: section.option.parada.LongitudParada ?? null,
+                            bandera: section.option.parada.AbreviaturaBandera ?? "",
+                          }}
+                        />
+                      )}
+                    </div>
+                  )}
 
                   {section.result?.error && (
                     <div className="rounded-2xl bg-mdp-rosa/10 px-4 py-3 text-sm font-bold text-mdp-rosa">
@@ -365,6 +411,9 @@ function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
                         ))}
                       </ul>
                     )}
+                      </>
+                    )
+                  })()}
                 </section>
               ))}
             </div>

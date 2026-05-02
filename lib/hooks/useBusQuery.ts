@@ -78,6 +78,34 @@ export function useRecorrido(codigoLinea: string, isSublinea: number = 0) {
   });
 }
 
+interface MultiRecorridoInput {
+  codigoLinea: string
+  isSublinea?: number
+}
+
+export function useMultiRecorridos(
+  inputs: MultiRecorridoInput[],
+  options?: {
+    enabled?: boolean
+  },
+) {
+  const enabled = options?.enabled ?? true
+
+  return useQueries({
+    queries: inputs.map((input) => {
+      const isSublinea = input.isSublinea ?? 0
+      const queryEnabled = enabled && !!input.codigoLinea
+
+      return {
+        queryKey: ["recorrido", input.codigoLinea, isSublinea],
+        queryFn: () => busService.fetchRecorrido(input.codigoLinea, isSublinea),
+        enabled: queryEnabled,
+        ...STATIC_QUERY_OPTIONS,
+      }
+    }),
+  })
+}
+
 export function useParadaLineas(
   identificadorParada: string,
   calleDescripcion: string,

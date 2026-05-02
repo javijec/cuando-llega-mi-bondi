@@ -91,7 +91,7 @@ export function useStopLineOptions({
     );
 
     return nextKeys.length > 0 ? new Set(nextKeys) : new Set<string>();
-  }, [hasManualSelection, selectedOptionKeys, stopLineOptions]);
+  }, [currentOptionKey, hasManualSelection, selectedOptionKeys, stopLineOptions]);
 
   const selectedOptions = useMemo(() => {
     return stopLineOptions.filter((option) =>

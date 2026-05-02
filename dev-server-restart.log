@@ -12403,3 +12403,237 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
 Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
 [0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
  POST /api/bus/arribos 200 in 531ms (compile: 2ms, render: 529ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T17:34:42.807Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 25ms (compile: 8ms, render: 17ms)
+Ô£ô Compiled in 63ms
+Ô£ô Compiled in 94ms
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T17:37:59.318Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T17:37:59.318Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+ POST /api/bus/arribos 200 in 768ms (compile: 280ms, render: 488ms)
+ GET /consultar 200 in 1542ms (compile: 175ms, render: 1367ms)
+ GET /consultar 200 in 1017ms (compile: 79ms, render: 938ms)
+ GET /consultar 200 in 1019ms (compile: 64ms, render: 955ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 12ms (compile: 2ms, render: 10ms)
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 17ms (compile: 10ms, render: 7ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+ GET /api/bus/lineas 200 in 15ms (compile: 8ms, render: 7ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.925Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+ GET /api/bus/calles?codLinea=110 200 in 15ms (compile: 9ms, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:44.788Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+ GET /api/bus/intersecciones?codLinea=110&codCalle=5429 200 in 12ms (compile: 6ms, render: 5ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:45.345Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+ GET /api/bus/paradas?codLinea=110&codCalle=5429&codInterseccion=5484 200 in 6ms (compile: 1590┬Ás, render: 5ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T17:39:57.724Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T17:39:57.724Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '110' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarRecorridoParaMapaAbrevYAmpliPorEntidadYLinea - 2026-05-02T16:52:21.713Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', isSublinea: '0' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarRecorridoParaMapaAbrevYAmpliPorEntidadYLinea
+ GET /api/bus/recorrido?codLinea=110&isSublinea=0 200 in 8ms (compile: 2ms, render: 6ms)
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarLineaPorCuandoLlega - 2026-05-02T12:39:50.077Z
+[0m[7m Cache [0m ­ƒôè Params: {}
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarLineaPorCuandoLlega
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.099Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '93' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.105Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '98' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.109Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '99' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.112Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:49:57.293Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '101' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.656Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.685Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.862Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:36.718Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '104' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.875Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.877Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103', codCalle: '5429' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:45.885Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '104', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.283Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.638Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '102', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:46.652Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '103', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.119Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '105' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:46.663Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '105', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.155Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '106' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.542Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '107' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.582Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '108' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.601Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '109' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.925Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:44.788Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:45.345Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '110', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:37.960Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:46.755Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.006Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.067Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.030Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '116' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.344Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.084Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.179Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '111', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.383Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.213Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.536Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '117', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.637Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '112', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.432Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '120' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.457Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.665Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:47.673Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '119', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.769Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:47.965Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.807Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '123' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.067Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '123', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.083Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '121', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.861Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.096Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.385Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '122', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:38.888Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '125' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.222Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.495Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.312Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '127' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarCallesPrincipalPorLinea - 2026-05-02T12:53:39.323Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '344' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarCallesPrincipalPorLinea
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarInterseccionPorLineaYCalle - 2026-05-02T12:54:48.511Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '344', codCalle: '5429' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.520Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '124', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarParadasConBanderaPorLineaCalleEInterseccion - 2026-05-02T12:54:48.915Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '126', codCalle: '5429', codInterseccion: '5484' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarInterseccionPorLineaYCalle
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarParadasConBanderaPorLineaCalleEInterseccion
+ GET /api/bus/parada-lineas?identificadorParada=P3606&calleDescripcion=AVENIDA+INDEPENDENCIA+-+MAR+DEL+PLATA&interseccionDescripcion=SAN+MART%C3%8DN+-+MAR+DEL+PLATA 200 in 36ms (compile: 10ms, render: 26ms)
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 689ms (compile: 2ms, render: 686ms)
+­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T17:40:06.859Z
+­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarProximosArribosW - 2026-05-02T17:40:06.859Z
+[0m[7m Cache [0m ­ƒôè Params: { identificadorParada: 'P3606', codigoLineaParada: '100' }
+[0m[7m Cache [0m ­ƒîÉ [MUNI API CALL] RecuperarRecorridoParaMapaAbrevYAmpliPorEntidadYLinea - 2026-05-02T16:52:20.180Z
+[0m[7m Cache [0m ­ƒôè Params: { codLinea: '100', isSublinea: '0' }
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarRecorridoParaMapaAbrevYAmpliPorEntidadYLinea
+ GET /api/bus/recorrido?codLinea=100&isSublinea=0 200 in 23ms (compile: 17ms, render: 5ms)
+Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+[0m[7m Cache [0m Ô£à [MUNI SUCCESS] RecuperarProximosArribosW
+ POST /api/bus/arribos 200 in 1852ms (compile: 7ms, render: 1845ms)
