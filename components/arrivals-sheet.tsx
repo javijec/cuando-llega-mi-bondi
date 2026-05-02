@@ -37,6 +37,19 @@ function parseArrivalMinutes(arribo: string): number | null {
 }
 
 export function ArrivalsSheet({ isOpen, onClose, info }: ArrivalsSheetProps) {
+  const selectionKey = `${info.linea?.CodigoLineaParada ?? "none"}:${info.parada?.Codigo ?? "none"}`;
+
+  return (
+    <ArrivalsSheetContent
+      key={selectionKey}
+      isOpen={isOpen}
+      onClose={onClose}
+      info={info}
+    />
+  );
+}
+
+function ArrivalsSheetContent({ isOpen, onClose, info }: ArrivalsSheetProps) {
   const sheetRef = useRef<SheetRef>(null);
   const { calle, interseccion } = info;
   const {

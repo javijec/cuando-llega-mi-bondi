@@ -37,6 +37,12 @@ function parseArrivalMinutes(arribo: string): number | null {
 }
 
 export function ArrivalsPanel({ info }: ArrivalsPanelProps) {
+  const selectionKey = `${info.linea?.CodigoLineaParada ?? "none"}:${info.parada?.Codigo ?? "none"}`;
+
+  return <ArrivalsPanelContent key={selectionKey} info={info} />;
+}
+
+function ArrivalsPanelContent({ info }: ArrivalsPanelProps) {
   const { calle, interseccion } = info;
   const {
     activeOption,
